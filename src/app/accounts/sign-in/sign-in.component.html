@@ -10,9 +10,12 @@
                     <h1 class="text-white font-36 fw-600">Yoneak Scripts</h1>
                 </div>
                 <div class="social_icons d-flex flex-row align-items-center justify-content-center gap-2">
-                    <i class='bx bxl-facebook-circle text-white font-32 cursor'></i>
-                    <i class='bx bxl-linkedin-square text-white font-32 cursor'></i>
-                    <i class='bx bxl-instagram-alt text-white font-32 cursor'></i>
+                    <a href="https://www.facebook.com/login/" target="_blank"><i
+                        class='bx bxl-facebook-circle text-white font-32 cursor'></i></a>
+                <a href="https://www.linkedin.com/login" target="_blank"><i
+                        class='bx bxl-linkedin-square text-white font-32 cursor'></i></a>
+                <a href="https://www.instagram.com/" target="_blank"><i
+                        class='bx bxl-instagram-alt text-white font-32 cursor'></i></a>
                 </div>
             </div>
             <form [formGroup]="signInForm" class="d-flex flex-column gap-2 w-70">
@@ -59,14 +62,15 @@
                 </div>
                 <div class="form_butns d-flex flex-column gap-5 w-100">
                     <div class="forget_pwd d-flex justify-content-end w-100">
-                        <a class="text-white font-16 fw-600 text-d-n">Forget Password?</a>
+                        <a class="text-white font-16 fw-600 text-d-n" routerLink="/accounts/forget-password">Forget Password?</a>
                     </div>
                     <div class="submit d-flex align-items-center justify-content-center">
                         <button class="text-blue font-16 fw-700 br-n br-20 w-100 py-2">ENTER</button>
                     </div>
                 </div>
-
-
+                <div class="already_have_acc d-flex align-items-center justify-content-center">
+                    <p class="text-white font-14 fw-500">Don't have an account <a routerLink="/accounts/sign-up">Sign UP</a></p>
+                </div>
             </form>
         </div>
     </div>

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SignUpComponent } from './sign-up.component';
+import { ForgetPasswordComponent } from './forget-password.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -8,13 +8,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    SignUpComponent
+    ForgetPasswordComponent
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild([{path:'',component:SignUpComponent}]),
+    RouterModule.forChild([{path:'',component:ForgetPasswordComponent}]),
     ReactiveFormsModule,
     FormsModule
   ]
 })
-export class SignUpModule { }
+export class ForgetPasswordModule { }

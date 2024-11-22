@@ -1,0 +1,35 @@
+.login_main{
+    height: 100vh;
+}
+.login_body{
+    height: 580px;
+    // border-bottom-right-radius: 15px;
+}
+.login_left img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.form_field_input{
+    position: relative;
+}
+.form_field_input input{
+    background-color: transparent;
+    border: none;
+    border-bottom:2px solid white;
+}
+.form_field_input input:focus-visible{
+    outline: none;
+}
+::placeholder{
+    color: white;
+}
+.input_icon{
+    position: absolute;
+    right: 0;
+}
+.already_have_acc a{
+    color: yellow;
+}
