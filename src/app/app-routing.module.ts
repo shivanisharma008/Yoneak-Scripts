@@ -7,7 +7,22 @@ const routes: Routes = [
     path:'accounts',
     loadChildren:()=>
       import('./accounts/accounts.module').then((m)=> m.AccountsModule)
-  }
+  },
+  {
+    path:'user',
+    loadChildren:()=>
+      import('./user/user.module').then((m)=> m.UserModule)
+  },
+  {
+    path:'super-admin',
+    loadChildren:()=>
+      import('./super-admin/super-admin.module').then((m)=> m.SuperAdminModule)
+  },
+  {
+    path:'admin',
+    loadChildren:()=>
+      import('./admin/admin.module').then((m)=> m.AdminModule)
+  },
 ];
 
 @NgModule({

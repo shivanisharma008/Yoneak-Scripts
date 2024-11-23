@@ -4,6 +4,8 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MainModule } from './main/main.module';
+import { SuperAdminModule } from './super-admin/super-admin.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +13,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MainModule,
+    SuperAdminModule
   ],
   providers: [
     provideClientHydration(),
