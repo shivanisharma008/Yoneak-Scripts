@@ -11,13 +11,6 @@ import { MatCardModule } from '@angular/material/card';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { provideHttpClient } from '@angular/common/http';
 import { EditProfileComponent } from './sharedModule/edit-profile/edit-profile.component';
-// export function apiConfigFactory(): Configuration {
-//   const params: ConfigurationParameters = {
-//     basePath: 'https://csol.creedleads.com',
-//     apiKeys: { bearer: '' }
-//   };
-//   return new Configuration(params);
-// }
 
 @NgModule({
   declarations: [
