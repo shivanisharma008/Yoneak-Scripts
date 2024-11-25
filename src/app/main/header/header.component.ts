@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+  @Output() sidenavToggle = new EventEmitter<void>();
+  isDropdownVisible = false;
 
+  toggleDropdown() {
+    this.isDropdownVisible = !this.isDropdownVisible;
+  }
+
+  toggleSidenav() {
+    this.sidenavToggle.emit();
+    console.log('Sidenav toggle emitted');
+  }
 }

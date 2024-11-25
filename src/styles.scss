@@ -1,4 +1,3 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
@@ -20,15 +19,12 @@ $Yoneak-Scripts-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$Yoneak-Scripts-theme: mat.define-light-theme((
-  color: (
-    primary: $Yoneak-Scripts-primary,
-    accent: $Yoneak-Scripts-accent,
-    warn: $Yoneak-Scripts-warn,
-  ),
-  typography: mat.define-typography-config(),
-  density: 0
-));
+$Yoneak-Scripts-theme: mat.define-light-theme((color: (primary: $Yoneak-Scripts-primary,
+        accent: $Yoneak-Scripts-accent,
+        warn: $Yoneak-Scripts-warn,
+      ),
+      typography: mat.define-typography-config(),
+      density: 0));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -37,60 +33,85 @@ $Yoneak-Scripts-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Lora:ital,wght@0,400..700;1,400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lora:ital,wght@0,400..700;1,400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-html, body,p, h1,h2,h3,h4,h4,h5,h6 { 
+html,
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h4,
+h5,
+h6 {
   margin: 0;
   padding: 0;
+  
 }
-body { margin: 0; font-family: Lora;
-  --primary-blue: #23437E; 
-  --primary-black:black;
-  --primary-white:white;
-  --grey:#3d3d3d;
-  --light-grey:#f5f5f5;
+
+body {
+  margin: 0;
+  font-family: 'Josefin Sans';
+  --primary-blue: #23437E;
+  --primary-black: black;
+  --primary-white: white;
+  --grey: #3d3d3d;
+  --light-grey: #f5f5f5;
 }
 
 // color
 
-.text-white{
-  color:var(--primary-white);
+.text-white {
+  color: var(--primary-white);
 }
-.text-black{
-  color:var(--primary-black);
+
+.text-black {
+  color: var(--primary-black);
 }
-.text-blue{
+
+.text-blue {
   color: var(--primary-blue);
 }
-.text-light-grey{
+
+.text-light-grey {
   color: var(--light-grey);
 }
-.text-grey{
+
+.text-grey {
   color: var(--grey);
 }
+
 .gradient-text {
-  font-size: 32px; /* Ensures size matches the class */
-  font-weight: 600; /* Ensures weight matches the class */
+  font-size: 32px;
+  /* Ensures size matches the class */
+  font-weight: 600;
+  /* Ensures weight matches the class */
   background: linear-gradient(to right, red, yellow, orange);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  display: inline-block; /* Needed to apply the gradient properly */
+  display: inline-block;
+  /* Needed to apply the gradient properly */
 }
 
 
 // background-color
-.bg-white{
+.bg-white {
   background-color: var(--primary-white);
 }
-.bg-black{
+
+.bg-black {
   background-color: (--primary-black);
 }
-.bg-blue{
+
+.bg-blue {
   background-color: var(--primary-blue);
 }
-.bg-light-grey{
+
+.bg-light-grey {
   background-color: var(--light-grey);
 }
+
 //font weights
 .fw-900 {
   font-weight: 900 !important;
@@ -282,13 +303,16 @@ body { margin: 0; font-family: Lora;
 .pad-tb-5 {
   padding: 5% 0;
 }
+
 // heading
 .pad-tb-3 {
   padding: 3% 0;
 }
+
 .pad-b-3 {
   padding: 0% 0 3% 0;
 }
+
 .pad-t-3 {
   padding: 3% 0 0% 0;
 }
@@ -339,9 +363,11 @@ body { margin: 0; font-family: Lora;
 .w-67 {
   width: 67%;
 }
+
 .w-65 {
   width: 65%;
 }
+
 .w-63 {
   width: 63%;
 }
@@ -373,6 +399,7 @@ body { margin: 0; font-family: Lora;
 .w-34 {
   width: 34%;
 }
+
 .w-33 {
   width: 33%;
 }
@@ -392,7 +419,8 @@ body { margin: 0; font-family: Lora;
 .w-40 {
   width: 40%;
 }
-.w-43{
+
+.w-43 {
   width: 43%;
 }
 
@@ -464,7 +492,7 @@ body { margin: 0; font-family: Lora;
   .font-50 {
     font-size: 35px;
   }
-  
+
   .font-42 {
     font-size: 30px;
   }
@@ -524,6 +552,7 @@ body { margin: 0; font-family: Lora;
   .font-12 {
     font-size: 11px;
   }
+
   .font-10 {
     font-size: 10px;
   }
@@ -531,10 +560,12 @@ body { margin: 0; font-family: Lora;
   .ht-60 {
     height: 40vh;
   }
-  .pad-tb-3{
+
+  .pad-tb-3 {
     padding: 8% 0;
   }
-  .pad-tb-2{
+
+  .pad-tb-2 {
     padding: 7% 0;
   }
 }
@@ -551,7 +582,7 @@ body { margin: 0; font-family: Lora;
   .font-45 {
     font-size: 45px;
   }
-  
+
   .font-42 {
     font-size: 42px;
   }
@@ -607,6 +638,7 @@ body { margin: 0; font-family: Lora;
   .font-12 {
     font-size: 12px;
   }
+
   .font-10 {
     font-size: 10px;
   }
@@ -698,7 +730,7 @@ body { margin: 0; font-family: Lora;
   .font-45 {
     font-size: 60px;
   }
-  
+
   .font-42 {
     font-size: 58px;
   }
@@ -754,6 +786,7 @@ body { margin: 0; font-family: Lora;
   .font-12 {
     font-size: 13px;
   }
+
   .font-10 {
     font-size: 12px;
   }

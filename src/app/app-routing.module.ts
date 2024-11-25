@@ -2,27 +2,27 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path:'',redirectTo:'accounts',pathMatch:'full'},
+  { path: '', redirectTo: 'accounts', pathMatch: 'full' },
   {
-    path:'accounts',
-    loadChildren:()=>
-      import('./accounts/accounts.module').then((m)=> m.AccountsModule)
+    path: 'accounts',
+    loadChildren: () =>
+      import('./accounts/accounts.module').then((m) => m.AccountsModule)
   },
   {
-    path:'user',
-    loadChildren:()=>
-      import('./user/user.module').then((m)=> m.UserModule)
+    path: 'user',
+    loadChildren: () =>
+      import('./user/user.module').then((m) => m.UserModule)
   },
   {
-    path:'super-admin',
-    loadChildren:()=>
-      import('./super-admin/super-admin.module').then((m)=> m.SuperAdminModule)
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) => m.AdminModule)
   },
   {
-    path:'admin',
+    path:'super-admin-module',
     loadChildren:()=>
-      import('./admin/admin.module').then((m)=> m.AdminModule)
-  },
+      import('./super-admin-module/super-admin-module.module').then ((m)=> m.SuperAdminModuleModule)
+  }
 ];
 
 @NgModule({

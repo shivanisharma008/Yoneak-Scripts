@@ -1,0 +1,15 @@
+.sidenav{
+    height: 100vh;
+}
+.menu_list a {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.menu_list a.active-menu {
+    background-color:white; /* Blue background for active item */
+    color:#23437E  !important; /* White text for active item */
+    font-weight: 700;
+}
+a:focus-visible{
+    outline: none;
+}
+

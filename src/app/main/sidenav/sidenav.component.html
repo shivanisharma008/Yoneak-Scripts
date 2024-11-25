@@ -1,21 +1,34 @@
-<div class="sidenav d-flex flex-column align-items-center justify-content-center">
+<div class="sidenav d-flex flex-column align-items-center justify-content-start bg-blue">
     <div class="sidenav_body d-flex flex-column align-items-center justify-content-center gap-4 p-4">
-        <div class="logo">
+
+        <div class="logo d-none d-sm-none d-md-none d-lg-flex">
             <h1 class="gradient-text font-24 fw-600">Yoneak Scripts</h1>
         </div>
-        <div class="menus d-flex flex-column align-items-start justify-content-start gap-3 w-100">
+        <div class="logo d-flex align-items-center justify-content-between d-sm-flex d-md-flex d-lg-none w-100">
+            <h1 class="gradient-text font-24 fw-600">Yoneak Scripts</h1>
+            <i class="fa-solid fa-xmark text-white font-24" (click)="closeSidenav()"></i>
+        </div>
+    
+        <div class="menus d-flex flex-column align-items-start justify-content-start gap-4 w-100">
             <div class="menu_list w-100">
-                <a class="text-black font-18 fw-600 text-d-n">Dashboard</a>
+                <a class="d-flex align-items-center text-white font-18 fw-600 text-d-n br-6 py-2 px-4">
+                    <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                </a>
             </div>
             <div class="menu_list w-100">
-                <a class="text-black font-18 fw-600 text-d-n">Admin Details</a>
+                <a class="d-flex align-items-center text-white font-18 fw-600 text-d-n br-6 py-2 px-4" routerLink="super-admin-module/admin-details" routerLinkActive="active-menu">
+                    <i class="fas fa-user-shield me-2"></i> Admin Details
+                </a>
             </div>
             <div class="menu_list w-100">
-                <a class="text-black font-18 fw-600 text-d-n">User Details</a>
+                <a class="d-flex align-items-center text-white font-18 fw-600 text-d-n br-6 py-2 px-4" routerLink="super-admin-module/user-details" routerLinkActive="active-menu">
+                    <i class="fas fa-users me-2"></i> User Details
+                </a>
             </div>
-           
             <div class="menu_list w-100">
-                <a class="text-black font-18 fw-600 text-d-n">Add Scripts</a>
+                <a class="d-flex align-items-center text-white font-18 fw-600 text-d-n br-6 py-2 px-4" routerLink="super-admin-module/scripts-details" routerLinkActive="active-menu">
+                    <i class="fas fa-file-alt me-2"></i> Scripts Details
+                </a>
             </div>
         </div>
     </div>

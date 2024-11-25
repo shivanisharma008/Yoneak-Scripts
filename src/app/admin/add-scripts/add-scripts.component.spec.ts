@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SuperAdminComponent } from './super-admin.component';
+import { AddScriptsComponent } from './add-scripts.component';
 
-describe('SuperAdminComponent', () => {
-  let component: SuperAdminComponent;
-  let fixture: ComponentFixture<SuperAdminComponent>;
+describe('AddScriptsComponent', () => {
+  let component: AddScriptsComponent;
+  let fixture: ComponentFixture<AddScriptsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SuperAdminComponent]
+      declarations: [AddScriptsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SuperAdminComponent);
+    fixture = TestBed.createComponent(AddScriptsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

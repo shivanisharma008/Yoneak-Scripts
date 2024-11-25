@@ -1,40 +1,15 @@
-.sidenav-container {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
 
-.mat-sidenav {
-    width: 280px;
-    background-color: #f5f5f5;
-    border-right: 1px solid #ddd;
-}
-
-.mat-sidenav-content {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    margin-left: 280px;
-    /* Automatically adjust the space for the sidenav */
-}
-
-.outlet-100 {
+.title{
     padding: 16px;
 }
-
-.main_header {
-    padding: 16px;
-}
-
-
-
-
 .table-container {
     padding: 16px;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow-x: auto;
+    height: 75vh;
+
   }
   
   .custom-table {
@@ -54,11 +29,13 @@
   .custom-table thead th {
     padding: 12px 16px;
     font-weight: 600;
-    font-size: 14px;
+    // font-size: 14px;
+    text-wrap: nowrap;
   }
   
   .custom-table tbody tr {
     border-bottom: 1px solid #e0e0e0;
+    text-wrap: nowrap;
   }
   
   .custom-table tbody tr:hover {
@@ -67,7 +44,7 @@
   
   .custom-table td {
     padding: 12px 16px;
-    font-size: 14px;
+    // font-size: 14px;
     color: #333;
   }
   

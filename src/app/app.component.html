@@ -1,1 +1,18 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container class="sidenav-container" *ngIf="isSidenav">
+    <!-- Sidenav -->
+    <mat-sidenav #drawer [mode]="sidenavMode" [opened]="sidenavOpened" fixedInViewport
+        style="width: 250px; z-index: 1000;">
+        <app-sidenav (sidenavClose)="drawer.close()"></app-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content class="sidenav-content-ui">
+        <app-header (sidenavToggle)="drawer.toggle()"></app-header>
+        <div class="outlet-100 pt-3">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+<div *ngIf="!isSidenav">
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+</div>

@@ -6,5 +6,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './sidenav.component.scss'
 })
 export class SidenavComponent {
-  @Output() toggle = new EventEmitter<void>();
+  @Output() sidenavClose = new EventEmitter<void>(); // Event to notify parent to close sidenav
+
+  closeSidenav() {
+    this.sidenavClose.emit(); // Emit the close event
+    console.log('Sidenav close emitted');
+  }
 }
