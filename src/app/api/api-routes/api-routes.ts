@@ -7,6 +7,8 @@ const baseURLNonBearer = `${environment?.baseURL}/api/v1/user`;
 export const apiRoutes = {
     user: {
         SignUp : `${baseURL}user/signUp`,
+        Login : `${baseURL}user/login`,
+        ForgetPassword : `${baseURL}user/resetpassword`,
        
     }
 }

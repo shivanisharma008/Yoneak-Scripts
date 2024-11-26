@@ -4,24 +4,24 @@
 
 .table-container {
   padding: 16px;
-  background-color: #f9f9f9;
+  // background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow-x: auto;
-  height: 75vh;
+  // height: 75vh;
 
 }
 
 .custom-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #fff;
+  // background-color: #fff;
   border-radius: 8px;
   overflow: hidden;
 }
 
 .custom-table thead {
-  background-color: #3f51b5;
+  background-color: black;
   color: white;
   text-align: left;
 }

@@ -1,21 +1,23 @@
 <div class="header d-flex flex-row align-items-center justify-content-center w-100 py-2 bg-white">
-    <div class="header_body d-flex flex-row align-items-center justify-content-between w-95">
-        <i class="fa-solid fa-arrow-left font-24 d-none d-sm-none d-md-none d-lg-flex"></i>
-      <!-- Sidenav Toggle Icon -->
-      <div class="menu_icon d-sm-flex d-md-flex d-lg-none" (click)="toggleSidenav()">
-        <i class="fa-solid fa-bars font-22"></i>
-      </div>
-  
-      <!-- Profile Dropdown -->
-      <div class="profile position-relative" (click)="toggleDropdown()">
-        <div class="circle"></div>
-        <div class="dropdown-menu" [class.show]="isDropdownVisible">
-          <ul>
-            <li><a href="/profile">My Profile</a></li>
-            <li><a href="/logout">Logout</a></li>
-          </ul>
-        </div>
+  <div class="header_body d-flex flex-row align-items-center justify-content-between w-95">
+    <!-- <div class="logo d-none d-sm-none d-md-none d-lg-flex">
+      <h1 class="gradient-text font-24 fw-600">Yoneak Scripts</h1>
+    </div> -->
+    <i class="fa-solid fa-arrow-left font-24 d-none d-sm-none d-md-none d-lg-flex"></i>
+    <!-- Sidenav Toggle Icon -->
+    <div class="menu_icon d-sm-flex d-md-flex d-lg-none" (click)="toggleSidenav()">
+      <i class="fa-solid fa-bars font-22"></i>
+    </div>
+
+    <!-- Profile Dropdown -->
+    <div class="profile position-relative" (click)="toggleDropdown()">
+      <div class="circle"></div>
+      <div class="dropdown-menu" [class.show]="isDropdownVisible">
+        <ul>
+          <li><a href="/profile">My Profile</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
       </div>
     </div>
   </div>
-  
+</div>

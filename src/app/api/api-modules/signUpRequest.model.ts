@@ -3,6 +3,7 @@ export interface SignUpRequestModel {
   email: string
   password: string
   username: string
+  role: number
 }
 
 

@@ -18,6 +18,26 @@ const routes: Routes = [
     loadChildren:()=>
       import('./scripts-details/scripts-details.module').then((m)=> m.ScriptsDetailsModule)
   },
+  {
+    path:'category',
+    loadChildren:()=>
+      import('./cateogry/cateogry.module').then((m)=> m.CateogryModule)
+  },
+  {
+    path:'add-category',
+    loadChildren:()=>
+      import('./add-cateogry/add-cateogry.module').then((m)=> m.AddCateogryModule)
+  },
+  {
+    path:'sub-category',
+    loadChildren:()=>
+      import('./sub-cateogry/sub-cateogry.module').then((m)=> m.SubCateogryModule)
+  },
+  {
+    path:'add-sub-category',
+    loadChildren:()=>
+      import('./add-sub-cateogry/add-sub-cateogry.module').then((m)=> m.AddSubCateogryModule)
+  },
 ];
 
 @NgModule({

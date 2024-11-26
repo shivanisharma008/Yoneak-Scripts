@@ -19,6 +19,21 @@ const routes: Routes = [
     loadChildren: () =>
       import('./sign-up/sign-up.module').then((m) => SignUpModule)
   },
+  // {
+  //   path: 'sign-up',
+  //   children: [
+  //     {
+  //       path: 'user-sign-up',
+  //       loadChildren: () =>
+  //         import('./sign-up/sign-up.module').then((m) => m.SignUpModule),
+  //     },
+  //     {
+  //       path: 'admin-sign-up',
+  //       loadChildren: () =>
+  //         import('./sign-up/sign-up.module').then((m) => m.SignUpModule),
+  //     }
+  //   ]
+  // },
   {
     path: 'forget-password',
     loadChildren: () =>

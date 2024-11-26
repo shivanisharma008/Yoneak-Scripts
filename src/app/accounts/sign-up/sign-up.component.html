@@ -1,10 +1,11 @@
-<div class="login_main d-flex align-items-center justify-content-center">
-    <div class="login_body d-flex w-60">
+<div class="login_main d-flex align-items-center justify-content-center mt-5">
+    <div class="login_body d-flex w-60 mt-4">
         <div class="login_left bg-blue w-60">
             <img src="https://i.pinimg.com/enabled_lo_mid/736x/4b/73/aa/4b73aa2d071775966b8328f1f81536f7.jpg"
                 alt="card-left-img" width="100%">
+            <p class="formName text-white font-40 fw-800 text-a-c w-100">Registration</p>
         </div>
-        <div class="login_right d-flex flex-column align-items-center justify-content-center gap-5 bg-blue w-40">
+        <div class="login_right d-flex flex-column align-items-center justify-content-center gap-4 bg-black w-40">
             <div class="login_right_header d-flex flex-column align-items-center justify-content-center gap-4 w-70">
                 <div class="logo">
                     <h1 class="text-white font-36 fw-600">Yoneak Scripts</h1>
@@ -18,11 +19,56 @@
                             class='bx bxl-instagram-alt text-white font-32 cursor'></i></a>
                 </div>
             </div>
-            <form [formGroup]="signUpForm" class="d-flex flex-column gap-4 w-70">
+            <form [formGroup]="signUpForm" class="d-flex flex-column gap-5 w-70">
                 <div class="form_group d-flex flex-column gap-3">
-                    <div class="form_field d-flex flex-column">
+                      <div class="form_field d-flex flex-column">
                         <div class="form_field_input d-flex flex-row align-items-center justify-content-between">
-                            <input type="text" placeholder="Name" class="text-white font-16 w-100"
+                            <input type="text" placeholder="Email*" class="text-white font-16 w-100"
+                                formControlName="email"
+                                [ngClass]="{'border-danger': signUpForm.controls.email.invalid  && (signUpForm.controls.email.dirty || signUpForm.controls.email.touched)}">
+                            <i class="fa-solid fa-envelope input_icon text-white"></i>
+                        </div>
+                        <span
+                            *ngIf="signUpForm.controls.email.errors?.['required']  && (signUpForm.controls.email.dirty || signUpForm.controls.email.touched)"
+                            class="text-danger">
+                            Email Is Required
+                        </span>
+                        <span *ngIf="signUpForm.controls.email.errors?.['email']" class="text-danger">
+                            Enter Valid Email
+                        </span>
+                    </div>
+                  
+                </div>
+                <div *ngIf="showOtpBoxes" class="form_group d-flex flex-column gap-3">
+                    <div class="form_field d-flex flex-column">
+                        <label class="text-white font-16">Enter OTP</label>
+                        <div class="otp_inputs d-flex justify-content-between">
+                            <input type="text" maxlength="1" class="otp-box" formControlName="otp1" (input)="moveToNext($event, 0)">
+                            <input type="text" maxlength="1" class="otp-box" formControlName="otp2" (input)="moveToNext($event, 1)">
+                            <input type="text" maxlength="1" class="otp-box" formControlName="otp3" (input)="moveToNext($event, 2)">
+                            <input type="text" maxlength="1" class="otp-box" formControlName="otp4" (input)="moveToNext($event, 3)">
+                        </div>
+                        <span *ngIf="otpForm.invalid && otpForm.touched" class="text-danger">OTP is Required</span>
+                    </div>
+                </div>
+                <div class="form_butns d-flex flex-column gap-2 w-100">
+                    <div class="submit d-flex align-items-center justify-content-center">
+                        <button class="text-blue font-16 fw-700 br-n br-20 w-100 py-2"
+                           >ENTER</button>
+                    </div>
+                    <!-- <div class="already_have_acc d-flex align-items-center justify-content-center">
+                        <p class="text-white font-14 fw-500">Already have account <a routerLink="/accounts/sign-in">Sign
+                                In</a></p>
+                    </div> -->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+  <!-- <div class="form_field d-flex flex-column">
+                        <div class="form_field_input d-flex flex-row align-items-center justify-content-between">
+                            <input type="text" placeholder="User Name*" class="text-white font-16 w-100"
                                 formControlName="name"
                                 [ngClass]="{'border-danger': signUpForm.controls.name.invalid  && (signUpForm.controls.name.dirty || signUpForm.controls.name.touched)}">
                             <i class="fa-solid fa-user input_icon text-white"></i>
@@ -40,7 +86,7 @@
                     </div>
                     <div class="form_field d-flex flex-column">
                         <div class="form_field_input d-flex flex-row align-items-center justify-content-between">
-                            <input type="text" placeholder="Phone Number" class="text-white font-16 w-100"
+                            <input type="text" placeholder="Phone Number*" class="text-white font-16 w-100"
                                 (input)="onInput($event)" formControlName="phone" [ngClass]="{
                               'border-danger': signUpForm.controls.phone.invalid &&
                               (signUpForm.controls.phone.dirty || signUpForm.controls.phone.touched)
@@ -68,11 +114,27 @@
                             class="text-danger">
                             Phone Number Must Be 10 Digits
                         </span>
+                    </div> -->
+                    <!-- <div class="form_field d-flex flex-column">
+                        <div class="form_field_input d-flex flex-row align-items-center justify-content-between">
+                            <input type="text" placeholder="Alternative Phone Number" class="text-white font-16 w-100"
+                                (input)="onInput($event)" formControlName="alternatePhone">
+                            <i class="fa-solid fa-phone input_icon text-white"></i>
+                        </div>
+                        <span *ngIf="signUpForm.controls.alternatePhone.errors?.['pattern'] &&
+                              (signUpForm.controls.alternatePhone.dirty || signUpForm.controls.alternatePhone.touched)"
+                            class="text-danger">
+                            Only Numbers Are Allowed
+                        </span>
+                        <span *ngIf="signUpForm.controls.alternatePhone.errors?.['minlength'] &&
+                              (signUpForm.controls.alternatePhone.dirty || signUpForm.controls.alternatePhone.touched)"
+                            class="text-danger">
+                            Phone Number Must Be 10 Digits
+                        </span>
                     </div>
-
                     <div class="form_field d-flex flex-column">
                         <div class="form_field_input d-flex flex-row align-items-center justify-content-between">
-                            <input type="text" placeholder="Email" class="text-white font-16 w-100"
+                            <input type="text" placeholder="Email*" class="text-white font-16 w-100"
                                 formControlName="email"
                                 [ngClass]="{'border-danger': signUpForm.controls.email.invalid  && (signUpForm.controls.email.dirty || signUpForm.controls.email.touched)}">
                             <i class="fa-solid fa-envelope input_icon text-white"></i>
@@ -88,7 +150,7 @@
                     </div>
                     <div class="form_field d-flex flex-column">
                         <div class="form_field_input d-flex flex-row align-items-center justify-content-between">
-                            <input [type]="isPasswordVisible ? 'text' : 'password'" placeholder="Password"
+                            <input [type]="isPasswordVisible ? 'text' : 'password'" placeholder="Password*"
                                 class="text-white font-16 w-100" formControlName="password"
                                 [ngClass]="{'border-danger': signUpForm.controls.password.errors?.['password'] && (signUpForm.controls.password.dirty || signUpForm.controls.password.touched)}">
                             <i class="fa-solid fa-eye input_icon text-white cursor" *ngIf="isPasswordVisible"
@@ -110,7 +172,6 @@
                         </span>
                     </div>
                     <div class="form_field d-flex flex-column gap-2">
-                        <!-- <label class="font-16 text-white">Gender</label> -->
                         <div class="form_field_input d-flex flex-row gap-3">
                             <div>
                                 <input type="radio" id="male" value="Male" formControlName="gender">
@@ -126,21 +187,4 @@
                             class="text-danger">
                             Gender is Required
                         </span>
-                    </div>
-                </div>
-                <div class="form_butns d-flex flex-column gap-2 w-100">
-                    <div class="submit d-flex align-items-center justify-content-center">
-                        <button class="text-blue font-16 fw-700 br-n br-20 w-100 py-2" (click)="submitRegistrationForm()">ENTER</button>
-                    </div>
-                    <div class="already_have_acc d-flex align-items-center justify-content-center">
-                        <p class="text-white font-14 fw-500">Already have account <a routerLink="/accounts/sign-in">Sign
-                                In</a></p>
-                    </div>
-                </div>
-
-
-
-            </form>
-        </div>
-    </div>
-</div>
+                    </div> -->
