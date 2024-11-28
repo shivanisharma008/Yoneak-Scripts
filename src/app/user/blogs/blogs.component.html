@@ -1,6 +1,7 @@
 <div class="blogs_main d-flex flex-column align-items-center justify-content-center mt-5">
     <div class="blogs_body d-flex flex-column align-items-center justify-content-center w-100 mt-5">
         <h1 class="text-blue font-40 fw-800">Blogs</h1>
+        <!-- <img src="assests/images/blog_cat1.jpg" alt="blob_card_img" width="100%"> -->
         <!-- <div class="banner d-flex align-items-center justify-content-center w-100">
             <h1 class=" text-white font-40">Blogs</h1>
         </div> -->
@@ -31,28 +32,29 @@
         <div class="blogs_main_content d-flex flex-wrap align-items-start justify-content-between w-90 py-5">
             <div class="blogs_content_left w-70">
                 <div class="blogs_card d-flex flex-column align-items-center justify-content-start gap-3"
-                    *ngFor="let blog of blogCards">
+                    *ngFor="let blog of blogsList">
                     <div class="card_image">
-                        <img [src]="blog.image" alt="blob_card_img" width="100%">
+                        <!-- <img [src]="blog.image || 'assests/images/blog_cat1.jpg'" (error)="setDefaultImage($event)" alt="blob_card_img" width="100%"> -->
+                        <img src="assests/images/blog_cat1.jpg" alt="blob_card_img" width="100%">
                     </div>
                     <div class="blogs_card_text d-flex flex-column gap-3">
-                        <p class="text-blue font-20 fw-700">{{blog.title}}</p>
+                        <p class="text-blue font-20 fw-700">{{blog.blogName}}</p>
                         <div class="blogs_card_desc d-flex flex-column gap-2">
                             <div class="blogs_card_desc_info d-flex gap-4">
                                 <div class="admin">
                                     <p class="text-blue font-14 fw-500">By Admin</p>
                                 </div>
                                 <div class="date">
-                                    <p class="font-14 fw-500">{{blog.date}}</p>
+                                    <p class="font-14 fw-500">{{blog.createdAt | date}}</p>
                                 </div>
                             </div>
                             <div class="blogs_card_desc_para">
-                                <span class="text-grey font-16 fw-400">{{blog.desc}}</span>
+                                <span class="text-grey font-16 fw-400">{{blog.content}}</span>
                             </div>
                         </div>
                     </div>
                     <div class="read_butn d-flex align-items-start justify-content-start w-100">
-                        <a class="text-black font-16 fw-700" routerLink="./blog-details">Read More</a>
+                        <a class="text-black font-16 fw-700" (click)="blogsDetails(blog._id)">Read More</a>
                     </div>
                 </div>
             </div>
@@ -63,9 +65,10 @@
                     </div>
                     <div class="category_list ">
                         <div class="category_list_item d-flex  justify-content-center"
-                            *ngFor="let category of category">
-                            <img [src]="category.img" alt="category_bg_img" width="100%" class="categoty_bg">
-                            <p class="category_name text-white font-16 fw-800">{{category.name}}</p>
+                            *ngFor="let category of categoryList">
+                            <!-- <img [src]="category.img" alt="category_bg_img" width="100%" class="categoty_bg"> -->
+                            <img src="assests/images/blog_cat1.jpg" alt="category_bg_img" width="100%" class="categoty_bg">
+                            <p class="category_name text-white font-16 fw-800">{{category.categoryName}}</p>
                         </div>
                     </div>
                 </div>

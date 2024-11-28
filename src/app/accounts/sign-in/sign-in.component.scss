@@ -58,15 +58,35 @@
     color: yellow;
 }
 
-.form_field , .login_body , .formName{
-    opacity: 0;
-    transform: translateY(20px); /* Moves content down a bit */
-    transition: opacity 1s ease-out, transform 1s ease-out;
-}
-.fade-in {
-    opacity: 1;
-    transform: translateY(0);
-}
+// .form_field , .login_body , .formName{
+//     opacity: 0;
+//     transform: translateY(20px); /* Moves content down a bit */
+//     transition: opacity 1s ease-out, transform 1s ease-out;
+// }
+// .fade-in {
+//     opacity: 1;
+//     transform: translateY(0);
+// }
+
+
+
+.otp_input input {
+    width: 40px;
+    height: 50px;
+    // text-align: center;
+    border: 2px solid #fff !important;
+    border-radius: 5px !important;
+    background: transparent !important;
+    // color: #fff;
+    // font-size: 20px;
+  }
+  
+  .otp_input input:focus {
+    border-color: #0d6efd;
+    outline: none;
+  }
+  
+
 
 @media screen and (max-width:599px) {
     .login_main{

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BlogsService } from '../../api/api-services/blogs.service';
 
 @Component({
   selector: 'app-cateogry',
@@ -6,11 +7,30 @@ import { Component } from '@angular/core';
   styleUrl: './cateogry.component.scss'
 })
 export class CateogryComponent {
-  categories = [
-    { id: 1, name: 'Technology', description: 'All tech-related categories' },
-    { id: 2, name: 'Health', description: 'Health and wellness categories' },
-    { id: 3, name: 'Education', description: 'Educational topics and resources' }
-  ];
+  categoryList: any;
+  // categories = [
+  //   { id: 1, name: 'Technology', description: 'All tech-related categories' },
+  //   { id: 2, name: 'Health', description: 'Health and wellness categories' },
+  //   { id: 3, name: 'Education', description: 'Educational topics and resources' }
+  // ];
+
+  constructor(
+    private blogsService: BlogsService,
+  ) {}
+
+  ngOnInit() {
+    this.getCategoryList()
+  }
+
+  getCategoryList() {
+    this.blogsService.categoryList().subscribe({
+      next: (res: any) => {
+        console.log(res.data);
+        this.categoryList = res.data
+        console.log('Category' + res.data);
+      }
+    })
+  }
 
   // Open Create Category Modal
   openCreateCategoryModal() {
@@ -27,6 +47,6 @@ export class CateogryComponent {
   // Delete Category
   deleteCategory(id: number) {
     console.log('Deleting Category with ID:', id);
-    this.categories = this.categories.filter(category => category.id !== id);
+    // this.categories = this.categories.filter(category => category.id !== id);
   }
 }

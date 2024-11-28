@@ -10,17 +10,18 @@
                 <tr>
                     <th>#</th>
                     <th>Sub Category Name</th>
-                    <th>Category Name</th>
+                    <!-- <th>Category Name</th> -->
                     <th>Description</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let category of categories; let i = index">
+                <tr *ngFor="let category of subCategoryList; let i = index">
                     <td>{{ i + 1 }}</td>
-                    <td *ngFor="let sub of category.subCategory">{{ sub }}</td>
-                    <td>{{ category.name }}</td>
-                    <td>{{ category.description }}</td>
+                    <td>{{ category.subcategoryName }}</td>
+                    <td [title]="category.description">
+                        {{ category.description | slice: 0:20 }}{{ category.description.length > 20 ? '...' : '' }}
+                    </td>
                     <td>
                         <button class="btn  btn-md me-2">
                             <i class="fa-solid fa-edit"></i> 

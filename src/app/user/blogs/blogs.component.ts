@@ -1,6 +1,9 @@
 import { trigger, transition, style, animate, state } from '@angular/animations';
 import { isPlatformBrowser } from '@angular/common';
 import { Component, ElementRef, HostBinding, Inject, PLATFORM_ID, Renderer2 } from '@angular/core';
+import { BlogsService } from '../../api/api-services/blogs.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-blogs',
@@ -20,6 +23,8 @@ import { Component, ElementRef, HostBinding, Inject, PLATFORM_ID, Renderer2 } fr
   ]
 })
 export class BlogsComponent {
+  blogsList: any
+
   blogs = [
     {
       id: 1,
@@ -49,8 +54,20 @@ export class BlogsComponent {
 
   currentIndex = 0;
   currentBlog = this.blogs[this.currentIndex];
+  categoryList: any;
 
-  ngOnInit(): void {}
+  constructor(
+    private elementRef: ElementRef,
+    @Inject(PLATFORM_ID) private platformId: object,
+    private blogsService: BlogsService,
+    private _snackbar: MatSnackBar,
+    private _router: Router,
+  ) { }
+
+  ngOnInit(): void {
+    this.getBlogsList()
+    this.getCategoryList()
+  }
 
   // Navigate to the previous blog
   prevBlog(): void {
@@ -106,59 +123,58 @@ export class BlogsComponent {
   category = [
     {
       img: 'assests/images/blog_cat1.jpg',
-      name:'Business'
+      name: 'Business'
     },
     {
       img: 'assests/images/blog_cat1.jpg',
-      name:'Fashion'
+      name: 'Fashion'
     },
     {
       img: 'assests/images/blog_cat1.jpg',
-      name:'Artist'
+      name: 'Artist'
     },
     {
       img: 'assests/images/blog_cat1.jpg',
-      name:'Media'
+      name: 'Media'
     },
   ]
 
   popularCard = [
     {
-      img:'assests/images/popular_img1.jpg',
-      title:'Best Wordpress Theme of 2018',
-      date:'12-Nov-2024'
+      img: 'assests/images/popular_img1.jpg',
+      title: 'Best Wordpress Theme of 2018',
+      date: '12-Nov-2024'
     },
     {
-      img:'assests/images/popular_img1.jpg',
-      title:'Best Wordpress Theme of 2018',
-      date:'12-Nov-2024'
+      img: 'assests/images/popular_img1.jpg',
+      title: 'Best Wordpress Theme of 2018',
+      date: '12-Nov-2024'
     },
     {
-      img:'assests/images/popular_img1.jpg',
-      title:'Best Wordpress Theme of 2018',
-      date:'12-Nov-2024'
+      img: 'assests/images/popular_img1.jpg',
+      title: 'Best Wordpress Theme of 2018',
+      date: '12-Nov-2024'
     },
     {
-      img:'assests/images/popular_img1.jpg',
-      title:'Best Wordpress Theme of 2018',
-      date:'12-Nov-2024'
+      img: 'assests/images/popular_img1.jpg',
+      title: 'Best Wordpress Theme of 2018',
+      date: '12-Nov-2024'
     },
     {
-      img:'assests/images/popular_img1.jpg',
-      title:'Best Wordpress Theme of 2018',
-      date:'12-Nov-2024'
+      img: 'assests/images/popular_img1.jpg',
+      title: 'Best Wordpress Theme of 2018',
+      date: '12-Nov-2024'
     },
   ]
 
-  
 
-  constructor(private elementRef: ElementRef, @Inject(PLATFORM_ID) private platformId: object) { }
+
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      const upper_sec = this.elementRef.nativeElement.querySelectorAll('.blog-info'); 
-      const other = this.elementRef.nativeElement.querySelectorAll('.blogs_card'); 
-      const heading = this.elementRef.nativeElement.querySelector('.blogs_main_content'); 
+      const upper_sec = this.elementRef.nativeElement.querySelectorAll('.blog-info');
+      const other = this.elementRef.nativeElement.querySelectorAll('.blogs_card');
+      const heading = this.elementRef.nativeElement.querySelector('.blogs_main_content');
 
 
       if ('IntersectionObserver' in window) {
@@ -168,7 +184,7 @@ export class BlogsComponent {
               entry.target.classList.add('fade-in');
             }
           });
-        }, { threshold: 0.5 }); 
+        }, { threshold: 0.5 });
 
         upper_sec.forEach((upper_sec: Element) => {
           observer.observe(upper_sec);
@@ -179,8 +195,43 @@ export class BlogsComponent {
           observer.observe(other);
         });
 
-        observer.observe(heading); 
+        observer.observe(heading);
       }
     }
+  }
+
+  setDefaultImage(event: Event): void {
+    const target = event.target as HTMLImageElement;
+    target.src = '/assests/images/blog_cat1.jpg';
+  }
+
+  getBlogsList() {
+    this.blogsService.blogsList('', '').subscribe({
+      next: (res: any) => {
+        this.blogsList = res.data
+        console.log(res);
+        console.log(this.blogsList);
+      }
+    })
+  }
+
+  getCategoryList() {
+    this.blogsService.categoryList().subscribe({
+      next: (res: any) => {
+        console.log(res.data);
+        this.categoryList = res.data
+        console.log('Category' + res.data);
+      }
+    })
+  }
+
+
+  blogsDetails(blogId: any) {
+    console.log(blogId);
+    this._router.navigate(['user/blogs/blog-details'], {
+      queryParams: {
+        blogId
+      }
+    })
   }
 }

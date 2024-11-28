@@ -11,14 +11,18 @@
                     <th>#</th>
                     <th>Category Name</th>
                     <th>Description</th>
+                    <th>Create Date</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let category of categories; let i = index">
+                <tr *ngFor="let category of categoryList; let i = index">
                     <td>{{ i + 1 }}</td>
-                    <td>{{ category.name }}</td>
-                    <td>{{ category.description }}</td>
+                    <td>{{ category.categoryName }}</td>
+                    <td [title]="category.description">
+                        {{ category.description | slice: 0:20 }}{{ category.description.length > 20 ? '...' : '' }}
+                    </td>
+                    <td>{{ category.createdAt | date }}</td>
                     <td>
                         <button class="btn  btn-md me-2" (click)="editCategory(category)">
                             <i class="fa-solid fa-edit"></i> 

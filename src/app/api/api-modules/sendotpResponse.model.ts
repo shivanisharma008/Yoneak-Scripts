@@ -1,4 +1,4 @@
-export interface SignUpRequestModel {
+export interface sendOtpRequestModel {
     status: number,
     message: string,
     data: loginDetails[]
