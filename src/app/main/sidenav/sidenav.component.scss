@@ -3,6 +3,7 @@
 }
 .menu_list a {
     transition: background-color 0.3s ease, color 0.3s ease;
+    text-wrap: nowrap;
 }
 .menu_list a.active-menu {
     background-color:white; /* Blue background for active item */

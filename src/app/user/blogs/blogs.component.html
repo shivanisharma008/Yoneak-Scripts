@@ -35,9 +35,9 @@
                     *ngFor="let blog of blogsList">
                     <div class="card_image">
                         <!-- <img [src]="blog.image || 'assests/images/blog_cat1.jpg'" (error)="setDefaultImage($event)" alt="blob_card_img" width="100%"> -->
-                        <img src="assests/images/blog_cat1.jpg" alt="blob_card_img" width="100%">
+                        <img src="assests/images/blog_card_img2.jpg" alt="blob_card_img" width="100%">
                     </div>
-                    <div class="blogs_card_text d-flex flex-column gap-3">
+                    <div class="blogs_card_text d-flex flex-column justify-content-between  gap-3 w-100">
                         <p class="text-blue font-20 fw-700">{{blog.blogName}}</p>
                         <div class="blogs_card_desc d-flex flex-column gap-2">
                             <div class="blogs_card_desc_info d-flex gap-4">
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                             <div class="blogs_card_desc_para">
-                                <span class="text-grey font-16 fw-400">{{blog.content}}</span>
+                                <span class="truncate text-grey font-16 fw-400">{{blog.content}}</span>
                             </div>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                             *ngFor="let category of categoryList">
                             <!-- <img [src]="category.img" alt="category_bg_img" width="100%" class="categoty_bg"> -->
                             <img src="assests/images/blog_cat1.jpg" alt="category_bg_img" width="100%" class="categoty_bg">
-                            <p class="category_name text-white font-16 fw-800">{{category.categoryName}}</p>
+                            <p class="category_name text-white font-16 fw-800 text-a-c">{{category.categoryName}}</p>
                         </div>
                     </div>
                 </div>
