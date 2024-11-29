@@ -1,0 +1,54 @@
+.video-cards-page {
+    max-width: 1200px;
+    margin: auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #f9f9f9;
+    margin-top: 7%;
+  }
+  
+  .video-cards-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .video-card {
+    width: 240px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .video-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .video-player-container {
+    text-align: center;
+  }
+  
+  .video-player-container video {
+    max-width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .text-truncate {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+@media screen and (max-width:599px) {
+    .video-cards-page{
+        margin-top: 14%;
+    }
+}
+
+  

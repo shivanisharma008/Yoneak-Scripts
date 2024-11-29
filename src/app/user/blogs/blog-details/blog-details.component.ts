@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BlogsService } from '../../../api/api-services/blogs.service';
+import { MatDialog } from '@angular/material/dialog';
+import { UploadVideoComponent } from '../../upload-video/upload-video.component';
 
 @Component({
   selector: 'app-blog-details',
@@ -14,6 +16,7 @@ export class BlogDetailsComponent {
   constructor(
     private activatedRoute: ActivatedRoute,
     private blogsService: BlogsService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -32,6 +35,14 @@ export class BlogDetailsComponent {
         console.log(this.blogsList);
       }
     })
+  }
+
+  openProfileDialog() {
+    this.dialog.open(UploadVideoComponent, {
+      width: '600px', // Adjust width
+      height: 'auto', // Auto height
+      panelClass: 'custom-dialog-container', // Optional: for custom styling
+    });
   }
 
 }

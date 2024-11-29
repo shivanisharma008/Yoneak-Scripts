@@ -9,6 +9,11 @@ const routes: Routes = [
     path:'blogs',
     loadChildren:()=>
       import('./blogs/blogs.module').then((m)=> m.BlogsModule)
+  },
+  {
+    path:'others-video',
+    loadChildren:()=>
+      import('./see-others-video/see-others-video.module').then((m)=> m.SeeOthersVideoModule)
   }
 ];
 

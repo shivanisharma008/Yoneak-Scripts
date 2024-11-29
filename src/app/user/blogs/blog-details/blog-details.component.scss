@@ -1,21 +1,35 @@
-.blog_details_title{
+.blog_details_title {
     // height: 50vh;
 }
+
 .blog_details_desc_img {
     width: 100%;
     height: 500px;
 }
-.blog_details_desc_img img{
+
+.blog_details_desc_img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.date{
+
+.date {
     border-bottom: 1px solid #ddd;
     padding-bottom: 15px;
 }
-.admin{
+
+.admin {
     padding-top: 15px;
+}
+
+.buts button {
+    border: 1px solid orangered;
+    // background-color: black;
+}
+
+.other_butn {
+    background: linear-gradient(to right, red, yellow, orange);
+    color: white;
 }
 
 @media screen and (min-width:1561px) {

@@ -1,0 +1,33 @@
+<div class="video-cards-page d-flex flex-column align-items-center p-4 ">
+    <!-- Header -->
+    <h2 class="text-center mb-4">Video Gallery</h2>
+  
+    <!-- Video Cards -->
+    <div class="video-cards-container d-flex flex-wrap justify-content-center gap-4">
+      <div
+        *ngFor="let link of videoLinks"
+        class="video-card shadow-sm rounded p-2"
+        (click)="playVideo(link)"
+      >
+        <img
+          [src]="getThumbnail(link)"
+          alt="Video Thumbnail"
+          class="rounded mb-2"
+          style="width: 100%; height: auto;"
+        />
+        <p class="text-truncate text-center mb-0">{{ link }}</p>
+      </div>
+    </div>
+  
+    <!-- Video Player -->
+    <div *ngIf="selectedVideo" class="video-player-container mt-4 w-75">
+      <h3 class="text-center mb-3">Now Playing</h3>
+      <video controls autoplay class="w-100 rounded">
+        <source src="path-to-your-video-file.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      
+      <button class="btn btn-secondary mt-3" (click)="closePlayer()">Close</button>
+    </div>
+  </div>
+  

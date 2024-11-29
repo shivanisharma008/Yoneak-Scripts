@@ -13,7 +13,7 @@ import { BlogDetailsComponent } from './blog-details/blog-details.component';
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild([{path:'',component:BlogsComponent} , {path:'blog-details',component:BlogDetailsComponent}])
+    RouterModule.forChild([{path:'',component:BlogsComponent} , {path:'blog-details',component:BlogDetailsComponent}]),
   ]
 })
 export class BlogsModule { }

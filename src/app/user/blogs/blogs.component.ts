@@ -4,6 +4,8 @@ import { Component, ElementRef, HostBinding, Inject, PLATFORM_ID, Renderer2 } fr
 import { BlogsService } from '../../api/api-services/blogs.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { UploadVideoComponent } from '../upload-video/upload-video.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-blogs',
@@ -62,6 +64,7 @@ export class BlogsComponent {
     private blogsService: BlogsService,
     private _snackbar: MatSnackBar,
     private _router: Router,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -167,7 +170,7 @@ export class BlogsComponent {
     },
   ]
 
-
+  
 
 
   ngAfterViewInit(): void {
