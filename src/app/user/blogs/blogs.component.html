@@ -1,0 +1,134 @@
+<div class="blogs_main d-flex flex-column align-items-center justify-content-center mt-5">
+    <div class="blogs_body d-flex flex-column align-items-center justify-content-center w-100 mt-5">
+        <h1 class="text-blue font-40 fw-800">Blogs</h1>
+        <!-- <img src="assests/images/blog_cat1.jpg" alt="blob_card_img" width="100%"> -->
+        <!-- <div class="banner d-flex align-items-center justify-content-center w-100">
+            <h1 class=" text-white font-40">Blogs</h1>
+        </div> -->
+
+
+        <!-- <div class="blog-carousel w-90">
+            <div class="carousel-content">
+                <div *ngIf="currentBlog" class="blog-card d-flex">
+                    <div class="caurosel_img w-80">
+                        <img src="assests/images/blog_card_img2.jpg" alt="img" >
+                    </div>
+                    <div class="blog-info d-flex flex-column gap-5 p-5" >
+                        <h2 class="blog-title font-32 fw-700">{{ currentBlog.title }}</h2>
+                        <p class="blog-meta">
+                            By - {{ currentBlog.author }} &nbsp; | &nbsp; {{ currentBlog.category }}
+                        </p>
+                        <p class="blog-description font-16 fw-500">{{ currentBlog.description }}</p>
+                        <a class="read-more text-black font-18 fw-800 text-d-n" >Read More →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-navigation d-flex gap-2">
+                <button (click)="prevBlog()" class="nav-btn">←</button>
+                <button (click)="nextBlog()" class="nav-btn">→</button>
+            </div>
+        </div> -->
+
+        <div class="blogs_main_content d-flex flex-wrap align-items-start justify-content-between w-90 py-5">
+            <div *ngIf="blogsList && blogsList.length > 0;" class=" blogs_left w-70">
+                <!-- <div class="blog_content_left_body"> -->
+                <div class="row justify-content-center w-100">
+                    <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex flex-column align-items-center gap-3" *ngFor="let blog of blogsList">
+                        <div class="card_image">
+                            <!-- <img [src]="blog.image || 'assests/images/blog_cat1.jpg'" (error)="setDefaultImage($event)" alt="blob_card_img" width="100%"> -->
+                            <img src="assests/images/blog_card_img2.jpg" alt="blob_card_img" width="100%">
+                        </div>
+                        <div class="blogs_card_text d-flex flex-column justify-content-between  gap-3 w-100">
+                            <p class="text-blue font-20 fw-700">{{blog.blogName}}</p>
+                            <div class="blogs_card_desc d-flex flex-column gap-2">
+                                <div class="blogs_card_desc_info d-flex gap-4">
+                                    <div class="admin">
+                                        <p class="text-blue font-14 fw-500">By Admin</p>
+                                    </div>
+                                    <div class="date">
+                                        <p class="font-14 fw-500">{{blog.createdAt | date}}</p>
+                                    </div>
+                                </div>
+                                <div class="blogs_card_desc_para">
+                                    <span class="truncate text-grey font-16 fw-400" [innerHTML]="blog.content"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="read_butn d-flex align-items-start justify-content-start w-100">
+                            <a class="text-black font-16 fw-700" (click)="blogsDetails(blog._id)">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <ng-template #noDataFound>
+                    <div
+                        class="w-70 no-data-message text-center d-flex flex-row align-items-center justify-content-center ">
+                        <p class="font-30 text-grey fw-400">No Data Found</p>
+                    </div>
+                </ng-template>
+                <!-- </div> -->
+
+            </div>
+            <div class="blogs_content_right d-flex flex-column gap-5 w-25">
+                <div class="categoty d-flex flex-column gap-4">
+                    <div class="category_heading">
+                        <p class="font-20 fw-800">Category</p>
+                    </div>
+                    <div class="category_list ">
+                        <div class="category_list_item d-flex  justify-content-center"
+                            *ngFor="let category of categoryList">
+                            <!-- <img [src]="category.img" alt="category_bg_img" width="100%" class="categoty_bg"> -->
+                            <div (click)="getBlogsList(category._id,'', '')">
+                                <img src="assests/images/blog_cat1.jpg" alt="category_bg_img" width="100%"
+                                    class="categoty_bg">
+                                <p class="category_name text-white font-16 fw-800 text-a-c">{{category.categoryName}}
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subcribe d-flex flex-column gap-4">
+                    <div class="subcribe_heading">
+                        <p class="font-20 fw-800">Subscribe</p>
+                    </div>
+                    <div class="subcribe_list">
+                        <div class="subcribe_list_item d-flex align-items-center gap-2 bg-light-grey p-2">
+                            <a class="text-grey font-14 fw-500 text-d-n">
+                                <i class="fa-brands fa-facebook-f font-12 text-black"></i> Facebook</a>
+                        </div>
+                        <div class="subcribe_list_item bg-light-grey d-flex align-items-center gap-2  p-2">
+                            <a class="text-grey font-14 fw-500 text-d-n">
+                                <i class="fa-brands fa-instagram font-12 text-black"></i> Instagram</a>
+                        </div>
+                        <div class="subcribe_list_item bg-light-grey d-flex align-items-center gap-2  p-2">
+                            <a class="text-grey font-14 fw-500 text-d-n">
+                                <i class="fa-brands fa-linkedin-in font-12 text-black"></i> Linkedin</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="popular_article d-flex flex-column gap-4">
+                    <div class="popular_heading">
+                        <p class="font-20 fw-800">Popular Article</p>
+                    </div>
+
+                    <div class="popular_main_cards d-flex flex-column align-items-start gap-4">
+                        <div class="popular_card d-flex flex-row justify-content-between"
+                            *ngFor="let popular of popularCard">
+                            <div class="popular_card_left w-30">
+                                <img [src]="popular.img" alt="popular_card_img" width="100%">
+                            </div>
+                            <div class="popular_card_right d-flex flex-column gap-1 w-65">
+                                <p class="text-black font-16 fw-600">{{popular.title}}</p>
+                                <p class="text-grey font-14 fw-500">{{popular.date}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                s
+            </div>
+
+        </div>
+    </div>

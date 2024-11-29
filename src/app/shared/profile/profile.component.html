@@ -1,0 +1,46 @@
+<div class="profile-page d-flex flex-column align-items-center justify-content-center py-4">
+    <!-- Profile Header -->
+    <div class="profile-header d-flex flex-column align-items-center bg-gradient text-white p-4 w-100">
+      <div class="profile-image mb-3">
+        <img
+          src="assests/images/profile.png"
+          alt="Profile Picture"
+          class="rounded-circle border border-white"
+          style="width: 120px; height: 120px; object-fit: cover;"
+        />
+      </div>
+      <h2 class="text-black name mt-2 font-20 fw-bold">{{userDetails.username}}</h2>
+      <p class="role text-black font-16 fw-normal">{{userDetails.role === 3 ? 'User' : userDetails.role === 2 ? 'Writer' : 'Super Admin'}}</p>
+    </div>
+  
+    <!-- Profile Content -->
+    <div class="profile-content bg-white shadow rounded p-4 w-90 mt-3">
+      <!-- Basic Info -->
+      <div class="info-section mb-4">
+        <h3 class="section-title text-blue font-18 fw-bold mb-3">Basic Information</h3>
+        <div class="info-group d-flex flex-column gap-3">
+          <div class="info-item d-flex justify-content-between align-items-center">
+            <span class="label text-grey font-16">Full Name:</span>
+            <span class="value text-black font-16 fw-bold">{{userDetails.username}}</span>
+          </div>
+          <div class="info-item d-flex justify-content-between align-items-center">
+            <span class="label text-grey font-16">Email:</span>
+            <span class="value text-black font-16 fw-bold">{{userDetails.email}}</span>
+          </div>
+          <div class="info-item d-flex justify-content-between align-items-center">
+            <span class="label text-grey font-16">Phone:</span>
+            <span class="value text-black font-16 fw-bold">{{userDetails.phoneNo}}</span>
+          </div>
+          <!-- <div class="info-item d-flex justify-content-between align-items-center">
+            <span class="label text-grey font-16">Gender:</span>
+            <span class="value text-black font-16 fw-bold">Male</span>
+          </div> -->
+        </div>
+      </div>
+  
+      <!-- Actions -->
+      <!-- <div class="actions d-flex justify-content-end">
+        <button class="btn btn-primary px-4 py-2">Edit Profile</button>
+      </div> -->
+    </div>
+  </div>

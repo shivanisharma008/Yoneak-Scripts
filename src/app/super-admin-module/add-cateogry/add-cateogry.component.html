@@ -1,0 +1,30 @@
+<div class="main d-flex flex-column align-items-center justify-content-center bg-white mt-5">
+    <div class="main_body d-flex flex-column  gap-3 w-90">
+        <h3 class="font-24 fw-600 text-black mt-3">Add Category</h3>
+        <form [formGroup]="categoryForm" class="d-flex flex-column gap-3 w-100">
+            <div class="d-flex flex-column gap-2 w-50">
+                <label class="text-black links fw-500">Category Name</label>
+                <input type="text" class="p-2" formControlName="categoryName">
+                <span
+                    *ngIf="categoryForm.controls.categoryName.errors?.['required']  && (categoryForm.controls.categoryName.dirty || categoryForm.controls.categoryName.touched)"
+                    class="text-danger">
+                    Category Name Is Required
+                </span>
+            </div>
+            <div class="d-flex flex-column gap-2 w-50">
+                <label class="text-black links fw-500">Category Description</label>
+                <textarea rows="6" formControlName="description"></textarea>
+                <span
+                    *ngIf="categoryForm.controls.description.errors?.['required']  && (categoryForm.controls.description.dirty || categoryForm.controls.description.touched)"
+                    class="text-danger">
+                    Category Description Is Required
+                </span>
+            </div>
+            <div class="d-flex flex-row justify-content-center gap-2 w-100 mt-3">
+                <button type="button" class="btn btn-danger links" (click)="clear()">Cancel</button>
+                <button *ngIf="!isUpdate" type="button" class="btn btn-success links" (click)="submitCategory()">Submit</button>
+                <button *ngIf="isUpdate" type="button" class="btn btn-success links" (click)="updateCategory()">Update</button>
+            </div>
+        </form>
+    </div>
+</div>

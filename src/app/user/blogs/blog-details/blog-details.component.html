@@ -1,0 +1,29 @@
+<div class="blog_details_main d-flex flex-column align-items-center justify-content-center mt-5">
+    <div *ngFor="let details of blogsList" class="blog_details_body d-flex flex-column align-items-center justify-content-center gap-5 w-70 pb-5 mt-5">
+        <div class="blog_details_title d-flex align-items-end justify-content-center w-100">
+            <h1 class="text-black font-45 fw-800 text-a-c w-80">{{details.blogName}}
+            </h1>
+        </div>
+        <div class="blog_details_date d-flex flex-column align-items-center justify-content-center w-100">
+            <div class="date d-flex align-items-center justify-content-center w-40">
+                <p>{{details.createdAt | date}} | {{details.category.categoryName}}</p>
+            </div>
+            <div class="admin d-flex align-items-center justify-content-center w-40">
+                <p>Admin</p>
+            </div>
+        </div>
+        <div class="blog_details_desc d-flex flex-column gap-4 w-100">
+            <div class="blog_details_desc_img">
+                <img src="assests/images/blog_card_img2.jpg" alt="image" width="100%">
+            </div>
+            <div class="blog_details_para d-flex flex-column gap-3">
+                <p class="text-grey font-16 fw-500">{{details.content}}</p>
+            </div>
+        </div>
+
+        <div class="buts d-flex align-items-center gap-3">
+            <button class=" other_butn font-16 fw-600 br-3 p-2 px-4" routerLink="/user/others-video">SEE OTHER CREATORS VIDEOS</button>
+            <button class="bg-black gradient-text font-16 fw-600 br-3 p-2 px-4" (click)="openProfileDialog()">SUBMIT YOUR CREATION LINK</button>
+        </div>
+    </div>
+</div>

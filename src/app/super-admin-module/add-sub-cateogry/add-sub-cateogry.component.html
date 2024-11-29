@@ -1,0 +1,51 @@
+<div class="main d-flex flex-column align-items-center justify-content-center bg-white mt-5">
+    <div class="main_body d-flex flex-column gap-3 w-90">
+        <h3 class="font-24 fw-600 text-black mt-3">Add Sub Category</h3>
+        <form [formGroup]="subCategoryForm" class="d-flex flex-column gap-3 w-100">
+            <!-- Category Dropdown -->
+            <div class="d-flex flex-column gap-2 w-50">
+                <label class="text-black links fw-500">Select Category</label>
+                <select class="p-2" formControlName="category">
+                    <option value="" disabled>Select a Category</option>
+                    <option *ngFor="let category of categoryList" [value]="category._id">
+                        {{ category.categoryName }}
+                    </option>
+                </select>
+                <span
+                    *ngIf="subCategoryForm.controls.category.errors?.['required']  && (subCategoryForm.controls.category.dirty || subCategoryForm.controls.category.touched)"
+                    class="text-danger">
+                    Category Name Is Required
+                </span>
+            </div>
+
+            <!-- Sub Category Name -->
+            <div class="d-flex flex-column gap-2 w-50">
+                <label class="text-black links fw-500">Sub Category Name</label>
+                <input type="text" class="p-2" formControlName="subCategoryName">
+                <span
+                    *ngIf="subCategoryForm.controls.subCategoryName.errors?.['required']  && (subCategoryForm.controls.subCategoryName.dirty || subCategoryForm.controls.subCategoryName.touched)"
+                    class="text-danger">
+                    Sub Category Name Is Required
+                </span>
+            </div>
+
+            <!-- Sub Category Description -->
+            <div class="d-flex flex-column gap-2 w-50">
+                <label class="text-black links fw-500">Sub Category Description</label>
+                <textarea rows="6" class="p-2" formControlName="subCategoryDescription"></textarea>
+                <span
+                    *ngIf="subCategoryForm.controls.subCategoryDescription.errors?.['required']  && (subCategoryForm.controls.subCategoryDescription.dirty || subCategoryForm.controls.subCategoryDescription.touched)"
+                    class="text-danger">
+                    Category Name Is Required
+                </span>
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex flex-row justify-content-center gap-2 w-100 mt-3">
+                <button type="button" class="btn btn-danger links" (click)="clear()">Cancel</button>
+                <button *ngIf="!isUpdate" type="submit" class="btn btn-success links" (click)="submitSubCategory()">Submit</button>
+                <button *ngIf="isUpdate" type="submit" class="btn btn-success links" (click)="updateSubCategory()">Update</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+::ng-deep .mat-mdc-card{
+    background-color: white !important;
+}
+::ng-deep .custom-editor .angular-editor-textarea {
+    height: 40vh !important;
+}
+.addImage{
+    display: flex;
+    justify-content: end;
+    margin:20px 0px;
+}
+.addImageButton{
+    width: auto; display: flex;
+}
+
+.border_box{
+    border: 1px dashed black;
+}
+::ng-deep .mat-mdc-raised-button:not(:disabled){
+    background-color: white !important;
+    color: black !important;
+}
+.card_dash {
+    border: 1px dashed #cedaff;
+    height: fit-content;
+    background-color: #cdd8f23b;
+  }
+
+  @media screen and (max-width: 599px) {
+   .w-50{
+    width: 100% !important;
+   }
+    
+  }
+  
+  @media screen and (min-width: 600px) and (max-width: 1020px) {
+   
+  }
+  
