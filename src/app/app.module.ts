@@ -10,12 +10,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { provideHttpClient } from '@angular/common/http';
-import { EditProfileComponent } from './sharedModule/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EditProfileComponent
   ],
   imports: [
     BrowserModule,
