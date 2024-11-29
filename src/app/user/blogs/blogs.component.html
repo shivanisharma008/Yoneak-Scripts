@@ -30,39 +30,45 @@
         </div> -->
 
         <div class="blogs_main_content d-flex flex-wrap align-items-start justify-content-between w-90 py-5">
-            <div *ngIf="blogsList && blogsList.length > 0; else noDataFound" class="blogs_content_left w-70">
-                <div class="blogs_card d-flex flex-column align-items-center justify-content-start gap-3"
-                    *ngFor="let blog of blogsList">
-                    <div class="card_image">
-                        <!-- <img [src]="blog.image || 'assests/images/blog_cat1.jpg'" (error)="setDefaultImage($event)" alt="blob_card_img" width="100%"> -->
-                        <img src="assests/images/blog_card_img2.jpg" alt="blob_card_img" width="100%">
-                    </div>
-                    <div class="blogs_card_text d-flex flex-column justify-content-between  gap-3 w-100">
-                        <p class="text-blue font-20 fw-700">{{blog.blogName}}</p>
-                        <div class="blogs_card_desc d-flex flex-column gap-2">
-                            <div class="blogs_card_desc_info d-flex gap-4">
-                                <div class="admin">
-                                    <p class="text-blue font-14 fw-500">By Admin</p>
+            <div *ngIf="blogsList && blogsList.length > 0;" class=" blogs_left w-70">
+                <!-- <div class="blog_content_left_body"> -->
+                <div class="row justify-content-center w-100">
+                    <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex flex-column align-items-center gap-3" *ngFor="let blog of blogsList">
+                        <div class="card_image">
+                            <!-- <img [src]="blog.image || 'assests/images/blog_cat1.jpg'" (error)="setDefaultImage($event)" alt="blob_card_img" width="100%"> -->
+                            <img src="assests/images/blog_card_img2.jpg" alt="blob_card_img" width="100%">
+                        </div>
+                        <div class="blogs_card_text d-flex flex-column justify-content-between  gap-3 w-100">
+                            <p class="text-blue font-20 fw-700">{{blog.blogName}}</p>
+                            <div class="blogs_card_desc d-flex flex-column gap-2">
+                                <div class="blogs_card_desc_info d-flex gap-4">
+                                    <div class="admin">
+                                        <p class="text-blue font-14 fw-500">By Admin</p>
+                                    </div>
+                                    <div class="date">
+                                        <p class="font-14 fw-500">{{blog.createdAt | date}}</p>
+                                    </div>
                                 </div>
-                                <div class="date">
-                                    <p class="font-14 fw-500">{{blog.createdAt | date}}</p>
+                                <div class="blogs_card_desc_para">
+                                    <span class="truncate text-grey font-16 fw-400" [innerHTML]="blog.content"></span>
                                 </div>
-                            </div>
-                            <div class="blogs_card_desc_para">
-                                <span class="truncate text-grey font-16 fw-400">{{blog.content}}</span>
                             </div>
                         </div>
-                    </div>
-                    <div class="read_butn d-flex align-items-start justify-content-start w-100">
-                        <a class="text-black font-16 fw-700" (click)="blogsDetails(blog._id)">Read More</a>
+                        <div class="read_butn d-flex align-items-start justify-content-start w-100">
+                            <a class="text-black font-16 fw-700" (click)="blogsDetails(blog._id)">Read More</a>
+                        </div>
                     </div>
                 </div>
+
+                <ng-template #noDataFound>
+                    <div
+                        class="w-70 no-data-message text-center d-flex flex-row align-items-center justify-content-center ">
+                        <p class="font-30 text-grey fw-400">No Data Found</p>
+                    </div>
+                </ng-template>
+                <!-- </div> -->
+
             </div>
-            <ng-template #noDataFound>
-                <div class="w-70 no-data-message text-center d-flex flex-row align-items-center justify-content-center ">
-                    <p class="font-30 text-grey fw-400">No Data Found</p>
-                </div>
-            </ng-template>
             <div class="blogs_content_right d-flex flex-column gap-5 w-25">
                 <div class="categoty d-flex flex-column gap-4">
                     <div class="category_heading">
@@ -121,7 +127,8 @@
                         </div>
                     </div>
                 </div>
+                s
             </div>
+
         </div>
     </div>
-</div>
