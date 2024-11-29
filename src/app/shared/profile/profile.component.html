@@ -9,8 +9,8 @@
           style="width: 120px; height: 120px; object-fit: cover;"
         />
       </div>
-      <h2 class="text-black name mt-2 font-20 fw-bold">John Doe</h2>
-      <p class="role text-black font-16 fw-normal">Administrator</p>
+      <h2 class="text-black name mt-2 font-20 fw-bold">{{userDetails.username}}</h2>
+      <p class="role text-black font-16 fw-normal">{{userDetails.role === 3 ? 'User' : userDetails.role === 2 ? 'Writer' : 'Super Admin'}}</p>
     </div>
   
     <!-- Profile Content -->
@@ -21,15 +21,15 @@
         <div class="info-group d-flex flex-column gap-3">
           <div class="info-item d-flex justify-content-between align-items-center">
             <span class="label text-grey font-16">Full Name:</span>
-            <span class="value text-black font-16 fw-bold">John Doe</span>
+            <span class="value text-black font-16 fw-bold">{{userDetails.username}}</span>
           </div>
           <div class="info-item d-flex justify-content-between align-items-center">
             <span class="label text-grey font-16">Email:</span>
-            <span class="value text-black font-16 fw-bold">john.doeexample.com</span>
+            <span class="value text-black font-16 fw-bold">{{userDetails.email}}</span>
           </div>
           <div class="info-item d-flex justify-content-between align-items-center">
             <span class="label text-grey font-16">Phone:</span>
-            <span class="value text-black font-16 fw-bold">+1 123 456 7890</span>
+            <span class="value text-black font-16 fw-bold">{{userDetails.phoneNo}}</span>
           </div>
           <!-- <div class="info-item d-flex justify-content-between align-items-center">
             <span class="label text-grey font-16">Gender:</span>
@@ -39,9 +39,8 @@
       </div>
   
       <!-- Actions -->
-      <div class="actions d-flex justify-content-end">
+      <!-- <div class="actions d-flex justify-content-end">
         <button class="btn btn-primary px-4 py-2">Edit Profile</button>
-        <!-- <button class="btn btn-danger px-4 py-2">Log Out</button> -->
-      </div>
+      </div> -->
     </div>
   </div>

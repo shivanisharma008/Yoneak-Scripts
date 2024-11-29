@@ -11,6 +11,7 @@ export const apiRoutes = {
         verifyEmail : `${baseURL}user/verifyemail`,
         ForgetPassword : `${baseURL}user/resetpassword`,
         userList:`${baseURL}user`,
+        profileDetails: `${baseURL}user/profile`
     },
 
     blogs: {
