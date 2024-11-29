@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProfileComponent } from '../../shared/profile/profile.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +12,7 @@ export class HeaderComponent {
   @Output() sidenavToggle = new EventEmitter<void>();
   isDropdownVisible = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private dialog: MatDialog) {}
 
   toggleDropdown() {
     this.isDropdownVisible = !this.isDropdownVisible;
@@ -34,4 +36,21 @@ export class HeaderComponent {
     // Redirect to login page
     this.router.navigate(['accounts/sign-in']);
   }
+
+  openProfileDialog() {
+    this.dialog.open(ProfileComponent, {
+      width: '600px', // Adjust width
+      height: 'auto', // Auto height
+      panelClass: 'custom-dialog-container', // Optional: for custom styling
+    });
+  }
+
+  userRole: number | null = null;
+
+  ngOnInit(): void {
+    // Retrieve the user's role from localStorage or a service
+    const userDetails = JSON.parse(localStorage.getItem('userDetails') ?? '{}');
+    this.userRole = userDetails?.role ?? null; // Set user role, e.g., 1 or 2
+  }
+  
 }
