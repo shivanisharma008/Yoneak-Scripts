@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path:'',redirectTo:'',pathMatch:'full'
+    path:'',redirectTo:'blogs',pathMatch:'full'
   },
   {
     path:'blogs',

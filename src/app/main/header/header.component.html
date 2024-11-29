@@ -10,16 +10,20 @@
       <i class="fa-solid fa-bars font-22"></i>
     </div>
 
-    <!-- Profile Dropdown -->
-    <div class="profile position-relative" (click)="toggleDropdown()">
-      <div class="circle"></div>
-      <div class="dropdown-menu" [class.show]="isDropdownVisible">
-        <ul>
-          <li class="cursor" (click)="openProfileDialog()"><a >My Profile</a></li>
-          <li><a (click)="logout()">Logout</a></li>
-        </ul>
+    <div class="right d-flex gap-3">
+      <button class="font-16 fw-600 br-6 bg-black text-white p-1 px-3" routerLink="/accounts/sign-in">Login</button>
+      <!-- Profile Dropdown -->
+      <div class="profile position-relative" (click)="toggleDropdown()">
+        <div class="circle"></div>
+        <div class="dropdown-menu" [class.show]="isDropdownVisible">
+          <ul>
+            <li class="cursor" (click)="openProfileDialog()"><a >My Profile</a></li>
+            <li><a (click)="logout()">Logout</a></li>
+          </ul>
+        </div>
       </div>
     </div>
+   
   </div>
 </div>
 
