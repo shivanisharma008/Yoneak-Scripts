@@ -6,7 +6,7 @@
         </div>
         <div class="blog_details_date d-flex flex-column align-items-center justify-content-center w-100">
             <div class="date d-flex align-items-center justify-content-center w-40">
-                <p>{{details.createdAt | date}}</p>
+                <p>{{details.createdAt | date}} | {{details.category.categoryName}}</p>
             </div>
             <div class="admin d-flex align-items-center justify-content-center w-40">
                 <p>Admin</p>
@@ -17,14 +17,7 @@
                 <img src="assests/images/blog_card_img2.jpg" alt="image" width="100%">
             </div>
             <div class="blog_details_para d-flex flex-column gap-3">
-                <p class="text-grey font-16 fw-500">{{details.content}}
-                </p>
-                <!-- <p class="text-grey font-16 fw-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate totam at minima, minus eligendi
-                    cum tempore, quod nemo aliquam eum, in hic deserunt ipsum vitae saepe adipisci voluptas autem magni?
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione aspernatur sunt corrupti saepe aut
-                    aliquid quam cupiditate, non delectus ea inventore omnis sit est fugiat? Omnis, expedita harum!
-                    Illo, praesentium.
-                </p> -->
+                <p class="text-grey font-16 fw-500">{{details.content}}</p>
             </div>
         </div>
     </div>

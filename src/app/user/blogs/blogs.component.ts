@@ -65,7 +65,7 @@ export class BlogsComponent {
   ) { }
 
   ngOnInit(): void {
-    this.getBlogsList()
+    this.getBlogsList('', '', '')
     this.getCategoryList()
   }
 
@@ -205,8 +205,8 @@ export class BlogsComponent {
     target.src = '/assests/images/blog_cat1.jpg';
   }
 
-  getBlogsList() {
-    this.blogsService.blogsList('', '').subscribe({
+  getBlogsList(categoryId: any, blogId: any, createdBy: any) {
+    this.blogsService.blogsList(categoryId, blogId, createdBy).subscribe({
       next: (res: any) => {
         this.blogsList = res.data
         console.log(res);

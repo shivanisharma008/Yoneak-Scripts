@@ -30,7 +30,7 @@
         </div> -->
 
         <div class="blogs_main_content d-flex flex-wrap align-items-start justify-content-between w-90 py-5">
-            <div class="blogs_content_left w-70">
+            <div *ngIf="blogsList && blogsList.length > 0; else noDataFound" class="blogs_content_left w-70">
                 <div class="blogs_card d-flex flex-column align-items-center justify-content-start gap-3"
                     *ngFor="let blog of blogsList">
                     <div class="card_image">
@@ -58,6 +58,11 @@
                     </div>
                 </div>
             </div>
+            <ng-template #noDataFound>
+                <div class="w-70 no-data-message text-center d-flex flex-row align-items-center justify-content-center ">
+                    <p class="font-30 text-grey fw-400">No Data Found</p>
+                </div>
+            </ng-template>
             <div class="blogs_content_right d-flex flex-column gap-5 w-25">
                 <div class="categoty d-flex flex-column gap-4">
                     <div class="category_heading">
@@ -67,8 +72,13 @@
                         <div class="category_list_item d-flex  justify-content-center"
                             *ngFor="let category of categoryList">
                             <!-- <img [src]="category.img" alt="category_bg_img" width="100%" class="categoty_bg"> -->
-                            <img src="assests/images/blog_cat1.jpg" alt="category_bg_img" width="100%" class="categoty_bg">
-                            <p class="category_name text-white font-16 fw-800 text-a-c">{{category.categoryName}}</p>
+                            <div (click)="getBlogsList(category._id,'', '')">
+                                <img src="assests/images/blog_cat1.jpg" alt="category_bg_img" width="100%"
+                                    class="categoty_bg">
+                                <p class="category_name text-white font-16 fw-800 text-a-c">{{category.categoryName}}
+                                </p>
+
+                            </div>
                         </div>
                     </div>
                 </div>

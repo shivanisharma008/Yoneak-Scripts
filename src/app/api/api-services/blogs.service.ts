@@ -20,7 +20,7 @@ export class BlogsService {
 
     constructor(private httpClient: HttpClient) { }
 
-    blogsList(categoryId: string | null, blogId: string | null): Observable<BlogsList[]> {
+    blogsList(categoryId: string | null, blogId: string | null, createdBy: string | null): Observable<BlogsList[]> {
         // let data
         // if (categoryId && blogId) {
         //     alert(1)
@@ -44,6 +44,9 @@ export class BlogsService {
         }
         if (blogId) {
             params['blogId'] = blogId;
+        }
+        if(createdBy) {
+            params['createdBy'] = createdBy;
         }
 
         // Debug log for params
