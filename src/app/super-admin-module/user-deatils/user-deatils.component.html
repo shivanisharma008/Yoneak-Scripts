@@ -10,43 +10,16 @@
                 <th>Full Name</th>
                 <th>Email</th>
                 <th>Phone Number</th>
-                <th>Gender</th>
-                <th>Action</th>
+                <th>Create Date</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="font-18 fw-500">1</td>
-                <td class="font-18 fw-500">John Doe</td>
-                <td class="font-18 fw-500">john.doeexample.com</td>
-                <td class="font-18 fw-500">123-456-7890</td>
-                <td class="font-18 fw-500">Male</td>
-                <td class="d-flex gap-3">
-                    <!-- <i class="fas fa-eye"></i> -->
-                    <i class='bx bx-trash-alt font-22 text-danger'></i>
-                </td>
-            </tr>
-            <tr>
-                <td class="font-18 fw-500">2</td>
-                <td class="font-18 fw-500">Jane Smith</td>
-                <td class="font-18 fw-500">jane.smithexample.com</td>
-                <td class="font-18 fw-500">987-654-3210</td>
-                <td class="font-18 fw-500">Male</td>
-                <td class="d-flex gap-3">
-                    <!-- <i class="fas fa-eye"></i> -->
-                    <i class='bx bx-trash-alt font-22 text-danger'></i>
-                </td>
-            </tr>
-            <tr>
-                <td class="font-18 fw-500">3</td>
-                <td class="font-18 fw-500">Michael Brown</td>
-                <td class="font-18 fw-500">michael.brownexample.com</td>
-                <td class="font-18 fw-500">555-666-7777</td>
-                <td class="font-18 fw-500">Male</td>
-                <td class="d-flex gap-3">
-                    <!-- <i class="fas fa-eye"></i> -->
-                    <i class='bx bx-trash-alt font-22 text-danger'></i>
-                </td>
+            <tr *ngFor="let user of userList; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td class="font-18 fw-500">{{user.username}}</td>
+                <td class="font-18 fw-500">{{user.email}}</td>
+                <td class="font-18 fw-500">{{user.phoneNo}}</td>
+                <td class="font-18 fw-500">{{user.createdAt | date}}</td>
             </tr>
         </tbody>
     </table>

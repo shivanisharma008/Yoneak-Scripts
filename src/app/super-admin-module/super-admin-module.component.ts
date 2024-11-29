@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { UserServiceService } from '../api/api-services/user-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-super-admin-module',
@@ -6,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './super-admin-module.component.scss'
 })
 export class SuperAdminModuleComponent {
-
+ 
 }

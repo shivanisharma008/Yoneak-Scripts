@@ -1,7 +1,7 @@
 export interface AddCBlogsRequestModel {
     blogName: string,
     content: string
-    image: File | Blob;
+    image: any;
     embeddedYtLink: string,
     category: string
     subCategory: string

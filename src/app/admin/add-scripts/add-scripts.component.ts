@@ -80,7 +80,7 @@ export class AddScriptsComponent {
     const addCBlogsRequestModel: AddCBlogsRequestModel = {
       blogName: this.addBlogsCategoryForm.controls.blogName.value ?? '',
       content: this.addBlogsCategoryForm.controls.blogDescription.value ?? '',
-      image: this.selectedFile ?? new Blob(),  // Use the selected file for the image field
+      image: this.addBlogsCategoryForm.controls.mediaUrl.value ?? '',  // Use the selected file for the image field
       embeddedYtLink: 'www.google.com', // If you have a YouTube link, append it here
       category: this.addBlogsCategoryForm.controls.category.value ?? '',
       subCategory: this.addBlogsCategoryForm.controls.subCategory.value ?? '',

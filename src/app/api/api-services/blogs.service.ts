@@ -10,6 +10,8 @@ import { AddCategoryRequestModel } from '../api-modules/add-category.model';
 import { SubCategoryList } from '../api-modules/sub-category-list.model';
 import { AddSubCategoryRequestModel } from '../api-modules/add-subCategory.model';
 import { AddCBlogsRequestModel } from '../api-modules/add-blogs-request.model';
+import { UpdateCategoryRequestModel } from '../api-modules/update-category.model';
+import { UpdateSubCategoryRequestModel } from '../api-modules/update-sub-category.model';
 
 @Injectable({
     providedIn: 'root'
@@ -50,18 +52,16 @@ export class BlogsService {
         return this.httpClient.get<BlogsList[]>(`${apiRoutes?.blogs?.blogsList}`, { params });
     }
 
-    // categoryList():Observable<any> {
-    //     return this.httpClient.get<any>
-    // }
-
     categoryList(): Observable<categoryList[]> {
         return this.httpClient.get<categoryList[]>(`${apiRoutes?.blogs.categoryList}`)
     }
 
-    // blogsCategoryList():Observable<>
-
     addCategory(addCategoryRequestModel: AddCategoryRequestModel): Observable<any> {
         return this.httpClient.post<any>(`${apiRoutes.blogs.addCategory}`, addCategoryRequestModel)
+    }
+
+    updateCategory(updateCategoryRequestModel: UpdateCategoryRequestModel): Observable<any> {
+        return this.httpClient.put<any>(`${apiRoutes.blogs.updateCategory}`, updateCategoryRequestModel)
     }
 
     subCategoryList(categoryId: string | null): Observable<SubCategoryList[]> {
@@ -72,6 +72,10 @@ export class BlogsService {
 
     addSubCategory(addSubCategoryRequestModel: AddSubCategoryRequestModel): Observable<any> {
         return this.httpClient.post<any>(`${apiRoutes.blogs.addSubCategoryList}`, addSubCategoryRequestModel)
+    }
+
+    updateSubCategory(updateSubCategoryRequestModel: UpdateSubCategoryRequestModel): Observable<any> {
+        return this.httpClient.put<any>(`${apiRoutes.blogs.updateSubCategory}`, updateSubCategoryRequestModel)
     }
 
     addNewBlogs(formData: FormData): Observable<any> {

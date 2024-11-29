@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BlogsService } from '../../api/api-services/blogs.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cateogry',
@@ -16,6 +17,7 @@ export class CateogryComponent {
 
   constructor(
     private blogsService: BlogsService,
+    private _router: Router,
   ) {}
 
   ngOnInit() {
@@ -39,9 +41,12 @@ export class CateogryComponent {
   }
 
   // Edit Category
-  editCategory(category: any) {
-    console.log('Editing Category:', category);
-    // Logic to edit the category goes here
+  editCategory(categoryDetails: any) {
+    console.log(categoryDetails);
+    
+    this._router.navigate(['super-admin-module/add-category'], {
+      state: { categoryDetails: categoryDetails }
+    });
   }
 
   // Delete Category

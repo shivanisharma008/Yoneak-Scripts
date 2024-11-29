@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BlogsService } from '../../api/api-services/blogs.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sub-cateogry',
@@ -17,6 +18,7 @@ export class SubCateogryComponent {
 
   constructor(
     private blogsService: BlogsService,
+    private _router: Router,
   ) {}
 
   ngOnInit() {
@@ -31,6 +33,14 @@ export class SubCateogryComponent {
         console.log('Sub-Category' + res.data);
       }
     })
+  }
+
+  editCategory(subCategoryDetails: any) {
+    console.log(subCategoryDetails);
+    
+    this._router.navigate(['super-admin-module/add-sub-category'], {
+      state: { subCategoryDetails: subCategoryDetails }
+    });
   }
 
   

@@ -7,6 +7,7 @@ import { apiRoutes } from '../api-routes/api-routes';
 import { ForgetPasswordRequestModel } from '../api-modules/forgetPasswordRequest.model';
 import { SendOtpRequestModel } from '../api-modules/sentotpRequest.mode';
 import { VerifyEmailRequestModel } from '../api-modules/verifyEmailResponse.modal';
+import { UserListModal } from '../api-modules/user-list.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,10 @@ export class UserServiceService {
   forgetPasswordPostApi(forgetPasswordResponseModel: ForgetPasswordRequestModel): Observable<any> {
     return this.httpClient.post<any>(`${apiRoutes.user.ForgetPassword}`, forgetPasswordResponseModel)
   }
-
+  
+  userList(): Observable<UserListModal[]> {
+    return this.httpClient.get<UserListModal[]>(`${apiRoutes?.user.userList}`)
+}
 
 
 }

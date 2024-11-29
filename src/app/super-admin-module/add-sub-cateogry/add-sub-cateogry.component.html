@@ -43,7 +43,8 @@
             <!-- Buttons -->
             <div class="d-flex flex-row justify-content-center gap-2 w-100 mt-3">
                 <button type="button" class="btn btn-danger links" (click)="clear()">Cancel</button>
-                <button type="submit" class="btn btn-success links" (click)="submitSubCategory()">Submit</button>
+                <button *ngIf="!isUpdate" type="submit" class="btn btn-success links" (click)="submitSubCategory()">Submit</button>
+                <button *ngIf="isUpdate" type="submit" class="btn btn-success links" (click)="updateSubCategory()">Update</button>
             </div>
         </form>
     </div>

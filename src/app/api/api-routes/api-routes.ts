@@ -10,6 +10,7 @@ export const apiRoutes = {
         sendOtp : `${baseURL}user/sendotp`,
         verifyEmail : `${baseURL}user/verifyemail`,
         ForgetPassword : `${baseURL}user/resetpassword`,
+        userList:`${baseURL}user`,
     },
 
     blogs: {
@@ -17,8 +18,10 @@ export const apiRoutes = {
         categoryList: `${baseURL}blogscategory`,
         blogsCategoryList: `${baseURL}blogscategory`,
         addCategory: `${baseURL}blogscategory`,
+        updateCategory:`${baseURL}blogscategory`,
         subCategoryList: `${baseURL}subcategory`,
         addSubCategoryList: `${baseURL}subcategory`,
+        updateSubCategory: `${baseURL}subcategory`,
 
         addNewBlogs: `${baseURL}blogs`
     }
