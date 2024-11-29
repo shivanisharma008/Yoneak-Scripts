@@ -27,35 +27,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class BlogsComponent {
   blogsList: any
 
-  blogs = [
-    {
-      id: 1,
-      image: 'assets/blog1.jpg',
-      title: 'The Olivier da Costa restaurant experience in Lisbon',
-      author: 'Zhon Smith',
-      category: 'Travel, Design, Nature',
-      description: ' When it comes to creating is a website for your busin an attractive design will only get you far. With people increasingly using their tablets and smartphones and shop online,...'
-    },
-    {
-      id: 2,
-      image: 'assets/blog2.jpg',
-      title: 'Exploring the wild landscapes of Patagonia',
-      author: 'Jane Doe',
-      category: 'Travel, Adventure',
-      description: 'Patagonia is a region filled with breathtaking landscapes and rich culture that every traveler dreams of...'
-    },
-    {
-      id: 3,
-      image: 'assets/blog3.jpg',
-      title: 'Top 5 tips for designing a modern website',
-      author: 'John Doe',
-      category: 'Design, Technology',
-      description: 'Web design is a key factor in building a successful online presence. Here are 5 tips to stay ahead...'
-    }
-  ];
-
   currentIndex = 0;
-  currentBlog = this.blogs[this.currentIndex];
   categoryList: any;
 
   constructor(
@@ -71,76 +43,6 @@ export class BlogsComponent {
     this.getBlogsList('', '', '')
     this.getCategoryList()
   }
-
-  // Navigate to the previous blog
-  prevBlog(): void {
-    this.currentIndex =
-      (this.currentIndex - 1 + this.blogs.length) % this.blogs.length;
-    this.currentBlog = this.blogs[this.currentIndex];
-  }
-
-  // Navigate to the next blog
-  nextBlog(): void {
-    this.currentIndex = (this.currentIndex + 1) % this.blogs.length;
-    this.currentBlog = this.blogs[this.currentIndex];
-  }
-  blogCards = [
-    {
-      image: 'assests/images/blog_card_img2.jpg',
-      title: 'Title',
-      date: '12-Dec-2024',
-      desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio aliquam inventor offici nihil alias quae soluta explicabo '
-    },
-    {
-      image: 'assests/images/blog_card_img2.jpg',
-      title: 'Title',
-      date: '12-Dec-2024',
-      desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio aliquam inventor offici nihil alias quae soluta explicabo?'
-    },
-    {
-      image: 'assests/images/blog_card_img2.jpg',
-      title: 'Title',
-      date: '12-Dec-2024',
-      desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio aliquam inventor offici nihil alias quae soluta explicabo?'
-    },
-    {
-      image: 'assests/images/blog_card_img2.jpg',
-      title: 'Title',
-      date: '12-Dec-2024',
-      desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio aliquam inventor offici nihil alias quae soluta explicabo?'
-    },
-    {
-      image: 'assests/images/blog_card_img2.jpg',
-      title: 'Title',
-      date: '12-Dec-2024',
-      desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio aliquam inventor offici nihil alias quae soluta explicabo?'
-    },
-    {
-      image: 'assests/images/blog_card_img2.jpg',
-      title: 'Title',
-      date: '12-Dec-2024',
-      desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio aliquam inventor offici nihil alias quae soluta explicabo?'
-    },
-  ]
-
-  category = [
-    {
-      img: 'assests/images/blog_cat1.jpg',
-      name: 'Business'
-    },
-    {
-      img: 'assests/images/blog_cat1.jpg',
-      name: 'Fashion'
-    },
-    {
-      img: 'assests/images/blog_cat1.jpg',
-      name: 'Artist'
-    },
-    {
-      img: 'assests/images/blog_cat1.jpg',
-      name: 'Media'
-    },
-  ]
 
   popularCard = [
     {

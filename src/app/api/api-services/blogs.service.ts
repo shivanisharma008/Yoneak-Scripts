@@ -12,6 +12,7 @@ import { AddSubCategoryRequestModel } from '../api-modules/add-subCategory.model
 import { AddCBlogsRequestModel } from '../api-modules/add-blogs-request.model';
 import { UpdateCategoryRequestModel } from '../api-modules/update-category.model';
 import { UpdateSubCategoryRequestModel } from '../api-modules/update-sub-category.model';
+import { ApproveBlogsRequestModel } from '../api-modules/approve-blogs.model';
 
 @Injectable({
     providedIn: 'root'
@@ -53,6 +54,10 @@ export class BlogsService {
         console.log('Query Params:', params);
 
         return this.httpClient.get<BlogsList[]>(`${apiRoutes?.blogs?.blogsList}`, { params });
+    }
+
+    approveBlogs(approveBlogsRequestModel: ApproveBlogsRequestModel): Observable<any> {
+        return this.httpClient.post<any>(`${apiRoutes.blogs.approveBlogs}`, approveBlogsRequestModel)
     }
 
     categoryList(): Observable<categoryList[]> {

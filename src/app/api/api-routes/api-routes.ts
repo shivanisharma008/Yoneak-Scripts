@@ -11,11 +11,13 @@ export const apiRoutes = {
         verifyEmail : `${baseURL}user/verifyemail`,
         ForgetPassword : `${baseURL}user/resetpassword`,
         userList:`${baseURL}user`,
-        profileDetails: `${baseURL}user/profile`
+        profileDetails: `${baseURL}user/profile`,
+        
     },
 
     blogs: {
         blogsList: `${baseURL}blogs`,
+        approveBlogs: `${baseURL}blogs/approve`,
         categoryList: `${baseURL}blogscategory`,
         blogsCategoryList: `${baseURL}blogscategory`,
         addCategory: `${baseURL}blogscategory`,
