@@ -136,7 +136,7 @@ export class SignInComponent {
   }
 
   sendOtp() {
-    alert(1)
+    // alert(1)
     const verifyEmailRequestModel: VerifyEmailRequestModel = {
       email: this.signInForm.controls.email.value ?? '',
       otp: this.signInForm.controls.fullOtp.value ?? '',

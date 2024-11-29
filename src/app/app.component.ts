@@ -10,6 +10,7 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
 export class AppComponent implements OnInit {
   sidenavMode: 'side' | 'over' = 'side'; // Default mode
   sidenavOpened = true; // Default opened state
+  isLogin = false
   constructor(private router: Router, private breakpointObserver: BreakpointObserver) {
 
   }
@@ -26,8 +27,14 @@ export class AppComponent implements OnInit {
           this.currentPath.includes('admin')
         ) {
           this.isSidenav = true;
-        } else {
+          this.isLogin = false
+        } else if( !this.currentPath.includes('super-admin-module') &&
+        !this.currentPath.includes('admin') && this.currentPath.includes('accounts')) {
           this.isSidenav = false
+          this.isLogin = true
+
+        }else{
+          this.isLogin = false
         }
       }
     });

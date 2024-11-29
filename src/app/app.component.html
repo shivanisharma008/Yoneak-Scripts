@@ -12,7 +12,9 @@
     </mat-sidenav-content>
 </mat-sidenav-container>
 
-<div *ngIf="!isSidenav">
+<div *ngIf="!isSidenav && !isLogin">
     <app-header></app-header>
     <router-outlet></router-outlet>
 </div>
+
+<router-outlet *ngIf="!isSidenav && isLogin"></router-outlet>
