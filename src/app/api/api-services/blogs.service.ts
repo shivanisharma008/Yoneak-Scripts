@@ -13,6 +13,8 @@ import { AddCBlogsRequestModel } from '../api-modules/add-blogs-request.model';
 import { UpdateCategoryRequestModel } from '../api-modules/update-category.model';
 import { UpdateSubCategoryRequestModel } from '../api-modules/update-sub-category.model';
 import { ApproveBlogsRequestModel } from '../api-modules/approve-blogs.model';
+import { CreateVideoLinkModel } from '../api-modules/create-video-link.model';
+import { createdVideo, GetCreatedVideoModel } from '../api-modules/get-created-video.model';
 
 @Injectable({
     providedIn: 'root'
@@ -88,6 +90,16 @@ export class BlogsService {
 
     addNewBlogs(formData: FormData): Observable<any> {
         return this.httpClient.post<any>(`${apiRoutes.blogs.addNewBlogs}`, formData)
+    }
+
+    createVideoLink(createVideoLinkModel: CreateVideoLinkModel): Observable<any> {
+        return this.httpClient.post<any>(`${apiRoutes.blogs.createVideoLink}`, createVideoLinkModel)
+    }
+
+    getCreateVideoLink(creatorId: string | null, creatorVideoId: string | null): Observable<GetCreatedVideoModel[]> {
+        const params: { [key: string]: string } = {};
+
+        return this.httpClient.get<GetCreatedVideoModel[]>(`${apiRoutes?.blogs.getCreateVideoLink}`, {params})
     }
 
 }

@@ -1,10 +1,11 @@
 <div class="header d-flex flex-row align-items-center justify-content-center w-100 py-2 bg-white">
   <div class="header_body d-flex flex-row align-items-center justify-content-between w-95">
 
-    <div class="logo d-flex " *ngIf="userRole === 3">
+    <div class="logo d-flex " *ngIf="userRole === 3 || userRole == null || userRole === undefined">
       <img src="assests/images/new_logo.png" alt="logo" width="35%">
     </div>
-    <i class="fa-solid fa-arrow-left font-24 d-none d-sm-none d-md-none d-lg-flex" *ngIf="userRole === 1 || userRole === 2"></i>
+    <i class="fa-solid fa-arrow-left font-24 d-none d-sm-none d-md-none d-lg-flex"
+      *ngIf="userRole === 1 || userRole === 2"></i>
     <!-- Sidenav Toggle Icon -->
     <div class="menu_icon d-sm-flex d-md-flex d-lg-none" (click)="toggleSidenav()">
       <i class="fa-solid fa-bars font-22"></i>
@@ -17,14 +18,11 @@
         <div class="circle"></div>
         <div class="dropdown-menu" [class.show]="isDropdownVisible">
           <ul>
-            <li class="cursor" (click)="openProfileDialog()"><a >My Profile</a></li>
+            <li class="cursor" (click)="openProfileDialog()"><a>My Profile</a></li>
             <li><a (click)="logout()">Logout</a></li>
           </ul>
         </div>
       </div>
     </div>
-   
-    
   </div>
 </div>
-

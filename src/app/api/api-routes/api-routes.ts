@@ -12,6 +12,7 @@ export const apiRoutes = {
         ForgetPassword : `${baseURL}user/resetpassword`,
         userList:`${baseURL}user`,
         profileDetails: `${baseURL}user/profile`,
+        adminsList: `${baseURL}user/admins`,
         
     },
 
@@ -26,6 +27,8 @@ export const apiRoutes = {
         addSubCategoryList: `${baseURL}subcategory`,
         updateSubCategory: `${baseURL}subcategory`,
 
-        addNewBlogs: `${baseURL}blogs`
+        addNewBlogs: `${baseURL}blogs`,
+        createVideoLink: `${baseURL}blogs/creatorvideos`,
+        getCreateVideoLink: `${baseURL}blogs/creatorvideos`,
     }
 }

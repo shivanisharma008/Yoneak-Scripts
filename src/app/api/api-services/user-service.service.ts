@@ -10,6 +10,7 @@ import { VerifyEmailRequestModel } from '../api-modules/verifyEmailResponse.moda
 import { UserListModal } from '../api-modules/user-list.model';
 import { ProfileDetailsModel } from '../api-modules/profile-details.model';
 import { ProfileDetailsRequestModel } from '../api-modules/profile-details-request.model';
+import { adminListResponseModel } from '../api-modules/admin-list.model';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,10 @@ export class UserServiceService {
 
   userList(): Observable<UserListModal[]> {
     return this.httpClient.get<UserListModal[]>(`${apiRoutes?.user.userList}`)
+  }
+
+  adminList(): Observable<adminListResponseModel[]> {
+    return this.httpClient.get<adminListResponseModel[]>(`${apiRoutes?.user.adminsList}`)
   }
 
   // profile(): Observable<>

@@ -34,7 +34,7 @@ export class HeaderComponent {
     // });
 
     // Redirect to login page
-    this.router.navigate(['accounts/sign-in']);
+    this.router.navigate(['/user/blogs']);
   }
 
   openProfileDialog() {
