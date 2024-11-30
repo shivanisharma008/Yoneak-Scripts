@@ -151,11 +151,10 @@ export class SignInComponent {
     this.userApiService.verifyEmailPostApi(verifyEmailRequestModel).subscribe({
       next: (res) => {
         console.log(res);
-
-        const role = res.data.role;
-        const userDetails = res.data;
-        localStorage.setItem('userDetails', JSON.stringify(userDetails));
         if (res.status === 200) {
+          const role = res.data.role;
+          const userDetails = res.data;
+          localStorage.setItem('userDetails', JSON.stringify(userDetails));
           this._snackBar.open(res.message, 'Close', {
             duration: 3000,
             verticalPosition: 'bottom',
