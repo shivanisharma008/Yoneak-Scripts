@@ -1,6 +1,6 @@
 <div class="blogs_main d-flex flex-column align-items-center justify-content-center mt-5">
     <div class="blogs_body d-flex flex-column align-items-center justify-content-center w-100 mt-5">
-        <h1 class="text-blue font-40 fw-800">Blogs</h1>
+        <h1 class="text-blue font-40 fw-800">Scripts</h1>
         <!-- <img src="assests/images/blog_cat1.jpg" alt="blob_card_img" width="100%"> -->
         <!-- <div class="banner d-flex align-items-center justify-content-center w-100">
             <h1 class=" text-white font-40">Blogs</h1>
@@ -33,8 +33,8 @@
             <div *ngIf="blogsList && blogsList.length > 0;" class=" blogs_left w-70">
                 <!-- <div class="blog_content_left_body"> -->
                 <div class="row justify-content-center w-100">
-                    <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex flex-column align-items-center gap-3" *ngFor="let blog of blogsList">
-                        <div class="card_image">
+                    <div class="blog_card col-12 col-md-6 col-lg-4 mb-4 d-flex flex-column align-items-center gap-3" *ngFor="let blog of blogsList">
+                        <div class="card_image cursor" (click)="blogsDetails(blog._id)">
                             <!-- <img [src]="blog.image || 'assests/images/blog_cat1.jpg'" (error)="setDefaultImage($event)" alt="blob_card_img" width="100%"> -->
                             <img src="assests/images/blog_card_img2.jpg" alt="blob_card_img" width="100%">
                         </div>
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="read_butn d-flex align-items-start justify-content-start w-100">
-                            <a class="text-black font-16 fw-700" (click)="blogsDetails(blog._id)">Read More</a>
+                            <a class="text-black font-16 fw-500 cursor" (click)="blogsDetails(blog._id)">Read More <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                             <div (click)="getBlogsList(category._id,'', '')">
                                 <img src="assests/images/blog_cat1.jpg" alt="category_bg_img" width="100%"
                                     class="categoty_bg">
-                                <p class="category_name text-white font-16 fw-800 text-a-c">{{category.categoryName}}
+                                <p class="d-flex align-items-center justify-content-center category_name text-white font-14 fw-700 text-a-c w-100">{{category.categoryName}}
                                 </p>
 
                             </div>

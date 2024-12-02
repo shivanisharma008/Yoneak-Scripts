@@ -38,6 +38,11 @@ const routes: Routes = [
     loadChildren:()=>
       import('./add-sub-cateogry/add-sub-cateogry.module').then((m)=> m.AddSubCateogryModule)
   },
+  {
+    path:'user-uploaded-links',
+    loadChildren:()=>
+      import('./user-upload-links/user-upload-links.module').then((m)=> m.UserUploadLinksModule)
+  },
 ];
 
 @NgModule({

@@ -22,13 +22,13 @@
                     <td [title]="category.description">
                         {{ category.description | slice: 0:20 }}{{ category.description.length > 20 ? '...' : '' }}
                     </td>
-                    <td>
+                    <td >
                         <button class="btn  btn-md me-2" (click)="editCategory(category)">
                             <i class="fa-solid fa-edit"></i> 
                         </button>
-                        <!-- <button class="btn  btn-md" >
+                        <button class="btn  btn-md" >
                             <i class='bx bx-trash-alt font-22 text-danger'></i>
-                        </button> -->
+                        </button>
                     </td>
                 </tr>
             </tbody>

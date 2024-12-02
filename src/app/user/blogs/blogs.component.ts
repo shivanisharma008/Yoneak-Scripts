@@ -29,6 +29,9 @@ export class BlogsComponent {
 
   currentIndex = 0;
   categoryList: any;
+  // blogsToShow: number = 6;
+  // displayedBlogs: any[] = []; // Subset of blogs to display
+
 
   constructor(
     private elementRef: ElementRef,
@@ -43,6 +46,17 @@ export class BlogsComponent {
     this.getBlogsList('', '', '')
     this.getCategoryList()
   }
+
+  // displayBlogs(): void {
+  //   this.displayedBlogs = this.blogsList.slice(0, this.blogsToShow); // Start with 6 blogs
+  // }
+
+  // // Load more blogs
+  // loadMore(): void {
+  //   const currentLength = this.displayedBlogs.length;
+  //   const nextBlogs = this.blogsList.slice(currentLength, currentLength + this.blogsToShow);
+  //   this.displayedBlogs = [...this.displayedBlogs, ...nextBlogs];
+  // }
 
   popularCard = [
     {

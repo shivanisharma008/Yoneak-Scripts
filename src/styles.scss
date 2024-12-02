@@ -33,7 +33,7 @@ $Yoneak-Scripts-theme: mat.define-light-theme((color: (primary: $Yoneak-Scripts-
 
 /* You can add global styles to this file, and also import other style files */
 
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lora:ital,wght@0,400..700;1,400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lora:ital,wght@0,400..700;1,400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 html,
 body,
@@ -52,7 +52,8 @@ h6 {
 
 body {
   margin: 0;
-  font-family: 'Josefin Sans';
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+  // font-family: 'Josefin Sans';
   --primary-blue: #23437E;
   --primary-black: black;
   --primary-white: white;
