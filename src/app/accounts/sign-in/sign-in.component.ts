@@ -175,6 +175,11 @@ export class SignInComponent {
                 console.error('Unknown role:', role);
             }
           } else {
+            this._snackBar.open(res.message, 'Close', {
+              duration: 3000,
+              verticalPosition: 'bottom',
+              horizontalPosition: 'center'
+            });
             this.router.navigateByUrl(this.returnUrl);
           }
         } else {

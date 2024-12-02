@@ -1,8 +1,10 @@
 <div class="header d-flex flex-row align-items-center justify-content-center w-100 py-2 bg-white">
   <div class="header_body d-flex flex-row align-items-center justify-content-between w-95">
 
-    <div class="logo d-flex " *ngIf="userRole === 3 || userRole == null || userRole === undefined">
-      <img src="assests/images/new_logo.png" alt="logo" width="35%">
+    <div class="logo d-flex" *ngIf="userRole === 3 || userRole == null || userRole === undefined">
+      <a [routerLink]="'/user/blogs'">
+        <img src="assests/images/new_logo.png" alt="logo" width="35%">
+      </a>
     </div>
     <i class="fa-solid fa-arrow-left font-24 d-none d-sm-none d-md-none d-lg-flex"
       *ngIf="userRole === 1 || userRole === 2"></i>
