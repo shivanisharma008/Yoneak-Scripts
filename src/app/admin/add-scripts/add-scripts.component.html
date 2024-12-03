@@ -4,8 +4,8 @@
             <h3 class="font-24 fw-600 text-blue mt-3">Add Blog</h3>
             <form [formGroup]="addBlogsCategoryForm" class="d-flex flex-column gap-3 w-100">
                 <div class="d-flex flex-column gap-2 w-50">
-                    <label class="text-black links fw-500">Blog Name</label>
-                    <input type="text" class="p-2" formControlName="blogName">
+                    <label class="text-black links fw-500">Blog Title</label>
+                    <input type="text" class="p-2" placeholder="Enter Blog Title" formControlName="blogName">
                 </div>
                 <div class="d-flex flex-column gap-2 w-50">
                     <label class="text-black links fw-500">Select Category</label>
@@ -60,7 +60,8 @@
                 </div>
                 <div class="d-flex flex-row justify-content-center gap-2 w-100 mt-3">
                     <button type="button" class="btn btn-danger links">Cancel</button>
-                    <button type="button" class="btn btn-success links" (click)="submit()">Submit</button>
+                    <button *ngIf="!blogId"  type="button" class="btn btn-success links" (click)="submit()">Submit</button>
+                    <button *ngIf="blogId" type="button" class="btn btn-success links" (click)="updateBlogs()">Update</button>
                 </div>
             </form>
         </mat-card>

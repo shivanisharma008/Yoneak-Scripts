@@ -9,17 +9,17 @@
                         <div class="blog_card col-xs-12 col-12 col-md-6 col-lg-4 mb-4 d-flex flex-column align-items-center gap-3 p-0"
                             *ngFor="let blog of blogsList">
                             <div class="card_image cursor" (click)="blogsDetails(blog._id)">
-                                <img [src]="blog.image" alt="blob_card_img" width="100%">
+                                <img [src]="blog.image ? blog.image : 'assests/images/blog_card_img2.jpg'" alt="blob_card_img" width="100%">
                                 <!-- <img src="assests/images/blog_card_img2.jpg" alt="blob_card_img" width="100%"> -->
                             </div>
-                            <div class="blog_card_bottom d-flex flex-column gap-3 pb-4">
+                            <div class="blog_card_bottom d-flex flex-column gap-3 pb-4 w-100">
                                 <div
                                     class="blogs_card_text d-flex flex-column justify-content-between  gap-3 w-100 px-3">
                                     <p class="text-black font-20 fw-700">{{blog.blogName}}</p>
                                     <div class="blogs_card_desc d-flex flex-column gap-2">
                                         <div class="blogs_card_desc_info d-flex gap-4">
                                             <div class="admin">
-                                                <p class="text-blue font-14 fw-500">By Admin</p>
+                                                <p class="text-blue font-14 fw-500">By {{ blog.role === 2 ? 'Writer' : 'Super Admin'}}</p>
                                             </div>
                                             <div class="date">
                                                 <p class="font-14 fw-500">{{blog.createdAt | date}}</p>

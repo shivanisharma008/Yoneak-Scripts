@@ -14,7 +14,7 @@
         </div>
         <div class="blog_details_desc d-flex flex-column gap-4 w-100">
             <div class="blog_details_desc_img">
-                <img [src]="details.image" alt="image" width="100%">
+                <img [src]="details.image ? details.image : 'assests/images/blog_card_img2.jpg'" alt="image" width="100%">
             </div>
             <div class="blog_details_para d-flex flex-column gap-3">
                 <p class="text-grey font-16 fw-500" [innerHTML]="details.content"></p>

@@ -6,7 +6,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AddCBlogsRequestModel, toFormData } from '../../api/api-modules/add-blogs-request.model';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { Observable } from 'rxjs';
-import { HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
+import { UpdateBlogsRequestModel } from '../../api/api-modules/update-blogs-request.model';
 
 @Component({
   selector: 'app-add-scripts',
@@ -20,12 +21,13 @@ export class AddScriptsComponent {
   selectedFile: File | null = null;
   imagePreviewUrl: string | ArrayBuffer | null = null;
   subCategoryList: any;
+  blogId: any
 
 
   addBlogsCategoryForm = new FormGroup({
     blogName: new FormControl(null, Validators.required),
-    category: new FormControl(null, Validators.required),
-    subCategory: new FormControl(null, Validators.required),
+    category: new FormControl('', Validators.required),
+    subCategory: new FormControl('', Validators.required),
     mediaUrl: new FormControl(null, Validators.required),  // This is where the file will be stored
     blogDescription: new FormControl(null, Validators.required)
   });
@@ -46,9 +48,10 @@ export class AddScriptsComponent {
     this.getSubCategoryList();
 
     const myScriptsDetails = history.state.blogDetails;
+    this.blogId = myScriptsDetails._id
     console.log(myScriptsDetails);
     console.log(myScriptsDetails.category.categoryName);
-    
+
 
     this.addBlogsCategoryForm.patchValue({
       blogName: myScriptsDetails.blogName,
@@ -105,23 +108,23 @@ export class AddScriptsComponent {
       const reader = new FileReader();
       reader.onload = () => {
         const base64String = reader.result as string;
-        
+
         // Create a complete HttpResponse
         const response = new HttpResponse({
           body: { url: base64String },
           status: 200,
           statusText: 'OK',
         });
-  
+
         observer.next(response); // Emit the mock response
         observer.complete();
       };
-  
+
       reader.onerror = (error) => observer.error(error);
       reader.readAsDataURL(file); // Convert file to Base64
     });
   }
-  
+
 
 
   getCategoryList() {
@@ -190,6 +193,12 @@ export class AddScriptsComponent {
             horizontalPosition: 'center'
           });
           this._router.navigate(['/blogs']);
+        } else {
+          this._snackbar.open(res.message, 'Close', {
+            duration: 3000,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'center'
+          });
         }
       },
       error: (err) => {
@@ -197,8 +206,41 @@ export class AddScriptsComponent {
         this._snackbar.open('Error adding blog. Please try again.', '', { duration: 3000 });
       }
     });
-    // } else {
-    //   this._snackbar.open('Please fill in all required fields and select a file.', '', { duration: 3000 });
-    // }
+  }
+
+
+  updateBlogs() {
+    const updateBlogsRequestModel: UpdateBlogsRequestModel = {
+      blogId: this.blogId,
+      content: this.addBlogsCategoryForm.controls.blogDescription.value ?? '',
+      image: this.selectedFile,
+      embeddedYtLink: 'www.google.com',
+      category: this.addBlogsCategoryForm.controls.category.value ?? '',
+      subCategory: this.addBlogsCategoryForm.controls.subCategory.value ?? '',
+    }
+    this.blogsService.updateBlogs(updateBlogsRequestModel).subscribe({
+      next: (res) => {
+        if (res.status === 200) {
+          this._snackbar.open(res.message, 'Close', {
+            duration: 3000,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'center'
+          });
+          this._router.navigate(['admin/my-scripts']);
+        } else {
+          this._snackbar.open(res.message, 'Close', {
+            duration: 3000,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'center'
+          });
+        }
+      }, error: (err: HttpErrorResponse) => {
+        this._snackbar.open(err.statusText, 'Close', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'center'
+        });
+      }
+    })
   }
 }

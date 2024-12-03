@@ -4,6 +4,8 @@ import { BlogsService } from '../../api/api-services/blogs.service';
 import { ApproveBlogsRequestModel } from '../../api/api-modules/approve-blogs.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+declare var bootstrap: any
+
 
 @Component({
   selector: 'app-blogs-list',
@@ -22,6 +24,14 @@ export class BlogsListComponent {
 
   ngOnInit(): void {
     this.getBlogsList('', '', '', null)
+  }
+
+  ngAfterViewInit(): void {
+    // Initialize all tooltips on the page
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    tooltipTriggerList.forEach((tooltipTriggerEl) => {
+      new bootstrap.Tooltip(tooltipTriggerEl);
+    });
   }
 
 
@@ -72,13 +82,10 @@ export class BlogsListComponent {
     })
   }
 
-  // approveBlog(id: any) {
-
-  // }
-
-  approveBlog(blogId: any) {
+  approveBlog(blogId: any, isApprove: boolean) {
     const approveBlogsRequestModel: ApproveBlogsRequestModel = {
-      blogId: blogId
+      blogId: blogId,
+      isApproved: isApprove
     }
     this.blogsService.approveBlogs(approveBlogsRequestModel).subscribe({
       next: (res) => {

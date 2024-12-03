@@ -29,16 +29,17 @@
                     <td [title]="blog.content">{{ blog.content | slice: 0:20 }}{{ blog.content.length > 20 ? '...' : ''
                         }}</td>
                     <td>{{ blog.createdAt | date }}</td>
-                    <td>
+                    <td class="d-flex flex-row align-items-center">
+                        <div class="form-check form-switch" [title]="blog.approved === true ? 'Disable Blog' : 'Approve Blog'">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                                [checked]="blog.approved"
+                                (change)="approveBlog(blog._id, blog.approved === true ? false : true)">
+                        </div>
                         <button class="btn  btn-md me-2" (click)="viewBlog(blog._id)">
                             <i class="fa-solid fa-eye"></i>
                         </button>
                         <button class="btn  btn-md" (click)="deleteBlogs(blog._id)">
                             <i class='bx bx-trash-alt font-22 text-danger'></i>
-                        </button>
-                        <button class="btn btn-sm" [ngClass]="{'btn-success': blog.approved, 'btn-secondary': !blog.approved}" [disabled]="blog.approved === true"
-                            (click)="approveBlog(blog._id)">
-                            {{blog.approved === true ? 'Approved' : 'Approve'}}
                         </button>
                     </td>
                 </tr>

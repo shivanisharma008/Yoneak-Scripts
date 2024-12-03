@@ -16,6 +16,7 @@ import { ApproveBlogsRequestModel } from '../api-modules/approve-blogs.model';
 import { CreateVideoLinkModel } from '../api-modules/create-video-link.model';
 import { createdVideo, GetCreatedVideoModel } from '../api-modules/get-created-video.model';
 import { ApproveVideoLink } from '../api-modules/approve-video-link.model';
+import { UpdateBlogsRequestModel } from '../api-modules/update-blogs-request.model';
 
 @Injectable({
     providedIn: 'root'
@@ -60,6 +61,10 @@ export class BlogsService {
         console.log('Query Params:', params);
 
         return this.httpClient.get<BlogsList[]>(`${apiRoutes?.blogs?.blogsList}`, { params });
+    }
+
+    updateBlogs(updateBlogsRequestModel: UpdateBlogsRequestModel): Observable<any> {
+        return this.httpClient.put<any>(`${apiRoutes.blogs.updateBlog}`, updateBlogsRequestModel)
     }
 
     approveBlogs(approveBlogsRequestModel: ApproveBlogsRequestModel): Observable<any> {
