@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { BlogsService } from '../../api/api-services/blogs.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-cateogry',
@@ -18,7 +20,8 @@ export class CateogryComponent {
   constructor(
     private blogsService: BlogsService,
     private _router: Router,
-  ) {}
+    private _snackBar: MatSnackBar,
+  ) { }
 
   ngOnInit() {
     this.getCategoryList()
@@ -43,15 +46,31 @@ export class CateogryComponent {
   // Edit Category
   editCategory(categoryDetails: any) {
     console.log(categoryDetails);
-    
+
     this._router.navigate(['super-admin-module/add-category'], {
       state: { categoryDetails: categoryDetails }
     });
   }
 
   // Delete Category
-  deleteCategory(id: number) {
-    console.log('Deleting Category with ID:', id);
-    // this.categories = this.categories.filter(category => category.id !== id);
+  deleteCategory(id: any) {
+    this.blogsService.deleteCategoryList(id).subscribe({
+      next: (res: any) => {
+        this._snackBar.open(res.message, 'Close', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'center'
+        });
+        if(res.status === 200 ) {
+          this.getCategoryList()
+        }
+      }, error: (err: HttpErrorResponse) => {
+        this._snackBar.open(err.statusText, 'Close', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'center'
+        });
+      }
+    })
   }
 }

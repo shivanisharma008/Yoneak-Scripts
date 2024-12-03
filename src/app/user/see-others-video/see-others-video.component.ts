@@ -18,6 +18,7 @@ export class SeeOthersVideoComponent {
   }
 
   ngOnInit() {
+    alert(1)
     this.getVideoLink()
   }
 
@@ -56,7 +57,7 @@ export class SeeOthersVideoComponent {
 
 
   getVideoLink() {
-    this.blogService.getCreateVideoLink('', '').subscribe({
+    this.blogService.getCreateVideoLink('', '', true).subscribe({
       next: (res: any) => {
         console.log(res.data);
         this.videoLinks = res.data

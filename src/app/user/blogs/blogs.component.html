@@ -35,8 +35,8 @@
                 <div class="row justify-content-center w-100">
                     <div class="blog_card col-12 col-md-6 col-lg-4 mb-4 d-flex flex-column align-items-center gap-3" *ngFor="let blog of blogsList">
                         <div class="card_image cursor" (click)="blogsDetails(blog._id)">
-                            <!-- <img [src]="blog.image || 'assests/images/blog_cat1.jpg'" (error)="setDefaultImage($event)" alt="blob_card_img" width="100%"> -->
-                            <img src="assests/images/blog_card_img2.jpg" alt="blob_card_img" width="100%">
+                            <img [src]="blog.image" alt="blob_card_img" width="100%">
+                            <!-- <img src="assests/images/blog_card_img2.jpg" alt="blob_card_img" width="100%"> -->
                         </div>
                         <div class="blogs_card_text d-flex flex-column justify-content-between  gap-3 w-100">
                             <p class="text-blue font-20 fw-700">{{blog.blogName}}</p>
@@ -78,7 +78,7 @@
                         <div class="category_list_item d-flex  justify-content-center"
                             *ngFor="let category of categoryList">
                             <!-- <img [src]="category.img" alt="category_bg_img" width="100%" class="categoty_bg"> -->
-                            <div (click)="getBlogsList(category._id,'', '')">
+                            <div (click)="getBlogsList(category._id,'', '', true)">
                                 <img src="assests/images/blog_cat1.jpg" alt="category_bg_img" width="100%"
                                     class="categoty_bg">
                                 <p class="d-flex align-items-center justify-content-center category_name text-white font-14 fw-700 text-a-c w-100">{{category.categoryName}}

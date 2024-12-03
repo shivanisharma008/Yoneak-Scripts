@@ -11,8 +11,15 @@ import { MatDialog } from '@angular/material/dialog';
 export class HeaderComponent {
   @Output() sidenavToggle = new EventEmitter<void>();
   isDropdownVisible = false;
+  userRole: number | null = null;
 
   constructor(private router: Router,private dialog: MatDialog) {}
+
+  ngOnInit(): void {
+    // Retrieve the user's role from localStorage or a service
+    const userDetails = JSON.parse(localStorage.getItem('userDetails') ?? '{}');
+    this.userRole = userDetails?.role ?? null; // Set user role, e.g., 1 or 2
+  }
 
   toggleDropdown() {
     this.isDropdownVisible = !this.isDropdownVisible;
@@ -27,6 +34,10 @@ export class HeaderComponent {
     // Clear local storage/session storage
     localStorage.clear();
     sessionStorage.clear();
+    this.userRole = null
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
 
     // (Optional) Call API to invalidate the session on the server
     // this.authService.logout().subscribe(() => {
@@ -45,12 +56,5 @@ export class HeaderComponent {
     });
   }
 
-  userRole: number | null = null;
-
-  ngOnInit(): void {
-    // Retrieve the user's role from localStorage or a service
-    const userDetails = JSON.parse(localStorage.getItem('userDetails') ?? '{}');
-    this.userRole = userDetails?.role ?? null; // Set user role, e.g., 1 or 2
-  }
   
 }

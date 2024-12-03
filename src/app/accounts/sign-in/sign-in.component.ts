@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { VerifyEmailRequestModel } from '../../api/api-modules/verifyEmailResponse.modal';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { LoginRequestModel } from '../../api/api-modules/login-request.model';
 
 @Component({
   selector: 'app-sign-in',
@@ -119,29 +120,87 @@ export class SignInComponent {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
 
-
-  submitLoginForm() {
-    const sendOtpRequestModel: SendOtpRequestModel = {
+  login() {
+    const loginRequestModel: LoginRequestModel = {
       email: this.signInForm.controls.email.value ?? '',
     }
-    this.userApiService.sendOtpPostApi(sendOtpRequestModel).subscribe({
+    this.userApiService.login(loginRequestModel).subscribe({
       next: (res) => {
         if (res.status === 200) {
-
-          setTimeout(() => {
-            this.showOtpFields = true; // Update the variable inside setTimeout
-          });
-          // this.cdr.detectChanges();
+          if (res.data === null) {
+            this.showOtpFields = true;
+          } else {
+            const role = res.data.role;
+            const userDetails = res.data;
+            localStorage.setItem('userDetails', JSON.stringify(userDetails));
+            this._snackBar.open(res.message, 'Close', {
+              duration: 3000,
+              verticalPosition: 'bottom',
+              horizontalPosition: 'center'
+            });
+            if (this.returnUrl === '' || this.returnUrl === '/' || this.returnUrl === null || this.returnUrl === undefined) {
+              switch (role) {
+                case 1:
+                  this.router.navigate(['super-admin-module']);
+                  break;
+                case 2:
+                  this.router.navigate(['admin']);
+                  break;
+                case 3:
+                  this.router.navigate(['user/blogs']);
+                  break;
+                default:
+                  console.error('Unknown role:', role);
+              }
+            } else {
+              this._snackBar.open(res.message, 'Close', {
+                duration: 3000,
+                verticalPosition: 'bottom',
+                horizontalPosition: 'center'
+              });
+              this.router.navigateByUrl(this.returnUrl);
+            }
+          }
+        } else {
+          this.router.navigate(['/accounts/sign-up'], { state: { email: this.signInForm.controls.email.value ?? '' } });
           this._snackBar.open(res.message, 'Close', {
             duration: 3000,
             verticalPosition: 'bottom',
             horizontalPosition: 'center'
           });
-
         }
+      }, error: (err: HttpErrorResponse) => {
+        this._snackBar.open(err.statusText, 'Close', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'center'
+        });
       }
     })
   }
+
+
+  // submitLoginForm() {
+  //   const sendOtpRequestModel: SendOtpRequestModel = {
+  //     email: this.signInForm.controls.email.value ?? '',
+  //   }
+  //   this.userApiService.sendOtpPostApi(sendOtpRequestModel).subscribe({
+  //     next: (res) => {
+  //       if (res.status === 200) {
+
+  //         setTimeout(() => {
+  //           this.showOtpFields = true;
+  //         });
+  //         this._snackBar.open(res.message, 'Close', {
+  //           duration: 3000,
+  //           verticalPosition: 'bottom',
+  //           horizontalPosition: 'center'
+  //         });
+
+  //       }
+  //     }
+  //   })
+  // }
 
   sendOtp() {
     const verifyEmailRequestModel: VerifyEmailRequestModel = {

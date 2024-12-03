@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { BlogsService } from '../../api/api-services/blogs.service';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-sub-cateogry',
@@ -19,6 +21,7 @@ export class SubCateogryComponent {
   constructor(
     private blogsService: BlogsService,
     private _router: Router,
+    private _snackBar: MatSnackBar,
   ) {}
 
   ngOnInit() {
@@ -48,6 +51,27 @@ export class SubCateogryComponent {
   openCreateCategoryModal() {
     console.log('Opening Create Category Modal');
     // Logic to open modal goes here
+  }
+
+  deleteSubCategory(id: any) {
+    this.blogsService.deleteSubCategoryList(id).subscribe({
+      next: (res: any) => {
+        this._snackBar.open(res.message, 'Close', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'center'
+        });
+        if(res.status === 200 ) {
+          this.getSubCategoryList()
+        }
+      }, error: (err: HttpErrorResponse) => {
+        this._snackBar.open(err.statusText, 'Close', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'center'
+        });
+      }
+    })
   }
 
   

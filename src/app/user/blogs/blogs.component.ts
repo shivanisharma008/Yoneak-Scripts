@@ -43,9 +43,15 @@ export class BlogsComponent {
   ) { }
 
   ngOnInit(): void {
-    this.getBlogsList('', '', '')
+    this.getBlogsList('', '', '', true)
     this.getCategoryList()
   }
+
+  onImageError(event: Event): void {
+    const target = event.target as HTMLImageElement;
+    target.src = './../../../../public/assests/images/blog_card_img2.jpg';
+  }
+  
 
   // displayBlogs(): void {
   //   this.displayedBlogs = this.blogsList.slice(0, this.blogsToShow); // Start with 6 blogs
@@ -124,8 +130,15 @@ export class BlogsComponent {
     target.src = '/assests/images/blog_cat1.jpg';
   }
 
-  getBlogsList(categoryId: any, blogId: any, createdBy: any) {
-    this.blogsService.blogsList(categoryId, blogId, createdBy).subscribe({
+  isValidImage(imagePath: string): boolean {
+    const validExtensions = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+    const extension = imagePath.split('.').pop()?.toLowerCase();
+    return validExtensions.includes(extension || '');
+  }
+  
+
+  getBlogsList(categoryId: any, blogId: any, createdBy: any, isApproved: boolean) {
+    this.blogsService.blogsList(categoryId, blogId, createdBy, isApproved).subscribe({
       next: (res: any) => {
         this.blogsList = res.data
         console.log(res);

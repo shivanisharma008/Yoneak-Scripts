@@ -30,7 +30,7 @@ export class BlogDetailsComponent {
 
 
   getBlogsList() {
-    this.blogsService.blogsList('', this.blogId, '').subscribe({
+    this.blogsService.blogsList('', this.blogId, '', true).subscribe({
       next: (res: any) => {
         this.blogsList = res.data
         console.log(res);

@@ -4,6 +4,9 @@ import { BlogsService } from '../../api/api-services/blogs.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AddCBlogsRequestModel, toFormData } from '../../api/api-modules/add-blogs-request.model';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { Observable } from 'rxjs';
+import { HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-scripts',
@@ -15,6 +18,9 @@ export class AddScriptsComponent {
   createdById: any;
   uploadedFileName: string | null = null;
   selectedFile: File | null = null;
+  imagePreviewUrl: string | ArrayBuffer | null = null;
+  subCategoryList: any;
+
 
   addBlogsCategoryForm = new FormGroup({
     blogName: new FormControl('', Validators.required),
@@ -23,7 +29,6 @@ export class AddScriptsComponent {
     mediaUrl: new FormControl('', Validators.required),  // This is where the file will be stored
     blogDescription: new FormControl('', Validators.required)
   });
-  subCategoryList: any;
 
   constructor(
     private blogsService: BlogsService,
@@ -38,6 +43,71 @@ export class AddScriptsComponent {
     this.getCategoryList();
     this.getSubCategoryList();
   }
+
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: 'auto',
+    minHeight: '0',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: 'Enter text here...',
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '',
+    fonts: [
+      { class: 'arial', name: 'Arial' },
+      { class: 'times-new-roman', name: 'Times New Roman' },
+      { class: 'calibri', name: 'Calibri' },
+      { class: 'comic-sans-ms', name: 'Comic Sans MS' }
+    ],
+    customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ],
+    // upload: (file: File) => this.convertToBase64(file)
+    upload: (file: File): Observable<HttpEvent<any>> => this.convertFileToBase64(file),
+
+  };
+
+  convertFileToBase64(file: File): Observable<HttpEvent<{ url: string }>> {
+    return new Observable((observer) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64String = reader.result as string;
+        
+        // Create a complete HttpResponse
+        const response = new HttpResponse({
+          body: { url: base64String },
+          status: 200,
+          statusText: 'OK',
+        });
+  
+        observer.next(response); // Emit the mock response
+        observer.complete();
+      };
+  
+      reader.onerror = (error) => observer.error(error);
+      reader.readAsDataURL(file); // Convert file to Base64
+    });
+  }
+  
+
 
   getCategoryList() {
     this.blogsService.categoryList().subscribe({
@@ -68,10 +138,15 @@ export class AddScriptsComponent {
   // Handle file selection
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
-
     if (input.files && input.files.length > 0) {
       this.selectedFile = input.files[0];
-      this.uploadedFileName = this.selectedFile.name;
+
+      // Create a preview of the image
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreviewUrl = reader.result;
+      };
+      reader.readAsDataURL(this.selectedFile);
     }
   }
 
@@ -80,7 +155,7 @@ export class AddScriptsComponent {
     const addCBlogsRequestModel: AddCBlogsRequestModel = {
       blogName: this.addBlogsCategoryForm.controls.blogName.value ?? '',
       content: this.addBlogsCategoryForm.controls.blogDescription.value ?? '',
-      image: this.addBlogsCategoryForm.controls.mediaUrl.value ?? '',  // Use the selected file for the image field
+      image: this.selectedFile,  // Use the selected file for the image field
       embeddedYtLink: 'www.google.com', // If you have a YouTube link, append it here
       category: this.addBlogsCategoryForm.controls.category.value ?? '',
       subCategory: this.addBlogsCategoryForm.controls.subCategory.value ?? '',

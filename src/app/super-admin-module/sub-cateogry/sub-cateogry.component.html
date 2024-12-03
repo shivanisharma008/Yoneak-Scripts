@@ -10,7 +10,7 @@
                 <tr>
                     <th>#</th>
                     <th>Sub Category Name</th>
-                    <!-- <th>Category Name</th> -->
+                    <th>Category Name</th>
                     <th>Description</th>
                     <th>Action</th>
                 </tr>
@@ -19,6 +19,7 @@
                 <tr *ngFor="let category of subCategoryList; let i = index">
                     <td>{{ i + 1 }}</td>
                     <td>{{ category.subcategoryName }}</td>
+                    <td>{{ category.categoryId.categoryName }}</td>
                     <td [title]="category.description">
                         {{ category.description | slice: 0:20 }}{{ category.description.length > 20 ? '...' : '' }}
                     </td>
@@ -26,7 +27,7 @@
                         <button class="btn  btn-md me-2" (click)="editCategory(category)">
                             <i class="fa-solid fa-edit"></i> 
                         </button>
-                        <button class="btn  btn-md" >
+                        <button class="btn  btn-md" (click)="deleteSubCategory(category._id)">
                             <i class='bx bx-trash-alt font-22 text-danger'></i>
                         </button>
                     </td>

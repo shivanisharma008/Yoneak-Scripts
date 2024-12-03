@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,14 +10,14 @@ export class SidenavComponent {
   @Output() sidenavClose = new EventEmitter<void>(); // Event to notify parent to close sidenav
   userRole: number | null = null;
 
-  constructor(private router: Router){}
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     // Retrieve the user's role from localStorage or a service
     const userDetails = JSON.parse(localStorage.getItem('userDetails') ?? '{}');
     this.userRole = userDetails?.role ?? null; // Set user role, e.g., 1 or 2
   }
-  
+
   closeSidenav() {
     this.sidenavClose.emit(); // Emit the close event
     console.log('Sidenav close emitted');
@@ -27,6 +27,12 @@ export class SidenavComponent {
     // Clear local storage/session storage
     localStorage.clear();
     sessionStorage.clear();
+    this.userRole = null
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
+
 
     // (Optional) Call API to invalidate the session on the server
     // this.authService.logout().subscribe(() => {
@@ -34,7 +40,7 @@ export class SidenavComponent {
     // });
 
     // Redirect to login page
-    this.router.navigate(['accounts/sign-in']);
+    this.router.navigate(['/user/blogs']);
   }
 
 }

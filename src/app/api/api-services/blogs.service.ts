@@ -15,6 +15,7 @@ import { UpdateSubCategoryRequestModel } from '../api-modules/update-sub-categor
 import { ApproveBlogsRequestModel } from '../api-modules/approve-blogs.model';
 import { CreateVideoLinkModel } from '../api-modules/create-video-link.model';
 import { createdVideo, GetCreatedVideoModel } from '../api-modules/get-created-video.model';
+import { ApproveVideoLink } from '../api-modules/approve-video-link.model';
 
 @Injectable({
     providedIn: 'root'
@@ -23,7 +24,7 @@ export class BlogsService {
 
     constructor(private httpClient: HttpClient) { }
 
-    blogsList(categoryId: string | null, blogId: string | null, createdBy: string | null): Observable<BlogsList[]> {
+    blogsList(categoryId: string | null, blogId: string | null, createdBy: string | null, isApproved: boolean | null): Observable<BlogsList[]> {
         // let data
         // if (categoryId && blogId) {
         //     alert(1)
@@ -51,6 +52,9 @@ export class BlogsService {
         if(createdBy) {
             params['createdBy'] = createdBy;
         }
+        if (isApproved !== null) { // Explicitly check for null since `false` is a valid value
+            params['isApproved'] =  isApproved.toString();;
+        }
 
         // Debug log for params
         console.log('Query Params:', params);
@@ -60,6 +64,12 @@ export class BlogsService {
 
     approveBlogs(approveBlogsRequestModel: ApproveBlogsRequestModel): Observable<any> {
         return this.httpClient.post<any>(`${apiRoutes.blogs.approveBlogs}`, approveBlogsRequestModel)
+    }
+
+    deleteBlogs(blogId: string | null): Observable<any> {
+        const params: { [key: string]: string } = blogId ? { blogId } : {};
+    
+        return this.httpClient.delete<any>(`${apiRoutes?.blogs.deleteBlogs}`, { params });
     }
 
     categoryList(): Observable<categoryList[]> {
@@ -74,6 +84,12 @@ export class BlogsService {
         return this.httpClient.put<any>(`${apiRoutes.blogs.updateCategory}`, updateCategoryRequestModel)
     }
 
+    deleteCategoryList(categoryId: string | null): Observable<any> {
+        const params: { [key: string]: string } = categoryId ? { categoryId } : {};
+    
+        return this.httpClient.delete<any>(`${apiRoutes?.blogs.deleteCategory}`, { params });
+    }
+    
     subCategoryList(categoryId: string | null): Observable<SubCategoryList[]> {
         const params: { [key: string]: string } = {};
 
@@ -88,6 +104,12 @@ export class BlogsService {
         return this.httpClient.put<any>(`${apiRoutes.blogs.updateSubCategory}`, updateSubCategoryRequestModel)
     }
 
+    deleteSubCategoryList(subcategoryId: string | null): Observable<any> {
+        const params: { [key: string]: string } = subcategoryId ? { subcategoryId } : {};
+    
+        return this.httpClient.delete<any>(`${apiRoutes?.blogs.deleteSubCategory}`, { params });
+    }
+
     addNewBlogs(formData: FormData): Observable<any> {
         return this.httpClient.post<any>(`${apiRoutes.blogs.addNewBlogs}`, formData)
     }
@@ -96,10 +118,24 @@ export class BlogsService {
         return this.httpClient.post<any>(`${apiRoutes.blogs.createVideoLink}`, createVideoLinkModel)
     }
 
-    getCreateVideoLink(creatorId: string | null, creatorVideoId: string | null): Observable<GetCreatedVideoModel[]> {
+    getCreateVideoLink(creatorId: string | null, creatorVideoId: string | null, isApproved: boolean | null): Observable<GetCreatedVideoModel[]> {
         const params: { [key: string]: string } = {};
 
+        if (creatorId) {
+            params['creatorId'] = creatorId;
+        }
+        if (creatorVideoId) {
+            params['creatorVideoId'] = creatorVideoId;
+        }
+        if (isApproved !== null && isApproved !== undefined) {
+            params['isApproved'] = isApproved.toString();
+        }
+
         return this.httpClient.get<GetCreatedVideoModel[]>(`${apiRoutes?.blogs.getCreateVideoLink}`, {params})
+    }
+
+    approveVideoLinks(approveVideoLink: ApproveVideoLink): Observable<any> {
+        return this.httpClient.post<any>(`${apiRoutes.blogs.approveVideoLink}`, approveVideoLink)
     }
 
 }

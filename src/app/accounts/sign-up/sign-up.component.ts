@@ -28,7 +28,14 @@ export class SignUpComponent {
   }
 
   ngOnInit(): void {
+    const email = history.state.email
+      this.signUpForm.controls.email.patchValue(email)
 
+
+    // this.ActivateRoute.queryParams.subscribe(params => {
+    //   const email = params['email'];
+    //   console.log(email);
+    // });
   }
 
   signUpForm = new FormGroup({

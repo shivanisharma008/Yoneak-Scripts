@@ -11,6 +11,7 @@ import { UserListModal } from '../api-modules/user-list.model';
 import { ProfileDetailsModel } from '../api-modules/profile-details.model';
 import { ProfileDetailsRequestModel } from '../api-modules/profile-details-request.model';
 import { adminListResponseModel } from '../api-modules/admin-list.model';
+import { LoginRequestModel } from '../api-modules/login-request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,11 @@ import { adminListResponseModel } from '../api-modules/admin-list.model';
 export class UserServiceService {
 
   constructor(private httpClient: HttpClient) { }
+
+  
+  login(loginRequestModel: LoginRequestModel): Observable<any> {
+    return this.httpClient.post<any>(`${apiRoutes.user.login}`, loginRequestModel)
+  }
 
   registrationPostApi(signUpResponseModel: SignUpRequestModel): Observable<any> {
     return this.httpClient.post<any>(`${apiRoutes.user.SignUp}`, signUpResponseModel)

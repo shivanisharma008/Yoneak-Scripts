@@ -9,26 +9,24 @@
                 <tr>
                     <th>#</th>
                     <th>User Name</th>
-                    <!-- <th>Category Name</th> -->
                     <th>Link</th>
                     <th>Created On</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let link of uploadedLinks; let i = index">
+                <tr *ngFor="let link of videoLinks; let i = index">
                     <td>{{ i + 1 }}</td>
-                    <td>{{ link.username }}</td>
+                    <td>{{ link.createdBy?.username || 'N/A' }}</td>
                     <td>
-                        <a [href]="link.url" target="_blank" class="text-blue" title="Preview Link">{{ link.url }}</a>
+                        <a [href]="link.embeddedYtLink[0]" target="_blank" class="text-blue" title="Preview Link">{{ link.embeddedYtLink[0] }}</a>
                     </td>
-                    <td>{{ link.uploadedAt | date: 'short' }}</td>
+                    <td>{{ link.createdAt | date: 'short' }}</td>
                     <td>
                         <button class="btn btn-success btn-sm" [disabled]="link.status === 'Approved'"
-                            (click)="approveLink(link)">
+                            (click)="approveLink(link._id)">
                             Approve
                         </button>
-
                     </td>
                 </tr>
             </tbody>

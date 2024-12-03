@@ -18,11 +18,11 @@ export class ScriptsDetailsComponent {
   ) { }
 
   ngOnInit(): void {
-    this.getBlogsList('', '', '')
+    this.getBlogsList('', '', '', true)
   }
 
-  getBlogsList(categoryId: any, blogId: any, createdBy: any) {
-    this.blogsService.blogsList(categoryId, blogId, createdBy).subscribe({
+  getBlogsList(categoryId: any, blogId: any, createdBy: any, isApproved: any) {
+    this.blogsService.blogsList(categoryId, blogId, createdBy, isApproved).subscribe({
       next: (res: any) => {
         this.blogsList = res.data
         console.log(res);
@@ -44,7 +44,7 @@ export class ScriptsDetailsComponent {
             horizontalPosition: 'center'
           });
 
-          this.getBlogsList('', '', '')
+          this.getBlogsList('', '', '', true)
         }
       }, error: (err: HttpErrorResponse) => {
         this._snackbar.open(err.statusText, 'Close', {

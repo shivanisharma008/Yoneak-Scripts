@@ -67,8 +67,7 @@
 
                 <div class="form_butns d-flex flex-column gap-5 w-100 mt-4">
                     <div *ngIf="!showOtpFields" class="submit d-flex align-items-center justify-content-center">
-                        <button class="text-blue font-16 fw-700 br-n br-20 w-100 py-2" (click)="submitLoginForm()">Send
-                            OTP</button>
+                        <button class="text-blue font-16 fw-700 br-n br-20 w-100 py-2" (click)="login()">Login</button>
                     </div>
                     <div *ngIf="showOtpFields" class="submit d-flex align-items-center justify-content-center">
                         <button class="text-blue font-16 fw-700 br-n br-20 w-100 py-2"
