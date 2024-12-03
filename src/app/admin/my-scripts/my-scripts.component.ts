@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BlogsService } from '../../api/api-services/blogs.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-scripts',
@@ -9,9 +10,11 @@ import { BlogsService } from '../../api/api-services/blogs.service';
 export class MyScriptsComponent {
   blogsList: any;
   userId: any;
+  isLoading!: boolean;
 
   constructor(
     private blogsService: BlogsService,
+    private _router: Router
   ) { }
 
   ngOnInit(): void {
@@ -21,13 +24,28 @@ export class MyScriptsComponent {
   }
 
   getBlogsList() {
+    this.isLoading = true;
     this.blogsService.blogsList('', '', this.userId, true).subscribe({
       next: (res: any) => {
         this.blogsList = res.data
         console.log(res);
         console.log(this.blogsList);
+      },
+      error: (err: any) => {
+        console.error('Error fetching admin list:', err); // Handle error
+      },
+      complete: () => {
+        this.isLoading = false; // Stop loading indicator when request completes
       }
     })
+  }
+
+  edit(blogsList: any) {
+    console.log(blogsList);
+
+    this._router.navigate(['admin/add-scripts'], {
+      state: { blogDetails: blogsList }
+    });
   }
 
 }

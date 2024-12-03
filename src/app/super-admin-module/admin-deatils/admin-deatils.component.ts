@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AdminDeatilsComponent {
   adminList: any;
+  isLoading!: boolean;
   constructor(
     private userService: UserServiceService,
     private _router: Router,
@@ -20,11 +21,18 @@ export class AdminDeatilsComponent {
   }
 
   getAdminList() {
+    this.isLoading = true;
     this.userService.adminList().subscribe({
       next: (res: any) => {
         console.log(res.data);
         this.adminList = res.data
         console.log('admin' + res.data);
+      },
+      error: (err: any) => {
+        console.error('Error fetching admin list:', err); // Handle error
+      },
+      complete: () => {
+        this.isLoading = false; // Stop loading indicator when request completes
       }
     })
   }

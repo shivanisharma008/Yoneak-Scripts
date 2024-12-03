@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class BlogsListComponent {
   blogsList: any
+  isLoading!: boolean;
 
   constructor(
     private blogsService: BlogsService,
@@ -25,11 +26,18 @@ export class BlogsListComponent {
 
 
   getBlogsList(categoryId: any, blogId: any, createdBy: any, isApproved: boolean | null) {
+    this.isLoading = true;
     this.blogsService.blogsList(categoryId, blogId, createdBy, isApproved).subscribe({
       next: (res: any) => {
         this.blogsList = res.data
         console.log(res);
         console.log(this.blogsList);
+      },
+      error: (err: any) => {
+        console.error('Error fetching admin list:', err); // Handle error
+      },
+      complete: () => {
+        this.isLoading = false; // Stop loading indicator when request completes
       }
     })
   }
@@ -51,7 +59,7 @@ export class BlogsListComponent {
           verticalPosition: 'bottom',
           horizontalPosition: 'center'
         });
-        if(res.status === 200 ) {
+        if (res.status === 200) {
           this.getBlogsList('', '', '', null)
         }
       }, error: (err: HttpErrorResponse) => {

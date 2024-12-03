@@ -11,6 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class CateogryComponent {
   categoryList: any;
+  isLoading!: boolean;
   // categories = [
   //   { id: 1, name: 'Technology', description: 'All tech-related categories' },
   //   { id: 2, name: 'Health', description: 'Health and wellness categories' },
@@ -28,11 +29,18 @@ export class CateogryComponent {
   }
 
   getCategoryList() {
+    this.isLoading = true;
     this.blogsService.categoryList().subscribe({
       next: (res: any) => {
         console.log(res.data);
         this.categoryList = res.data
         console.log('Category' + res.data);
+      },
+      error: (err: any) => {
+        console.error('Error fetching admin list:', err); // Handle error
+      },
+      complete: () => {
+        this.isLoading = false; // Stop loading indicator when request completes
       }
     })
   }
@@ -61,7 +69,7 @@ export class CateogryComponent {
           verticalPosition: 'bottom',
           horizontalPosition: 'center'
         });
-        if(res.status === 200 ) {
+        if (res.status === 200) {
           this.getCategoryList()
         }
       }, error: (err: HttpErrorResponse) => {

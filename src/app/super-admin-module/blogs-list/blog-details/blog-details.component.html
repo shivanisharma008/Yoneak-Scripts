@@ -1,3 +1,6 @@
+<div *ngIf="isLoading" class="spinner-overlay">
+    <div class="spinner"></div>
+  </div>
 <div class="blog_details_main d-flex flex-column align-items-center justify-content-center mt-5">
     <div *ngFor="let details of blogsList" class="blog_details_body d-flex flex-column align-items-center justify-content-center gap-5 w-70 pb-5 mt-5">
         <div class="blog_details_title d-flex align-items-end justify-content-center w-100">

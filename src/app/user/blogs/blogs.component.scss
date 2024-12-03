@@ -1,7 +1,3 @@
-.blogs_main {
-    // margin-top:8%;
-}
-
 .banner {
     background-image: url(../../../../public/assests/images/blogs_banner.jpg);
     background-size: cover;
@@ -9,21 +5,34 @@
     height: 40vh;
 }
 
-.blogs_content_left {
-    border: 2px solid black;
-    background-color: red;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+.blog_main_cards {
+    gap: 20px;
 }
 
-// .blogs_card:nth-child(2) .card_image{
-//     height: 300px;
-// }
-// .card_image{
-//     width: 300px;
-//     height: 250px;
-// }
+.blog_card {
+    flex: 1 1 calc(33.333% - 20px);
+    max-width: calc(33.333% - 20px);
+    box-sizing: border-box;
+}
+
+.blog_card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.blog_card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card_image {
+    width: 100%;
+    height: 250px;
+}
+
 .card_image img {
     width: 100%;
     height: 100%;
@@ -58,9 +67,12 @@
 .category_list_item {
     position: relative;
 }
-.categoty_bg{
-    // position: relative;
+
+.categoty_bg {
+    width: 100%;
+    height: 100%;
 }
+
 .category_list_item::after {
     position: absolute;
     content: '';
@@ -68,8 +80,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.437); /* Adjust the rgba value to control the darkness of the overlay */
-    z-index: 1; /* Ensure the overlay appears above the image */
+    background-color: rgba(0, 0, 0, 0.437);
+    /* Adjust the rgba value to control the darkness of the overlay */
+    z-index: 1;
+    /* Ensure the overlay appears above the image */
 }
 
 .category_name {
@@ -81,7 +95,7 @@
 .subcribe_list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 15px;
 }
 
 .truncate {
@@ -96,30 +110,34 @@
 
 .card_image {
     position: relative;
-    overflow: hidden; /* Ensures that the zoomed image doesn't overflow the container */
-  }
-  
-  .card_image img {
-    transition: transform 0.3s ease-in-out; /* Smooth transition effect */
-  }
-  
-  .blog_card:hover .card_image img {
-    transform: scale(1.1); /* Scales the image to 110% on hover */
-  }
-  
+    overflow: hidden;
+    /* Ensures that the zoomed image doesn't overflow the container */
+}
+
+.card_image img {
+    transition: transform 0.3s ease-in-out;
+    /* Smooth transition effect */
+}
+
+.blog_card:hover .card_image img {
+    transform: scale(1.1);
+    /* Scales the image to 110% on hover */
+}
 
 
-// .blog-info , .blogs_card, .blogs_main_content{
-//     opacity: 0;
-//     transform: translateY(20px); /* Moves content down a bit */
-//     transition: opacity 1s ease-out, transform 1s ease-out;
-// }
-// .fade-in {
-//     opacity: 1;
-//     transform: translateY(0);
-// }
+.blogs_main_content {
+    display: contents;
+}
 
+.blogs_content_right {
+    position: sticky !important;
+    top: 0;
+}
 
+::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
 
 
 // .blog-carousel{
@@ -165,11 +183,21 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 100%;
+        width: 100% !important;
+    }
+
+    .blog_card {
+        flex: 100%;
+        /* Ensures 3 cards in a row with spacing */
+        max-width: 100%;
+        /* Prevents cards from exceeding the calculated width */
     }
 
     .blogs_content_right {
         width: 100% !important;
+        height: auto !important;
+        overflow: hidden;
+
     }
 
     .blogs_content_left {
@@ -190,8 +218,22 @@
         width: 100% !important;
     }
 
+    .blog_main_cards {
+        justify-content: center !important;
+    }
+
+    .blog_card {
+        flex: 1 1 calc(48% - 20px);
+        /* Ensures 3 cards in a row with spacing */
+        max-width: calc(48% - 20px);
+        /* Prevents cards from exceeding the calculated width */
+    }
+
     .blogs_content_right {
         width: 100% !important;
+        height: auto !important;
+        overflow: hidden;
+
     }
 
     .blogs_content_left {
@@ -206,7 +248,7 @@
 }
 
 @media screen and (min-width:1561px) {
-    .blogs_main_content{
+    .blogs_main_content {
         width: 70% !important;
     }
 }

@@ -23,12 +23,14 @@ export class AddScriptsComponent {
 
 
   addBlogsCategoryForm = new FormGroup({
-    blogName: new FormControl('', Validators.required),
-    category: new FormControl('', Validators.required),
-    subCategory: new FormControl('', Validators.required),
-    mediaUrl: new FormControl('', Validators.required),  // This is where the file will be stored
-    blogDescription: new FormControl('', Validators.required)
+    blogName: new FormControl(null, Validators.required),
+    category: new FormControl(null, Validators.required),
+    subCategory: new FormControl(null, Validators.required),
+    mediaUrl: new FormControl(null, Validators.required),  // This is where the file will be stored
+    blogDescription: new FormControl(null, Validators.required)
   });
+  myScriptsDetails: any;
+  scriptId: any;
 
   constructor(
     private blogsService: BlogsService,
@@ -42,6 +44,19 @@ export class AddScriptsComponent {
 
     this.getCategoryList();
     this.getSubCategoryList();
+
+    const myScriptsDetails = history.state.blogDetails;
+    console.log(myScriptsDetails);
+    console.log(myScriptsDetails.category.categoryName);
+    
+
+    this.addBlogsCategoryForm.patchValue({
+      blogName: myScriptsDetails.blogName,
+      category: myScriptsDetails.category?._id,
+      subCategory: myScriptsDetails.subCategory?._id,
+      blogDescription: myScriptsDetails.content,
+    });
+    this.imagePreviewUrl = myScriptsDetails.image
   }
 
   editorConfig: AngularEditorConfig = {

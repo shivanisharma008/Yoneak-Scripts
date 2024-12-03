@@ -1,21 +1,25 @@
 
-
-
-
-
-<div class="main d-flex flex-column align-items-center justify-content-center pb-5 mt-5">
+<div *ngIf="isLoading" class="spinner-overlay">
+  <div class="spinner"></div>
+</div><div class="main d-flex flex-column align-items-center justify-content-center pb-5 mt-5">
   <div class="main_body d-flex flex-column align-items-center justify-content-center gap-4 w-90 mt-3">
     <div class="main_header d-flex flex-row justify-content-between align-items-center w-100">
       <p class="title text-blue font-24 fw-600 mar0">MY SCRIPTS</p>
     </div>
     <div *ngFor="let blog of blogsList" class="blog-list-container d-flex flex-column gap-4 w-100">
       <div class="blog-card d-flex flex-column gap-3 w-100 p-4">
-        <div class="blog-header d-flex flex-column gap-3">
-          <h2 class="blog-title font-24 fe-700">{{blog.blogName}}</h2>
-          <p class="blog-meta">{{blog.createdAt | date}} | {{blog.category.categoryName}}</p>
+        <div class="blog-header d-flex flex-row justify-content-between w-100">
+          <div class="title d-flex flex-column gap-3">
+            <h2 class="blog-title font-24 fe-700">{{blog.blogName}}</h2>
+            <p class="blog-meta">{{blog.createdAt | date}} | {{blog.category.categoryName}}</p>
+          </div>
+          <div class="edit_butn">
+            <button class="bg-black text-white font-16 fw-600 br-3 p-1 px-3" (click)="edit(blog)">Edit</button>
+          </div>
         </div>
         <div class="blog-img">
-          <img [src]="blog.image ? blog.image : 'assests/images/blog_card_img2.jpg'" alt="Blog Image" class="blog-thumbnail br-6 w-100">
+          <img [src]="blog.image ? blog.image : 'assests/images/blog_card_img2.jpg'" alt="Blog Image"
+            class="blog-thumbnail br-6 w-100">
         </div>
         <div class="blog-content d-flex flex-column gap-3">
           <p class="text-grey font-16 fw-500" [innerHTML]="blog.content"></p>

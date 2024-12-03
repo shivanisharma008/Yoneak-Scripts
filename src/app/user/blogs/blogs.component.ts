@@ -29,6 +29,7 @@ export class BlogsComponent {
 
   currentIndex = 0;
   categoryList: any;
+  isLoading!: boolean;
   // blogsToShow: number = 6;
   // displayedBlogs: any[] = []; // Subset of blogs to display
 
@@ -51,7 +52,7 @@ export class BlogsComponent {
     const target = event.target as HTMLImageElement;
     target.src = './../../../../public/assests/images/blog_card_img2.jpg';
   }
-  
+
 
   // displayBlogs(): void {
   //   this.displayedBlogs = this.blogsList.slice(0, this.blogsToShow); // Start with 6 blogs
@@ -92,7 +93,7 @@ export class BlogsComponent {
     },
   ]
 
-  
+
 
 
   ngAfterViewInit(): void {
@@ -135,14 +136,21 @@ export class BlogsComponent {
     const extension = imagePath.split('.').pop()?.toLowerCase();
     return validExtensions.includes(extension || '');
   }
-  
+
 
   getBlogsList(categoryId: any, blogId: any, createdBy: any, isApproved: boolean) {
+    this.isLoading = true;
     this.blogsService.blogsList(categoryId, blogId, createdBy, isApproved).subscribe({
       next: (res: any) => {
         this.blogsList = res.data
         console.log(res);
         console.log(this.blogsList);
+      },
+      error: (err: any) => {
+        console.error('Error fetching admin list:', err); // Handle error
+      },
+      complete: () => {
+        this.isLoading = false; // Stop loading indicator when request completes
       }
     })
   }
