@@ -14,3 +14,11 @@ a:focus-visible{
     outline: none;
 }
 
+
+@media screen and (min-width:1024px) and (max-width:1280px) {
+    .sidenav_body{
+        height: 100vh;
+        background-color: black;
+    }
+}
+

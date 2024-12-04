@@ -91,11 +91,14 @@
 @media screen and (max-width:599px) {
     .login_main{
         height: auto;
+        margin: 0 !important;
+
     }
     .login_body{
-        width: 90% !important;
+        width: 100% !important;
         height: auto;
-        padding: 20px 0;
+        padding:  0;
+        margin: 0 !important;
     }
     .login_left{
         display: none !important;
@@ -103,6 +106,7 @@
     .login_right{
         width: 100% !important;
         padding: 60px 0;
+        height: 100vh;
     }
 }
 
