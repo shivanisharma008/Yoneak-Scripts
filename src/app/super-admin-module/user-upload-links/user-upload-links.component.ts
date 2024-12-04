@@ -88,9 +88,4 @@ export class UserUploadLinksComponent {
       }
     })
   }
-
-  rejectLink(link: any): void {
-    link.status = 'Rejected';
-    alert(`Link rejected: ${link.url}`);
-  }
 }

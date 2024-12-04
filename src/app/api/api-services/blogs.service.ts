@@ -28,16 +28,12 @@ export class BlogsService {
     blogsList(categoryId: string | null, blogId: string | null, createdBy: string | null, isApproved: boolean | null): Observable<BlogsList[]> {
         // let data
         // if (categoryId && blogId) {
-        //     alert(1)
         //     data = `${apiRoutes?.blogs?.blogsList}/${categoryId}/${blogId}`;
         // } else if (categoryId) {
-        //     alert(2)
         //     data = `${apiRoutes?.blogs?.blogsList}/${categoryId}`;
         // } else if (blogId) {
-        //     alert(3)
         //     data = `${apiRoutes?.blogs?.blogsList}}/${categoryId}/${blogId}`;
         // } else {
-        //     alert(4)
         //     data = `${apiRoutes?.blogs?.blogsList}`;
         // }
 

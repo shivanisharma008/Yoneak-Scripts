@@ -18,7 +18,6 @@ export class SeeOthersVideoComponent {
   }
 
   ngOnInit() {
-    alert(1)
     this.getVideoLink()
   }
 
