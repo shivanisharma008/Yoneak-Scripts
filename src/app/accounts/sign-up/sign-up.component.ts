@@ -141,6 +141,7 @@ export class SignUpComponent {
               horizontalPosition: 'center'
             });
             this.signUpForm.reset()
+            this.router.navigate(['/accounts/sign-in']);
             this.signUpForm.patchValue({ role: '3' });
           } else {
             this._snackBar.open(res.message, 'Close', {
