@@ -23,9 +23,12 @@
                     </td>
                     <td>{{ link.createdAt | date: 'short' }}</td>
                     <td>
-                        <button class="btn btn-success btn-sm" [disabled]="link.status === 'Approved'"
-                            (click)="approveLink(link._id)">
-                            Approve
+                        <button class="btn btn-sm w-40" [ngClass]="{'btn-success': link.isApproved, 'btn-secondary': !link.isApproved}" [disabled]="link.isApproved === true"
+                            (click)="approveLink(link._id, true)">
+                            {{link.isApproved === true ? 'Accepted' : 'Accept'}}
+                        </button>
+                        <button class="btn  btn-md" (click)="deleteVideoLink(link._id)">
+                            <i class='bx bx-trash-alt font-22 text-danger'></i>
                         </button>
                     </td>
                 </tr>

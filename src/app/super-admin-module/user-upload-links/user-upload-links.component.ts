@@ -34,7 +34,7 @@ export class UserUploadLinksComponent {
 
 
   getVideoLink() {
-    this.blogService.getCreateVideoLink('', '', false).subscribe({
+    this.blogService.getCreateVideoLink('', '', null).subscribe({
       next: (res: any) => {
         console.log(res.data);
         this.videoLinks = res.data
@@ -43,11 +43,33 @@ export class UserUploadLinksComponent {
     })
   }
 
-  approveLink(link: any): void {
+  approveLink(link: any, isApproved: boolean): void {
     const approveVideoLink: ApproveVideoLink = {
-      creatorVideoId: link
+      creatorVideoId: link,
+      isApproved: isApproved
     }
     this.blogService.approveVideoLinks(approveVideoLink).subscribe({
+      next: (res: any) => {
+        this._snackBar.open(res.message, 'Close', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'center'
+        });
+        if (res.status === 200) {
+          this.getVideoLink()
+        }
+      }, error: (err: HttpErrorResponse) => {
+        this._snackBar.open(err.statusText, 'Close', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'center'
+        });
+      }
+    })
+  }
+
+  deleteVideoLink(id: any) {
+    this.blogService.deleteVideoLink(id).subscribe({
       next: (res: any) => {
         this._snackBar.open(res.message, 'Close', {
           duration: 3000,

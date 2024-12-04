@@ -35,6 +35,7 @@ export const apiRoutes = {
         addNewBlogs: `${baseURL}blogs`,
         createVideoLink: `${baseURL}blogs/creatorvideos`,
         getCreateVideoLink: `${baseURL}blogs/creatorvideos`,
-        approveVideoLink: `${baseURL}blogs/approve/creatorvideos`
+        approveVideoLink: `${baseURL}blogs/approve/creatorvideos`,
+        deleteVideoLink: `${baseURL}blogs/creatorvideos`
     }
 }

@@ -1,4 +1,4 @@
 export interface ApproveVideoLink {
-    creatorVideoId: string
-  }
-  
+  creatorVideoId: string
+  isApproved: boolean
+}

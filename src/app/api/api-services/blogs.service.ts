@@ -143,4 +143,10 @@ export class BlogsService {
         return this.httpClient.post<any>(`${apiRoutes.blogs.approveVideoLink}`, approveVideoLink)
     }
 
+    deleteVideoLink(creatorVideoId: string | null): Observable<any> {
+        const params: { [key: string]: string } = creatorVideoId ? { creatorVideoId } : {};
+    
+        return this.httpClient.delete<any>(`${apiRoutes?.blogs.deleteVideoLink}`, { params });
+    }
+
 }
