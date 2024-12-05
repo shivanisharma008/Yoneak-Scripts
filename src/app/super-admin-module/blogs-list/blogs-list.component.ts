@@ -96,30 +96,83 @@ export class BlogsListComponent {
 
   }
 
-  approveBlog(blogId: any, isApprove: boolean) {
-    const approveBlogsRequestModel: ApproveBlogsRequestModel = {
-      blogId: blogId,
-      isApproved: isApprove
-    }
-    this.blogsService.approveBlogs(approveBlogsRequestModel).subscribe({
-      next: (res) => {
-        if (res.status === 200) {
-          this._snackbar.open(res.message, 'Close', {
-            duration: 3000,
-            verticalPosition: 'bottom',
-            horizontalPosition: 'center'
-          });
+  // approveBlog(blogId: any, isApprove: boolean) {
+  //   const approveBlogsRequestModel: ApproveBlogsRequestModel = {
+  //     blogId: blogId,
+  //     isApproved: isApprove
+  //   }
+  //   this.blogsService.approveBlogs(approveBlogsRequestModel).subscribe({
+  //     next: (res) => {
+  //       if (res.status === 200) {
+  //         this._snackbar.open(res.message, 'Close', {
+  //           duration: 3000,
+  //           verticalPosition: 'bottom',
+  //           horizontalPosition: 'center'
+  //         });
 
-          this.getBlogsList('', '', '', null)
-        }
-      }, error: (err: HttpErrorResponse) => {
-        this._snackbar.open(err.statusText, 'Close', {
-          duration: 3000,
-          verticalPosition: 'bottom',
-          horizontalPosition: 'center'
+  //         this.getBlogsList('', '', '', null)
+  //       }
+  //     }, error: (err: HttpErrorResponse) => {
+  //       this._snackbar.open(err.statusText, 'Close', {
+  //         duration: 3000,
+  //         verticalPosition: 'bottom',
+  //         horizontalPosition: 'center'
+  //       });
+  //     }
+  //   })
+  // }
+
+  approveBlog(blog: any, isApprove: boolean): void {
+    const previousState = blog.approved; // Store the previous state
+    blog.approved = isApprove; // Optimistically set the new state
+  
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `Do you want to ${isApprove ? 'approve' : 'disapprove'} this blog?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: isApprove ? 'Yes, Approve' : 'Yes, Disapprove',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const approveBlogsRequestModel: ApproveBlogsRequestModel = {
+          blogId: blog._id,
+          isApproved: isApprove
+        };
+  
+        this.blogsService.approveBlogs(approveBlogsRequestModel).subscribe({
+          next: (res: any) => {
+            if (res.status === 200) {
+              this._snackbar.open(res.message, 'Close', {
+                duration: 3000,
+                verticalPosition: 'bottom',
+                horizontalPosition: 'center'
+              });
+  
+              this.getBlogsList('', '', '', null);
+            } else {
+              // Revert state on API failure
+              blog.approved = previousState;
+            }
+          },
+          error: (err: HttpErrorResponse) => {
+            this._snackbar.open(err.statusText, 'Close', {
+              duration: 3000,
+              verticalPosition: 'bottom',
+              horizontalPosition: 'center'
+            });
+            // Revert state on error
+            blog.approved = previousState;
+          }
         });
+      } else {
+        // Revert state if the user cancels the action
+        blog.approved = previousState;
       }
-    })
+    });
   }
+  
 
 }
