@@ -16,12 +16,12 @@
             </thead>
             <tbody>
                 <tr *ngFor="let link of videoLinks; let i = index">
-                    <td>{{ i + 1 }}</td>
-                    <td>{{ link.createdBy?.username || 'N/A' }}</td>
-                    <td>
+                    <td class="font-14 fw-400">{{ i + 1 }}</td>
+                    <td class="font-14 fw-400">{{ link.createdBy?.username || 'N/A' }}</td>
+                    <td class="font-14 fw-400">
                         <a [href]="link.embeddedYtLink[0]" target="_blank" class="text-blue" title="Preview Link">{{ link.embeddedYtLink[0] }}</a>
                     </td>
-                    <td>{{ link.createdAt | date: 'short' }}</td>
+                    <td class="font-14 fw-400">{{ link.createdAt | date: 'short' }}</td>
                     <td>
                         <button class="btn btn-success btn-sm" [disabled]="link.status === 'Approved'"
                             (click)="approveLink(link._id)">

@@ -3,6 +3,7 @@ import { BlogsService } from '../../api/api-services/blogs.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sub-cateogry',
@@ -62,25 +63,42 @@ export class SubCateogryComponent {
   }
 
   deleteSubCategory(id: any) {
-    this.blogsService.deleteSubCategoryList(id).subscribe({
-      next: (res: any) => {
-        this._snackBar.open(res.message, 'Close', {
-          duration: 3000,
-          verticalPosition: 'bottom',
-          horizontalPosition: 'center'
-        });
-        if (res.status === 200) {
-          this.getSubCategoryList()
-        }
-      }, error: (err: HttpErrorResponse) => {
-        this._snackBar.open(err.statusText, 'Close', {
-          duration: 3000,
-          verticalPosition: 'bottom',
-          horizontalPosition: 'center'
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to undo this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.blogsService.deleteSubCategoryList(id).subscribe({
+          next: (res: any) => {
+            this._snackBar.open(res.message, 'Close', {
+              duration: 3000,
+              verticalPosition: 'bottom',
+              horizontalPosition: 'center'
+            });
+            if (res.status === 200) {
+              this.getSubCategoryList();
+            }
+          },
+          error: (err: HttpErrorResponse) => {
+            this._snackBar.open(err.statusText, 'Close', {
+              duration: 3000,
+              verticalPosition: 'bottom',
+              horizontalPosition: 'center'
+            });
+          }
         });
       }
-    })
+    }); // This closes the .then() block
   }
 
-
 }
+
+
+
+
+

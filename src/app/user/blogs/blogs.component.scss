@@ -95,7 +95,7 @@
 .subcribe_list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    gap: 10px;
 }
 
 .truncate {
@@ -244,6 +244,9 @@
 @media screen and (min-width:1024px) and (max-width:1280px) {
     .blogs_content_left {
         grid-template-columns: repeat(2, 1fr);
+    }
+    .subcribe_list_item a{
+        font-size: 11px !important;
     }
 }
 

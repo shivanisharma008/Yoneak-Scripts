@@ -20,10 +20,10 @@
         <tbody>
             <tr *ngFor="let user of userList; let i = index">
                 <td>{{ i + 1 }}</td>
-                <td class="font-18 fw-500">{{user.username}}</td>
-                <td class="font-18 fw-500">{{user.email}}</td>
-                <td class="font-18 fw-500">{{user.phoneNo}}</td>
-                <td class="font-18 fw-500">{{user.createdAt | date}}</td>
+                <td class="font-14 fw-400">{{user.username}}</td>
+                <td class="font-14 fw-400">{{user.email}}</td>
+                <td class="font-14 fw-400">{{user.phoneNo}}</td>
+                <td class="font-14 fw-400">{{user.createdAt | date}}</td>
                 <td class="d-flex gap-3">
                     <i class='bx bx-trash-alt font-22 text-danger'></i>
                 </td>

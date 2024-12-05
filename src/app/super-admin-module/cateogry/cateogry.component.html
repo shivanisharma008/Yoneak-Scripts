@@ -20,12 +20,12 @@
             </thead>
             <tbody>
                 <tr *ngFor="let category of categoryList; let i = index">
-                    <td>{{ i + 1 }}</td>
-                    <td>{{ category.categoryName }}</td>
-                    <td [title]="category.description">
+                    <td class="font-14 fw-400">{{ i + 1 }}</td>
+                    <td class="font-14 fw-400">{{ category.categoryName }}</td>
+                    <td class="font-14 fw-400" [title]="category.description">
                         {{ category.description | slice: 0:20 }}{{ category.description.length > 20 ? '...' : '' }}
                     </td>
-                    <td>{{ category.createdAt | date }}</td>
+                    <td class="font-14 fw-400">{{ category.createdAt | date }}</td>
                     <td>
                         <button class="btn  btn-md me-2" (click)="editCategory(category)">
                             <i class="fa-solid fa-edit"></i> 
