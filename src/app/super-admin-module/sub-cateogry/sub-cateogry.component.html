@@ -20,10 +20,10 @@
             </thead>
             <tbody>
                 <tr *ngFor="let category of subCategoryList; let i = index">
-                    <td>{{ i + 1 }}</td>
-                    <td>{{ category.subcategoryName }}</td>
-                    <td>{{ category.categoryId.categoryName }}</td>
-                    <td [title]="category.description">
+                    <td class="font-14 fw-400">{{ i + 1 }}</td>
+                    <td class="font-14 fw-400">{{ category.subcategoryName }}</td>
+                    <td class="font-14 fw-400">{{ category.categoryId.categoryName }}</td>
+                    <td class="font-14 fw-400" [title]="category.description">
                         {{ category.description | slice: 0:20 }}{{ category.description.length > 20 ? '...' : '' }}
                     </td>
                     <td >

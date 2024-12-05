@@ -14,7 +14,39 @@ a:focus-visible{
     outline: none;
 }
 
+.logout-button {
+    background-color: #dc3545; /* Red background for prominence */
+    border: 1px solid transparent; /* Clean edges */
+    border-radius: 6px; /* Smooth rounded corners */
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+  }
+  
+  .logout-button:hover {
+    background-color: #b52d38; /* Slightly darker red on hover */
+    border-color: #ff4d4d; /* Highlight border on hover */
+    color: #ffffff; /* Keep text white */
+    text-decoration: none; /* Prevent underline */
+  }
+  
+  .logout-button:active {
+    background-color: #a52832; /* Even darker red when active */
+    border-color: #ff0000;
+  }
+  
+  .logout-button i {
+    font-size: 18px; /* Icon size to match text */
+  }
+  
 
+@media screen and (max-width:599px) {
+    .sidenav_body{
+        padding: 0 !important;
+        padding-top: 30px !important;
+    }
+    .logo img{
+        width: 70%;
+    }
+}
 @media screen and (min-width:1024px) and (max-width:1280px) {
     .sidenav_body{
         height: 100vh;
