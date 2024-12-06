@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { FormControl, Validators } from '@angular/forms';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-cateogry',
@@ -13,6 +15,12 @@ import Swal from 'sweetalert2';
 export class CateogryComponent {
   categoryList: any;
   isLoading!: boolean;
+
+  search = new FormControl(null, Validators.required);
+  currentPage: number = 0;
+  pageSize: number = 10;
+  totalItems: number = 0;
+  Math = Math;
   // categories = [
   //   { id: 1, name: 'Technology', description: 'All tech-related categories' },
   //   { id: 2, name: 'Health', description: 'Health and wellness categories' },
@@ -26,7 +34,11 @@ export class CateogryComponent {
   ) { }
 
   ngOnInit() {
-    this.getCategoryList()
+    this.getCategoryListPagination()
+
+    this.search.valueChanges.pipe(debounceTime(500)).subscribe(() => {
+      this.getCategoryListPagination();
+    })
   }
 
   getCategoryList() {
@@ -46,13 +58,37 @@ export class CateogryComponent {
     })
   }
 
-  // Open Create Category Modal
-  openCreateCategoryModal() {
-    console.log('Opening Create Category Modal');
-    // Logic to open modal goes here
+  getCategoryListPagination(categoryId: any = null, pageIndex: number | null = this.currentPage, pageSize: number | null = this.pageSize, searchString: string | null = this.search.value) {
+    this.isLoading = true;
+    this.blogsService.categoryListPagination(categoryId, pageIndex, pageSize, searchString).subscribe({
+      next: (res: any) => {
+        this.categoryList = res.data
+        this.totalItems = res.count;
+        console.log(res);
+        console.log(this.categoryList);
+      },
+      error: (err: any) => {
+        console.error('Error fetching admin list:', err); // Handle error
+      },
+      complete: () => {
+        this.isLoading = false;
+      }
+    });
   }
 
-  // Edit Category
+  onPageChange(page: number): void {
+    const maxPage = Math.ceil(this.totalItems / this.pageSize) - 1;
+    if (page < 0 || page > maxPage) {
+      return;
+    }
+    this.currentPage = page;
+    this.getCategoryListPagination();
+  }
+
+  openCreateCategoryModal() {
+    console.log('Opening Create Category Modal');
+  }
+
   editCategory(categoryDetails: any) {
     console.log(categoryDetails);
 
@@ -60,28 +96,6 @@ export class CateogryComponent {
       state: { categoryDetails: categoryDetails }
     });
   }
-
-  // Delete Category
-  // deleteCategory(id: any) {
-  //   this.blogsService.deleteCategoryList(id).subscribe({
-  //     next: (res: any) => {
-  //       this._snackBar.open(res.message, 'Close', {
-  //         duration: 3000,
-  //         verticalPosition: 'bottom',
-  //         horizontalPosition: 'center'
-  //       });
-  //       if (res.status === 200) {
-  //         this.getCategoryList()
-  //       }
-  //     }, error: (err: HttpErrorResponse) => {
-  //       this._snackBar.open(err.statusText, 'Close', {
-  //         duration: 3000,
-  //         verticalPosition: 'bottom',
-  //         horizontalPosition: 'center'
-  //       });
-  //     }
-  //   })
-  // }
 
   deleteCategory(id: any) {
     Swal.fire({

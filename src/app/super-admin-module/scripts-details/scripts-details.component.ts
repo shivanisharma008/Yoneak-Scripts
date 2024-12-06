@@ -31,9 +31,10 @@ export class ScriptsDetailsComponent {
     })
   }
 
-  approveBlogs(blogId: any) {
+  approveBlogs(blogId: any, isApproved: boolean) {
     const approveBlogsRequestModel: ApproveBlogsRequestModel = {
-      blogId: blogId
+      blogId: blogId,
+      isApproved: isApproved
     }
     this.blogsService.approveBlogs(approveBlogsRequestModel).subscribe({
       next: (res) => {

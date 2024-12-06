@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
+import { FormControl, Validators } from '@angular/forms';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-sub-cateogry',
@@ -18,6 +20,11 @@ export class SubCateogryComponent {
   ];
   subCategoryList: any;
   isLoading!: boolean;
+  search = new FormControl(null, Validators.required);
+  currentPage: number = 0;
+  pageSize: number = 10;
+  totalItems: number = 0;
+  Math = Math;
 
 
   constructor(
@@ -27,7 +34,11 @@ export class SubCateogryComponent {
   ) { }
 
   ngOnInit() {
-    this.getSubCategoryList()
+    this.getSubCategoryListPagination()
+
+    this.search.valueChanges.pipe(debounceTime(500)).subscribe(() => {
+      this.getSubCategoryListPagination();
+    })
   }
 
   getSubCategoryList() {
@@ -45,6 +56,33 @@ export class SubCateogryComponent {
         this.isLoading = false; // Stop loading indicator when request completes
       }
     })
+  }
+
+  getSubCategoryListPagination(subcategoryId: any = null, categoryId: any = null, pageIndex: number | null = this.currentPage, pageSize: number | null = this.pageSize, searchString: string | null = this.search.value) {
+    this.isLoading = true;
+    this.blogsService.subCategoryListPagination(subcategoryId, categoryId, pageIndex, pageSize, searchString).subscribe({
+      next: (res: any) => {
+        this.subCategoryList = res.data
+        this.totalItems = res.count;
+        console.log(res);
+        console.log(this.subCategoryList);
+      },
+      error: (err: any) => {
+        console.error('Error fetching admin list:', err); // Handle error
+      },
+      complete: () => {
+        this.isLoading = false;
+      }
+    });
+  }
+
+  onPageChange(page: number): void {
+    const maxPage = Math.ceil(this.totalItems / this.pageSize) - 1;
+    if (page < 0 || page > maxPage) {
+      return;
+    }
+    this.currentPage = page;
+    this.getSubCategoryListPagination();
   }
 
   editCategory(subCategoryDetails: any) {

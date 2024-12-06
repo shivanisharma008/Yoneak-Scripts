@@ -26,37 +26,54 @@ export class BlogsService {
     constructor(private httpClient: HttpClient) { }
 
     blogsList(categoryId: string | null, blogId: string | null, createdBy: string | null, isApproved: boolean | null): Observable<BlogsList[]> {
-        // let data
-        // if (categoryId && blogId) {
-        //     data = `${apiRoutes?.blogs?.blogsList}/${categoryId}/${blogId}`;
-        // } else if (categoryId) {
-        //     data = `${apiRoutes?.blogs?.blogsList}/${categoryId}`;
-        // } else if (blogId) {
-        //     data = `${apiRoutes?.blogs?.blogsList}}/${categoryId}/${blogId}`;
-        // } else {
-        //     data = `${apiRoutes?.blogs?.blogsList}`;
-        // }
-
         const params: { [key: string]: string } = {};
 
-        // Add parameters only if they are not null
         if (categoryId) {
             params['categoryId'] = categoryId;
         }
         if (blogId) {
             params['blogId'] = blogId;
         }
-        if(createdBy) {
+        if (createdBy) {
             params['createdBy'] = createdBy;
         }
-        if (isApproved !== null) { // Explicitly check for null since `false` is a valid value
-            params['isApproved'] =  isApproved.toString();;
+        if (isApproved !== null) {
+            params['isApproved'] = isApproved.toString();;
         }
 
-        // Debug log for params
         console.log('Query Params:', params);
 
         return this.httpClient.get<BlogsList[]>(`${apiRoutes?.blogs?.blogsList}`, { params });
+    }
+
+    blogsListPagination(categoryId: string | null, blogId: string | null, createdBy: string | null, isApproved: boolean | null, pageIndex: number | null, pageSize: number | null, searchString: string | null): Observable<BlogsList[]> {
+        const params: { [key: string]: string } = {};
+
+        if (categoryId) {
+            params['categoryId'] = categoryId;
+        }
+        if (blogId) {
+            params['blogId'] = blogId;
+        }
+        if (createdBy) {
+            params['createdBy'] = createdBy;
+        }
+        if (isApproved !== null) {
+            params['isApproved'] = isApproved.toString();;
+        }
+        if (pageIndex !== null) {
+            params['pageIndex'] = pageIndex.toString();
+        }
+        if (pageSize !== null) {
+            params['pageSize'] = pageSize.toString();
+        }
+        if (searchString) {
+            params['searchString'] = searchString;
+        }
+
+        console.log('Query Params:', params);
+
+        return this.httpClient.get<BlogsList[]>(`${apiRoutes?.blogs?.blogsPagination}`, { params });
     }
 
     updateBlogs(updateBlogsRequestModel: UpdateBlogsRequestModel): Observable<any> {
@@ -69,12 +86,33 @@ export class BlogsService {
 
     deleteBlogs(blogId: string | null): Observable<any> {
         const params: { [key: string]: string } = blogId ? { blogId } : {};
-    
+
         return this.httpClient.delete<any>(`${apiRoutes?.blogs.deleteBlogs}`, { params });
     }
 
     categoryList(): Observable<categoryList[]> {
         return this.httpClient.get<categoryList[]>(`${apiRoutes?.blogs.categoryList}`)
+    }
+
+    categoryListPagination(categoryId: string | null, pageIndex: number | null, pageSize: number | null, searchString: string | null): Observable<categoryList[]> {
+        const params: { [key: string]: string } = {};
+
+        if (categoryId) {
+            params['categoryId'] = categoryId;
+        }
+        if (pageIndex !== null) {
+            params['pageIndex'] = pageIndex.toString();
+        }
+        if (pageSize !== null) {
+            params['pageSize'] = pageSize.toString();
+        }
+        if (searchString) {
+            params['searchString'] = searchString;
+        }
+
+        console.log('Query Params:', params);
+
+        return this.httpClient.get<categoryList[]>(`${apiRoutes?.blogs.categoryListPagination}`, { params });
     }
 
     addCategory(addCategoryRequestModel: AddCategoryRequestModel): Observable<any> {
@@ -87,14 +125,38 @@ export class BlogsService {
 
     deleteCategoryList(categoryId: string | null): Observable<any> {
         const params: { [key: string]: string } = categoryId ? { categoryId } : {};
-    
+
         return this.httpClient.delete<any>(`${apiRoutes?.blogs.deleteCategory}`, { params });
     }
-    
+
     subCategoryList(categoryId: string | null): Observable<SubCategoryList[]> {
         const params: { [key: string]: string } = {};
 
-        return this.httpClient.get<SubCategoryList[]>(`${apiRoutes?.blogs.subCategoryList}`, {params})
+        return this.httpClient.get<SubCategoryList[]>(`${apiRoutes?.blogs.subCategoryList}`, { params })
+    }
+
+    subCategoryListPagination(subcategoryId: string | null, categoryId: string | null, pageIndex: number | null, pageSize: number | null, searchString: string | null): Observable<SubCategoryList[]> {
+        const params: { [key: string]: string } = {};
+
+        if (subcategoryId) {
+            params['subcategoryId'] = subcategoryId;
+        }
+        if (categoryId) {
+            params['categoryId'] = categoryId;
+        }
+        if (pageIndex !== null) {
+            params['pageIndex'] = pageIndex.toString();
+        }
+        if (pageSize !== null) {
+            params['pageSize'] = pageSize.toString();
+        }
+        if (searchString) {
+            params['searchString'] = searchString;
+        }
+
+        console.log('Query Params:', params);
+
+        return this.httpClient.get<SubCategoryList[]>(`${apiRoutes?.blogs.subCategoryListPagination}`, { params });
     }
 
     addSubCategory(addSubCategoryRequestModel: AddSubCategoryRequestModel): Observable<any> {
@@ -107,7 +169,7 @@ export class BlogsService {
 
     deleteSubCategoryList(subcategoryId: string | null): Observable<any> {
         const params: { [key: string]: string } = subcategoryId ? { subcategoryId } : {};
-    
+
         return this.httpClient.delete<any>(`${apiRoutes?.blogs.deleteSubCategory}`, { params });
     }
 
@@ -132,7 +194,29 @@ export class BlogsService {
             params['isApproved'] = isApproved.toString();
         }
 
-        return this.httpClient.get<GetCreatedVideoModel[]>(`${apiRoutes?.blogs.getCreateVideoLink}`, {params})
+        return this.httpClient.get<GetCreatedVideoModel[]>(`${apiRoutes?.blogs.getCreateVideoLink}`, { params })
+    }
+
+    getCreateVideoLinkPagination(creatorId: string | null, creatorVideoId: string | null, isApproved: boolean | null, pageIndex: number | null, pageSize: number | null): Observable<GetCreatedVideoModel[]> {
+        const params: { [key: string]: string } = {};
+
+        if (creatorId) {
+            params['creatorId'] = creatorId;
+        }
+        if (creatorVideoId) {
+            params['creatorVideoId'] = creatorVideoId;
+        }
+        if (isApproved !== null && isApproved !== undefined) {
+            params['isApproved'] = isApproved.toString();
+        }
+        if (pageIndex !== null) {
+            params['pageIndex'] = pageIndex.toString();
+        }
+        if (pageSize !== null) {
+            params['pageSize'] = pageSize.toString();
+        }
+
+        return this.httpClient.get<GetCreatedVideoModel[]>(`${apiRoutes?.blogs.getCreateVideoLink}`, { params })
     }
 
     approveVideoLinks(approveVideoLink: ApproveVideoLink): Observable<any> {
@@ -141,7 +225,7 @@ export class BlogsService {
 
     deleteVideoLink(creatorVideoId: string | null): Observable<any> {
         const params: { [key: string]: string } = creatorVideoId ? { creatorVideoId } : {};
-    
+
         return this.httpClient.delete<any>(`${apiRoutes?.blogs.deleteVideoLink}`, { params });
     }
 

@@ -1,8 +1,16 @@
 <div *ngIf="isLoading" class="spinner-overlay">
     <div class="spinner"></div>
-  </div>
-<div class="main_header d-flex flex-row justify-content-between align-items-center w-100 mt-5">
+</div>
+<!-- <div class="main_header d-flex flex-row justify-content-between align-items-center w-100 mt-5">
     <p class="title text-blue font-24 fw-600 mar0">USER DETAILS</p>
+</div> -->
+
+<div class="main_header d-flex flex-row justify-content-between align-items-center mt-5 w-95">
+    <p class="title text-black font-24 fw-600 mar0">USER DETAILS</p>
+    <!-- Search Box in Top Right -->
+    <div class="search-container">
+        <input type="text" class="form-control" placeholder="Search..." [formControl]="search" />
+    </div>
 </div>
 
 <div class="table-container">
@@ -25,9 +33,40 @@
                 <td class="font-14 fw-400">{{user.phoneNo}}</td>
                 <td class="font-14 fw-400">{{user.createdAt | date}}</td>
                 <td class="d-flex gap-3">
-                    <i class='bx bx-trash-alt font-22 text-danger'></i>
+                    <i class='bx bx-trash-alt font-22 text-danger cursor' (click)="deleteUser(user._id)"></i>
                 </td>
             </tr>
         </tbody>
     </table>
+    <div class="pagination-container d-flex justify-content-between align-items-center w-100">
+        <div class="total-count">
+            <p class="font-14 fw-400">Total Records: {{ totalItems }}</p>
+        </div>
+
+        <nav *ngIf="totalItems > 0">
+            <ul class="pagination justify-content-end">
+                <li class="page-item" [class.disabled]="currentPage === 0">
+                    <button class="page-link" (click)="onPageChange(currentPage - 1)"
+                        [disabled]="currentPage === 0">
+                        Previous
+                    </button>
+                </li>
+
+                <li class="page-item"
+                    *ngFor="let page of [].constructor(Math.ceil(totalItems / pageSize)); let i = index"
+                    [class.active]="currentPage === i">
+                    <button class="page-link" (click)="onPageChange(i)">
+                        {{ i + 1 }}
+                    </button>
+                </li>
+
+                <li class="page-item" [class.disabled]="currentPage === Math.ceil(totalItems / pageSize) - 1">
+                    <button class="page-link" (click)="onPageChange(currentPage + 1)"
+                        [disabled]="currentPage === Math.ceil(totalItems / pageSize) - 1">
+                        Next
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </div>

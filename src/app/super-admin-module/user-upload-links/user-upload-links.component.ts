@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ApproveVideoLink } from '../../api/api-modules/approve-video-link.model';
 import Swal from 'sweetalert2';
+import { FormControl, Validators } from '@angular/forms';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-user-upload-links',
@@ -11,7 +13,14 @@ import Swal from 'sweetalert2';
   styleUrl: './user-upload-links.component.scss'
 })
 export class UserUploadLinksComponent {
+  isLoading!: boolean;
   videoLinks: any;
+  search = new FormControl(null, Validators.required);
+  currentPage: number = 0;
+  pageSize: number = 10;
+  totalItems: number = 0;
+  Math = Math;
+  
   uploadedLinks = [
     {
       username: 'John Doe',
@@ -30,7 +39,11 @@ export class UserUploadLinksComponent {
   constructor(private blogService: BlogsService, private _snackBar: MatSnackBar,) { }
 
   ngOnInit(): void {
-    this.getVideoLink()
+    this.getBlogsListPagination()
+
+    this.search.valueChanges.pipe(debounceTime(500)).subscribe(() => {
+      this.getBlogsListPagination();
+    })
   }
 
 
@@ -42,6 +55,33 @@ export class UserUploadLinksComponent {
 
       }
     })
+  }
+
+  getBlogsListPagination(creatorId: any = null, creatorVideoId: any = null, isApproved: boolean | null = null, pageIndex: number | null = this.currentPage, pageSize: number | null = this.pageSize) {
+    this.isLoading = true;
+    this.blogService.getCreateVideoLinkPagination(creatorId, creatorVideoId, isApproved, pageIndex, pageSize).subscribe({
+      next: (res: any) => {
+        this.videoLinks = res.data
+        this.totalItems = res.count;
+        console.log(res);
+        console.log(this.videoLinks);
+      },
+      error: (err: any) => {
+        console.error('Error fetching admin list:', err); // Handle error
+      },
+      complete: () => {
+        this.isLoading = false;
+      }
+    });
+  }
+
+  onPageChange(page: number): void {
+    const maxPage = Math.ceil(this.totalItems / this.pageSize) - 1;
+    if (page < 0 || page > maxPage) {
+      return;
+    }
+    this.currentPage = page;
+    this.getBlogsListPagination();
   }
 
   approveLink(link: any, isApproved: boolean): void {

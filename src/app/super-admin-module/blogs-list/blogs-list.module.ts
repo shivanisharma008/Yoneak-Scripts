@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BlogsListComponent } from './blogs-list.component';
 import { RouterModule } from '@angular/router';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -13,6 +14,8 @@ import { BlogDetailsComponent } from './blog-details/blog-details.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       { path: '', component: BlogsListComponent },
       { path: 'details', component: BlogDetailsComponent }
