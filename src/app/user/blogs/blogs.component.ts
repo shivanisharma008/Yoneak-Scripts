@@ -168,7 +168,6 @@ export class BlogsComponent {
   }
 
   getPopularBlogs() {
-    alert(1)
     this.blogsService.popularBlogs().subscribe({
       next: (res: any) => {
         console.log(res.data);

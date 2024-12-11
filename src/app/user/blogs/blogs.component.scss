@@ -4,6 +4,62 @@
     background-repeat: no-repeat;
     height: 40vh;
 }
+.category-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-btn {
+    background-color: transparent;
+    border: 1px solid black;
+    padding: 10px 33px;
+    cursor: pointer;
+    color: #000;
+    border-radius: 6px; /* Rounded corners */
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%; /* Aligns directly below the button */
+    left: 0;
+    background-color: #fff;
+    min-width: 200px;
+    // box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 8px;
+    z-index: 10;
+    padding: 10px 0;
+    margin-top: 0; /* Ensure no gap between button and dropdown menu */
+}
+
+.dropdown-menu li {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    text-align: left;
+}
+
+.dropdown-menu li:hover {
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+
+/* Ensure the dropdown remains visible when hovering */
+.category-dropdown:hover .dropdown-menu,
+.category-dropdown:focus-within .dropdown-menu {
+    display: block;
+}
+
+/* Adjust pointer events to prevent gaps causing the hover to disappear */
+.category-dropdown:hover {
+    pointer-events: auto;
+}
+
+
+
+
 
 .blog_main_cards {
     gap: 20px;
@@ -39,65 +95,82 @@
     object-fit: cover;
 }
 
-.category_heading p,
-.subcribe_heading p,
-.popular_heading p {
-    position: relative;
+// .category_heading p,
+// .subcribe_heading p,
+// .popular_heading p {
+//     position: relative;
+// }
+
+// .category_heading p:after,
+// .subcribe_heading p:after,
+// .popular_heading p:after {
+//     position: absolute;
+//     content: '';
+//     left: 0;
+//     bottom: 0;
+//     width: 40px;
+//     height: 2px;
+//     background-color: black;
+
+// }
+
+// .category_list {
+//     display: grid;
+//     grid-template-columns: repeat(3, 1fr);
+//     gap: 20px;
+// }
+
+// .category_list_item {
+//     position: relative;
+// }
+
+// .categoty_bg {
+//     width: 100%;
+//     height: 100%;
+// }
+
+// .category_list_item::after {
+//     position: absolute;
+//     content: '';
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     background-color: rgba(0, 0, 0, 0.437);
+//     /* Adjust the rgba value to control the darkness of the overlay */
+//     z-index: 1;
+//     /* Ensure the overlay appears above the image */
+// }
+
+// .category_name {
+//     position: absolute;
+//     bottom: 15px;
+//     z-index: 2;
+// }
+
+// .subcribe_list {
+//     display: grid;
+//     grid-template-columns: repeat(3, 1fr);
+//     gap: 10px;
+// }
+.popular_main_cards{
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
-
-.category_heading p:after,
-.subcribe_heading p:after,
-.popular_heading p:after {
-    position: absolute;
-    content: '';
-    left: 0;
-    bottom: 0;
-    width: 40px;
-    height: 2px;
-    background-color: black;
-
+.popular_card{
+    border-bottom: 1px solid rgb(230, 230, 230);
 }
-
-.category_list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+.popular_card_left{
+    width: 80px;
+    height: 80px;
 }
-
-.category_list_item {
-    position: relative;
-}
-
-.categoty_bg {
+.popular_card_left img{
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
-
-.category_list_item::after {
-    position: absolute;
-    content: '';
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.437);
-    /* Adjust the rgba value to control the darkness of the overlay */
-    z-index: 1;
-    /* Ensure the overlay appears above the image */
+.popular_card_right p:hover{
+    text-decoration: underline;
 }
-
-.category_name {
-    position: absolute;
-    bottom: 15px;
-    z-index: 2;
-}
-
-.subcribe_list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-}
-
 .truncate {
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -107,7 +180,6 @@
     // text-wrap: wrap;
     // white-space: nowrap;
 }
-
 .card_image {
     position: relative;
     overflow: hidden;
@@ -199,11 +271,9 @@
         overflow: hidden;
 
     }
-
-    .blogs_content_left {
-        // grid-template-columns: repeat(1, 1fr);
+    .popular_card_right{
+        padding-left: 20px;
     }
-
 }
 
 @media screen and (min-width:600px) and (max-width:1023px) {
@@ -247,6 +317,9 @@
     }
     .subcribe_list_item a{
         font-size: 11px !important;
+    }
+    .popular_card_right{
+        padding-left: 20px;
     }
 }
 

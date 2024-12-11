@@ -1,5 +1,5 @@
 <div class="header d-flex flex-row align-items-center justify-content-center w-100 py-2 bg-white">
-  <div class="header_body d-flex flex-row align-items-center justify-content-between w-95">
+  <div class="header_body d-flex flex-row align-items-center justify-content-between gap-3 w-95">
 
     <div class="logo d-flex" *ngIf="userRole === 3 || userRole == null || userRole === undefined">
       <a [routerLink]="'/user/blogs'">
@@ -9,9 +9,7 @@
     <i class="fa-solid fa-arrow-left font-24 d-none d-sm-none d-md-none d-lg-flex" (click)="goBack()"
       *ngIf="userRole === 1 || userRole === 2"></i>
     <!-- Sidenav Toggle Icon -->
-    <div class="menu_icon d-sm-flex d-md-flex d-lg-none" (click)="toggleSidenav()">
-      <i class="fa-solid fa-bars font-22"></i>
-    </div>
+  
 
     <div class="right d-flex gap-3">
       <button *ngIf="!userRole" class="font-16 fw-600 br-6 bg-black text-white p-1 px-3" routerLink="/accounts/sign-in">Login</button>
@@ -27,6 +25,10 @@
           </ul>
         </div>
       </div>
+    </div>
+
+    <div class="menu_icon d-sm-flex d-md-flex d-lg-none" (click)="toggleSidenav()">
+      <i class="fa-solid fa-bars font-22"></i>
     </div>
   </div>
 </div>

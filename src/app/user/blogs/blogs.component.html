@@ -1,12 +1,20 @@
 <div class="blogs_main d-flex flex-column align-items-center justify-content-center mt-5">
     <div class="blogs_body d-flex flex-column align-items-center justify-content-center w-100 mt-5">
-        <h1 class="text-black font-40 fw-800">Scripts</h1>
-
+        <!-- <h1 class="text-black font-40 fw-800">Scripts</h1> -->
+        <div class="category-dropdown d-flex w-90">
+            <button class="dropdown-btn text-black font-18 fw-500 br-6">Categories</button>
+            <ul class="dropdown-menu">
+                <li *ngFor="let category of categoryList" (click)="getBlogsList(category._id, '', '', true)">
+                    {{ category.categoryName }}
+                </li>
+            </ul>
+        </div>
+        
         <div class="blogs_main_content d-flex flex-wrap align-items-start justify-content-between w-90 py-5">
             <div class="blogs_left" style="float: left;width: 70%;">
                 <div *ngIf="blogsList && blogsList.length > 0;" class=" blogs_left ">
-                    <div class="blog_main_cards row justify-content-start w-100">
-                        <div class="blog_card col-xs-12 col-12 col-md-6 col-lg-4 mb-4 d-flex flex-column align-items-center gap-3 p-0"
+                    <div class="blog_main_cards row  w-100">
+                        <div class="blog_card col-xs-12 col-12 col-md-6 col-lg-4 mb-4 d-flex flex-column align-items-center gap-3  p-0"
                             *ngFor="let blog of blogsList">
                             <div class="card_image cursor" (click)="blogsDetails(blog._id)">
                                 <img [src]="blog.image ? blog.image : 'assests/images/blog_card_img2.jpg'" alt="blob_card_img" width="100%">
@@ -15,7 +23,7 @@
                             <div class="blog_card_bottom d-flex flex-column gap-3 pb-4 w-100">
                                 <div
                                     class="blogs_card_text d-flex flex-column justify-content-between  gap-3 w-100 px-3">
-                                    <p class="text-black font-20 fw-700">{{blog.blogName}}</p>
+                                    <p class=" text-black font-20 fw-700 cursor" (click)="blogsDetails(blog._id)"> {{ blog.blogName | slice:0:25 }}...</p>
                                     <div class="blogs_card_desc d-flex flex-column gap-2">
                                         <div class="blogs_card_desc_info d-flex gap-4">
                                             <div class="admin">
@@ -53,15 +61,14 @@
             </div>
 
             <div class="blogs_content_right" style="position: sticky;top: 100px;z-index: 100;height: 80vh;float: right; overflow-y: scroll ; width: 28%;">
-                <div class="blogs_content_right_body  d-flex flex-column gap-5">
-                    <div class="categoty d-flex flex-column gap-4">
+                <div class="blogs_content_right_body  d-flex flex-column align-items-center justify-content-center gap-5">
+                    <!-- <div class="categoty d-flex flex-column gap-4">
                         <div class="category_heading">
                             <p class="font-20 fw-800">Category</p>
                         </div>
                         <div class="category_list ">
                             <div class="category_list_item d-flex  justify-content-center"
                                 *ngFor="let category of categoryList">
-                                <!-- <img [src]="category.img" alt="category_bg_img" width="100%" class="categoty_bg"> -->
                                 <div (click)="getBlogsList(category._id,'', '', true)" class="w-100">
                                     <img src="assests/images/blog_cat1.jpg" alt="category_bg_img" width="100%"
                                         class="categoty_bg">
@@ -73,7 +80,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- <div class="subcribe d-flex flex-column gap-4">
                         <div class="subcribe_heading">
@@ -95,21 +102,21 @@
                         </div>
                     </div> -->
 
-                    <div class="popular_article d-flex flex-column gap-4">
-                        <div class="popular_heading">
-                            <p class="font-20 fw-800">Popular Article</p>
+                    <div class="popular_article d-flex flex-column align-items-center justify-content-center gap-4 w-100">
+                        <div class="popular_heading w-100 ms-4">
+                            <p class="font-20 fw-800 ps-1">Popular Article</p>
                         </div>
 
-                        <div class="popular_main_cards d-flex flex-column align-items-start gap-4">
-                            <div class="popular_card d-flex flex-row justify-content-between"
+                        <div class="popular_main_cards d-flex flex-column align-items-center br-6 w-90 px-3">
+                            <div class="popular_card d-flex flex-row justify-content-between br-6 w-100 py-3 cursor"
                                 *ngFor="let popular of popularBlogList">
-                                <div class="popular_card_left w-30">
+                                <div class="popular_card_left">
                                     <!-- <img [src]="popular.img" alt="popular_card_img" width="100%"> -->
-                                    <img [src]="popular.image ? popular.image : 'assests/images/blog_card_img2.jpg'" alt="popular_card_img" width="100%">
+                                    <img [src]="popular.image ? popular.image : 'assests/images/blog_card_img2.jpg'" alt="popular_card_img" width="100%" class="br-6">
                                 </div>
-                                <div class="popular_card_right d-flex flex-column gap-1 w-65">
-                                    <p class="text-black font-16 fw-500">{{popular.blogName}}</p>
-                                    <p class="text-grey font-14 fw-500">{{popular.createdAt | date}}</p>
+                                <div class="popular_card_right d-flex flex-column gap-1 w-70">
+                                    <p class="text-black font-16 fw-500">{{popular.blogName | slice:0:35 }}...</p> 
+                                    <span class="text-grey font-14 fw-500">{{popular.createdAt | date}}</span>
                                 </div>
                             </div>
                         </div>
