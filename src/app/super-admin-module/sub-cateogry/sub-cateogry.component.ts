@@ -119,7 +119,7 @@ export class SubCateogryComponent {
               horizontalPosition: 'center'
             });
             if (res.status === 200) {
-              this.getSubCategoryList();
+              this.getSubCategoryListPagination();
             }
           },
           error: (err: HttpErrorResponse) => {

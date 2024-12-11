@@ -30,7 +30,7 @@
                     <td class="font-14 fw-400">{{admin.phoneNo}}</td>
                     <td class="font-14 fw-400">{{admin.createdAt}}</td>
                     <td class="d-flex gap-3">
-                        <i class='bx bx-trash-alt font-22 text-danger'></i>
+                        <i class='bx bx-trash-alt font-22 text-danger cursor' (click)="deleteUser(admin._id)"></i>
                     </td>
                 </tr>
             </tbody>

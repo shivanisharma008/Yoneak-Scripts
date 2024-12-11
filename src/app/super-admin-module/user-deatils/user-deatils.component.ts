@@ -99,7 +99,7 @@ export class UserDeatilsComponent {
               horizontalPosition: 'center'
             });
             if (res.status === 200) {
-              this.getUserList();
+              this.getUserListPagination();
             }
           },
           error: (err: HttpErrorResponse) => {

@@ -85,6 +85,9 @@ export class UserUploadLinksComponent {
   }
 
   approveLink(link: any, isApproved: boolean): void {
+    const previousState = link.isApproved; // Store the previous state
+    link.isApproved = isApproved; // Optimistically set the new state
+
     Swal.fire({
       title: 'Are you sure?',
       text: `Do you want to ${isApproved ? 'approve' : 'disapprove'} this link?`,
@@ -100,7 +103,6 @@ export class UserUploadLinksComponent {
           creatorVideoId: link,
           isApproved: isApproved
         };
-  
         this.blogService.approveVideoLinks(approveVideoLink).subscribe({
           next: (res: any) => {
             this._snackBar.open(res.message, 'Close', {
@@ -109,7 +111,9 @@ export class UserUploadLinksComponent {
               horizontalPosition: 'center'
             });
             if (res.status === 200) {
-              this.getVideoLink();
+              this.getBlogsListPagination();
+            } else {
+              link.isApproved = previousState;
             }
           },
           error: (err: HttpErrorResponse) => {
@@ -118,8 +122,12 @@ export class UserUploadLinksComponent {
               verticalPosition: 'bottom',
               horizontalPosition: 'center'
             });
+            link.isApproved = previousState;
           }
         });
+      } else {
+        // Revert state if the user cancels the action
+        link.isApproved = previousState;
       }
     });
   }
@@ -144,7 +152,7 @@ export class UserUploadLinksComponent {
               horizontalPosition: 'center'
             });
             if (res.status === 200) {
-              this.getVideoLink()
+              this.getBlogsListPagination();
             }
           }, error: (err: HttpErrorResponse) => {
             this._snackBar.open(err.statusText, 'Close', {

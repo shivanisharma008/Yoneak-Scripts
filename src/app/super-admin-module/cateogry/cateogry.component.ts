@@ -116,7 +116,7 @@ export class CateogryComponent {
               horizontalPosition: 'center'
             });
             if (res.status === 200) {
-              this.getCategoryList();
+              this.getCategoryListPagination();
             }
           },
           error: (err: HttpErrorResponse) => {

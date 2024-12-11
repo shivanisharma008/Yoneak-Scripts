@@ -3,6 +3,9 @@ import { UserServiceService } from '../../api/api-services/user-service.service'
 import { Router } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs';
+import Swal from 'sweetalert2';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpErrorResponse } from '@angular/common/http';
 // import { AddBlogModel } from '../../../../build/dotnetapi';
 
 @Component({
@@ -22,6 +25,7 @@ export class AdminDeatilsComponent {
   constructor(
     private userService: UserServiceService,
     private _router: Router,
+    private _snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
@@ -76,5 +80,38 @@ export class AdminDeatilsComponent {
     this.getAdminListPagination();
   }
 
+  deleteUser(id: any) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to undo this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.deleteUser(id).subscribe({
+          next: (res: any) => {
+            this._snackBar.open(res.message, 'Close', {
+              duration: 3000,
+              verticalPosition: 'bottom',
+              horizontalPosition: 'center'
+            });
+            if (res.status === 200) {
+              this.getAdminListPagination();
+            }
+          },
+          error: (err: HttpErrorResponse) => {
+            this._snackBar.open(err.statusText, 'Close', {
+              duration: 3000,
+              verticalPosition: 'bottom',
+              horizontalPosition: 'center'
+            });
+          }
+        });
+      }
+    });
+  }
 
 }

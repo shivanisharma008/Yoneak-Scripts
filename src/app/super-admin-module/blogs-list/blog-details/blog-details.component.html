@@ -20,7 +20,7 @@
                 <img src="assests/images/blog_card_img2.jpg" alt="image" width="100%">
             </div>
             <div class="blog_details_para d-flex flex-column gap-3">
-                <p class="text-grey font-16 fw-500">{{details.content}}</p>
+                <p class="text-grey font-16 fw-500" [innerHTML]="details.content"></p>
             </div>
         </div>
     </div>

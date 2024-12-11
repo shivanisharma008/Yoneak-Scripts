@@ -28,9 +28,7 @@
                     <td class="font-14 fw-400">{{ blog.blogName }}</td>
                     <td class="font-14 fw-400">{{ blog.category.categoryName || 'N/A' }}</td>
                     <td class="font-14 fw-400">{{ blog.subCategory || 'N/A' }}</td>
-                    <td class="font-14 fw-400" [title]="blog.content">{{ blog.content | slice: 0:20 }}{{
-                        blog.content.length > 20 ? '...' : ''
-                        }}</td>
+                    <td class="font-14 fw-400" [title]="blog.content"[innerHTML]="blog.content.length > 20 ? (blog.content | slice: 0:20) + '...' : blog.content"></td>
                     <td class="font-14 fw-400">{{ blog.createdAt | date }}</td>
                     <td class="d-flex flex-row align-items-center">
                         <div class="form-check form-switch" [title]="blog.approved ? 'Disable Blog' : 'Approve Blog'">

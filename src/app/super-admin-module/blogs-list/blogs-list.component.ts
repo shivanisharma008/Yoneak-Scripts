@@ -137,7 +137,7 @@ export class BlogsListComponent {
               horizontalPosition: 'center'
             });
             if (res.status === 200) {
-              this.getBlogsList('', '', '', null)
+              this.getBlogsListPagination()
             }
           }, error: (err: HttpErrorResponse) => {
             this._snackbar.open(err.statusText, 'Close', {
@@ -181,7 +181,7 @@ export class BlogsListComponent {
                 horizontalPosition: 'center'
               });
 
-              this.getBlogsList('', '', '', null);
+              this.getBlogsListPagination()
             } else {
               // Revert state on API failure
               blog.approved = previousState;

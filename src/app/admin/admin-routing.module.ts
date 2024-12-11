@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path:'',redirectTo:'add-scripts',pathMatch:'full'},
+  {path:'',redirectTo:'my-scripts',pathMatch:'full'},
  {
   path:'my-scripts',
   loadChildren:()=>
