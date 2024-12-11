@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { BlogsService } from '../../api/api-services/blogs.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ApproveVideoLink } from '../../api/api-modules/approve-video-link.model';
-import Swal from 'sweetalert2';
+import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { debounceTime } from 'rxjs';
+import Swal from 'sweetalert2';
+import { ApproveVideoLink } from '../../api/api-modules/approve-video-link.model';
+import { BlogsService } from '../../api/api-services/blogs.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-upload-links',
@@ -20,7 +21,7 @@ export class UserUploadLinksComponent {
   pageSize: number = 10;
   totalItems: number = 0;
   Math = Math;
-  
+
   uploadedLinks = [
     {
       username: 'John Doe',
@@ -35,10 +36,20 @@ export class UserUploadLinksComponent {
       status: 'Pending'
     }
   ];
+  creatorId: any;
+  blogId: any;
 
-  constructor(private blogService: BlogsService, private _snackBar: MatSnackBar,) { }
+  constructor(private blogService: BlogsService, private _snackBar: MatSnackBar,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    const userDetails = JSON.parse(localStorage.getItem('userDetails') ?? '{}');
+    this.creatorId = userDetails?._id ?? null; // Set user role, e.g., 1 or 2
+
+    this.route.queryParams.subscribe(params => {
+      this.blogId = params['blogId'];
+      console.log('Blog ID:', this.blogId);
+    });
+
     this.getBlogsListPagination()
 
     this.search.valueChanges.pipe(debounceTime(500)).subscribe(() => {
@@ -57,7 +68,7 @@ export class UserUploadLinksComponent {
     })
   }
 
-  getBlogsListPagination(creatorId: any = null, creatorVideoId: any = null,  blogId: any = null, isApproved: boolean | null = null, pageIndex: number | null = this.currentPage, pageSize: number | null = this.pageSize) {
+  getBlogsListPagination(creatorId: any = null, creatorVideoId: any = null, blogId: any = this.blogId, isApproved: boolean | null = null, pageIndex: number | null = this.currentPage, pageSize: number | null = this.pageSize) {
     this.isLoading = true;
     this.blogService.getCreateVideoLinkPagination(creatorId, creatorVideoId, blogId, isApproved, pageIndex, pageSize).subscribe({
       next: (res: any) => {
@@ -100,7 +111,7 @@ export class UserUploadLinksComponent {
           creatorVideoId: link,
           isApproved: isApproved
         };
-  
+
         this.blogService.approveVideoLinks(approveVideoLink).subscribe({
           next: (res: any) => {
             this._snackBar.open(res.message, 'Close', {
@@ -109,7 +120,7 @@ export class UserUploadLinksComponent {
               horizontalPosition: 'center'
             });
             if (res.status === 200) {
-              this.getVideoLink();
+              this.getBlogsListPagination();
             }
           },
           error: (err: HttpErrorResponse) => {
@@ -123,7 +134,7 @@ export class UserUploadLinksComponent {
       }
     });
   }
-  
+
 
   deleteVideoLink(id: any) {
     Swal.fire({

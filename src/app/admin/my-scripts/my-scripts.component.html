@@ -21,7 +21,8 @@
             </div>
             <p class="blog-meta">{{blog.createdAt | date}} | {{blog.category.categoryName}}</p>
           </div>
-          <div class="edit_butn">
+          <div class="edit_butn d-flex flex-row gap-2 align-items-center justify-content-center">
+            <button class="bg-black text-white font-16 fw-600 br-3 p-1 px-3" (click)="route(blog._id)" routerLink="admin/user-uploaded-links">Check Uploaded Links</button>
             <button class="bg-black text-white font-16 fw-600 br-3 p-1 px-3" (click)="edit(blog)">Edit</button>
           </div>
         </div>

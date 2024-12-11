@@ -13,6 +13,11 @@ const routes: Routes = [
   loadChildren:()=>
     import('./add-scripts/add-scripts.module').then((m)=> m.AddScriptsModule)
  },
+ {
+  path:'user-uploaded-links',
+  loadChildren:()=>
+    import('./user-upload-links/user-upload-links.module').then((m)=> m.UserUploadLinksModule)
+},
 ];
 
 @NgModule({

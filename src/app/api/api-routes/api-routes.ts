@@ -28,6 +28,7 @@ export const apiRoutes = {
         blogsPagination: `${baseURL}blogs/pagination`,
 
         popularBlogs: `${baseURL}blogs/visited`,
+        popularBlogsView: `${baseURL}blogs/visited`,
 
         categoryList: `${baseURL}blogscategory`,
         categoryListPagination: `${baseURL}blogscategory/pagination`,

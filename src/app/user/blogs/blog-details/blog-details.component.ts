@@ -66,6 +66,7 @@ export class BlogDetailsComponent {
       width: '600px',
       height: 'auto',
       panelClass: 'custom-dialog-container',
+      data: { blogId: this.blogId },
     });
   }
 

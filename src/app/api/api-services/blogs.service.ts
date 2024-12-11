@@ -18,6 +18,7 @@ import { createdVideo, GetCreatedVideoModel } from '../api-modules/get-created-v
 import { ApproveVideoLink } from '../api-modules/approve-video-link.model';
 import { UpdateBlogsRequestModel } from '../api-modules/update-blogs-request.model';
 import { PopularBlogsList, PopularBlogsListModel } from '../api-modules/populat-blogs.model';
+import { UpdateVisitedViewModel } from '../api-modules/update-visited-view.model';
 
 @Injectable({
     providedIn: 'root'
@@ -79,6 +80,10 @@ export class BlogsService {
 
     popularBlogs(): Observable<PopularBlogsList[]> {
         return this.httpClient.get<PopularBlogsList[]>(`${apiRoutes?.blogs.popularBlogs}`)
+    }
+
+    popularBlogsView(updateVisitedViewModel: UpdateVisitedViewModel): Observable<any> {
+        return this.httpClient.put<any>(`${apiRoutes.blogs.popularBlogsView}`, updateVisitedViewModel)
     }
 
     updateBlogs(updateBlogsRequestModel: UpdateBlogsRequestModel): Observable<any> {
@@ -202,7 +207,7 @@ export class BlogsService {
         return this.httpClient.get<GetCreatedVideoModel[]>(`${apiRoutes?.blogs.getCreateVideoLink}`, { params })
     }
 
-    getCreateVideoLinkPagination(creatorId: string | null, creatorVideoId: string | null, isApproved: boolean | null, pageIndex: number | null, pageSize: number | null): Observable<GetCreatedVideoModel[]> {
+    getCreateVideoLinkPagination(creatorId: string | null, creatorVideoId: string | null, blogId: string | null,  isApproved: boolean | null, pageIndex: number | null, pageSize: number | null): Observable<GetCreatedVideoModel[]> {
         const params: { [key: string]: string } = {};
 
         if (creatorId) {
@@ -210,6 +215,9 @@ export class BlogsService {
         }
         if (creatorVideoId) {
             params['creatorVideoId'] = creatorVideoId;
+        }
+        if (blogId) {
+            params['blogId'] = blogId;
         }
         if (isApproved !== null && isApproved !== undefined) {
             params['isApproved'] = isApproved.toString();
