@@ -57,9 +57,9 @@ export class UserUploadLinksComponent {
     })
   }
 
-  getBlogsListPagination(creatorId: any = null, creatorVideoId: any = null, isApproved: boolean | null = null, pageIndex: number | null = this.currentPage, pageSize: number | null = this.pageSize) {
+  getBlogsListPagination(creatorId: any = null, creatorVideoId: any = null,  blogId: any = null, isApproved: boolean | null = null, pageIndex: number | null = this.currentPage, pageSize: number | null = this.pageSize) {
     this.isLoading = true;
-    this.blogService.getCreateVideoLinkPagination(creatorId, creatorVideoId, isApproved, pageIndex, pageSize).subscribe({
+    this.blogService.getCreateVideoLinkPagination(creatorId, creatorVideoId, blogId, isApproved, pageIndex, pageSize).subscribe({
       next: (res: any) => {
         this.videoLinks = res.data
         this.totalItems = res.count;
