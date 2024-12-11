@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UploadVideoComponent } from '../upload-video/upload-video.component';
 import { MatDialog } from '@angular/material/dialog';
+import { UpdateVisitedViewModel } from '../../api/api-modules/update-visited-view.model';
 
 @Component({
   selector: 'app-blogs',
@@ -173,6 +174,18 @@ export class BlogsComponent {
         console.log(res.data);
         this.popularBlogList = res.data
         console.log(this.popularBlogList);
+      }
+    })
+  }
+
+  updatePopularBlogsView(blogId: any) {
+    const updateVisitedViewModel: UpdateVisitedViewModel = {
+      blogId: blogId
+    }
+    this.blogsService.popularBlogsView(updateVisitedViewModel).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        
       }
     })
   }

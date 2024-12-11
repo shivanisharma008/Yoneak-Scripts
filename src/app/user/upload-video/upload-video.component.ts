@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { BlogsService } from '../../api/api-services/blogs.service';
 import { CreateVideoLinkModel } from '../../api/api-modules/create-video-link.model';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-upload-video',
@@ -19,9 +19,11 @@ export class UploadVideoComponent {
   constructor(
     private blogService: BlogsService,
     private _snackBar: MatSnackBar,
-    public dialogRef: MatDialogRef<UploadVideoComponent> 
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<UploadVideoComponent>
   ) {
-
+    console.log(this.data.blogId);
+    
   }
 
   ngOnInit() {
@@ -35,7 +37,8 @@ export class UploadVideoComponent {
     if (this.videoLink) {
       const createVideoLinkModel: CreateVideoLinkModel = {
         embeddedYtLink: this.videoLink,
-        creatorId: this.userId ?? ''
+        creatorId: this.userId ?? '',
+        blogId: this.data.blogId
       }
       this.blogService.createVideoLink(createVideoLinkModel).subscribe({
         next: (res) => {

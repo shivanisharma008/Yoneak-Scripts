@@ -28,12 +28,17 @@ export class SignUpComponent {
     private dialogRef: MatDialogRef<SignUpComponent>
 
   ) {
-
+    console.log(data);
+    console.log(data.returnUrl);
+    console.log(data.email);
+    
   }
 
   ngOnInit(): void {
-    const email = history.state.email
-    this.signUpForm.controls.email.patchValue(email)
+    // const email = history.state.email
+    // this.signUpForm.controls.email.patchValue(email)
+
+    this.signUpForm.controls.email.patchValue(this.data.email)
 
 
     // this.ActivateRoute.queryParams.subscribe(params => {
@@ -147,7 +152,7 @@ export class SignUpComponent {
               verticalPosition: 'bottom',
               horizontalPosition: 'center'
             });
-            if (this.data === '' || this.data === '/' || this.data === null || this.data === undefined) {
+            if (this.data.returnUrl === '' || this.data.returnUrl === '/' || this.data.returnUrl === null || this.data.returnUrl === undefined) {
               switch (role) {
                 case 1:
                   this.router.navigate(['super-admin-module']);
@@ -168,7 +173,7 @@ export class SignUpComponent {
                 verticalPosition: 'bottom',
                 horizontalPosition: 'center'
               });
-              this.router.navigateByUrl(this.data);
+              this.router.navigateByUrl(this.data.returnUrl);
               this.dialogRef.close();
             }
           } else {

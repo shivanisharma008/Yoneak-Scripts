@@ -16,18 +16,18 @@
                     <div class="blog_main_cards row  w-100">
                         <div class="blog_card col-xs-12 col-12 col-md-6 col-lg-4 mb-4 d-flex flex-column align-items-center gap-3  p-0"
                             *ngFor="let blog of blogsList">
-                            <div class="card_image cursor" (click)="blogsDetails(blog._id)">
+                            <div class="card_image cursor" (click)="blogsDetails(blog._id); updatePopularBlogsView(blog._id)">
                                 <img [src]="blog.image ? blog.image : 'assests/images/blog_card_img2.jpg'" alt="blob_card_img" width="100%">
                                 <!-- <img src="assests/images/blog_card_img2.jpg" alt="blob_card_img" width="100%"> -->
                             </div>
                             <div class="blog_card_bottom d-flex flex-column gap-3 pb-4 w-100">
                                 <div
                                     class="blogs_card_text d-flex flex-column justify-content-between  gap-3 w-100 px-3">
-                                    <p class=" text-black font-20 fw-700 cursor" (click)="blogsDetails(blog._id)"> {{ blog.blogName | slice:0:25 }}...</p>
+                                    <p class=" text-black font-20 fw-700 cursor" (click)="blogsDetails(blog._id); updatePopularBlogsView(blog._id)"> {{ blog.blogName | slice:0:25 }}...</p>
                                     <div class="blogs_card_desc d-flex flex-column gap-2">
                                         <div class="blogs_card_desc_info d-flex gap-4">
                                             <div class="admin">
-                                                <p class="text-blue font-14 fw-500">By {{ blog.role === 2 ? 'Writer' : 'Super Admin'}}</p>
+                                                <p class="text-blue font-14 fw-500">By {{ blog.role === 2 ? 'BRAND' : 'Super Admin'}}</p>
                                             </div>
                                             <div class="date">
                                                 <p class="font-14 fw-500">{{blog.createdAt | date}}</p>
@@ -40,7 +40,7 @@
                                     </div>
                                 </div>
                                 <div class="read_butn d-flex align-items-start justify-content-start w-100 px-3">
-                                    <a class="text-black font-16 fw-500 cursor" (click)="blogsDetails(blog._id)">Read
+                                    <a class="text-black font-16 fw-500 cursor" (click)="blogsDetails(blog._id); updatePopularBlogsView(blog._id)">Read
                                         More
                                         <i class="fa-solid fa-arrow-right"></i></a>
                                 </div>
@@ -110,11 +110,11 @@
                         <div class="popular_main_cards d-flex flex-column align-items-center br-6 w-90 px-3">
                             <div class="popular_card d-flex flex-row justify-content-between br-6 w-100 py-3 cursor"
                                 *ngFor="let popular of popularBlogList">
-                                <div class="popular_card_left">
+                                <div class="popular_card_left"  (click)="blogsDetails(popular._id); updatePopularBlogsView(popular._id)">
                                     <!-- <img [src]="popular.img" alt="popular_card_img" width="100%"> -->
                                     <img [src]="popular.image ? popular.image : 'assests/images/blog_card_img2.jpg'" alt="popular_card_img" width="100%" class="br-6">
                                 </div>
-                                <div class="popular_card_right d-flex flex-column gap-1 w-70">
+                                <div class="popular_card_right d-flex flex-column gap-1 w-70"  (click)="blogsDetails(popular._id); updatePopularBlogsView(popular._id)">
                                     <p class="text-black font-16 fw-500">{{popular.blogName | slice:0:35 }}...</p> 
                                     <span class="text-grey font-14 fw-500">{{popular.createdAt | date}}</span>
                                 </div>

@@ -14,7 +14,7 @@ export class MyScriptsComponent {
 
   constructor(
     private blogsService: BlogsService,
-    private _router: Router
+    private _router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -46,6 +46,10 @@ export class MyScriptsComponent {
     this._router.navigate(['admin/add-scripts'], {
       state: { blogDetails: blogsList }
     });
+  }
+
+  route(blogId: string) {
+    this._router.navigate(['admin/user-uploaded-links'], { queryParams: { blogId: blogId } });
   }
 
 }

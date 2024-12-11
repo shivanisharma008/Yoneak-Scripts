@@ -253,7 +253,8 @@ export class SignInComponent {
             width: '600px',
             height: '600px',
             panelClass: 'custom-dialog-container',
-            data: this.returnUrl
+            // data: this.returnUrl,
+            data: { returnUrl: this.returnUrl, email: this.signInForm.controls.email.value },
           });
           //   const role = res.data.role;
           //   const userDetails = res.data;
