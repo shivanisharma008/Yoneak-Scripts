@@ -45,6 +45,14 @@
     white-space: nowrap;
   }
 
+  .instagram-video-container iframe {
+    width: 100%;
+    height: 100%;
+    max-width: 560px; /* Maximum width for larger screens */
+    aspect-ratio: 9 / 16; /* Match Instagram video aspect ratio for reels */
+    border: none;
+  }
+
 @media screen and (max-width:599px) {
     .video-cards-page{
         margin-top: 14%;

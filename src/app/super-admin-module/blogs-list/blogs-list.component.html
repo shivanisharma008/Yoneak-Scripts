@@ -25,9 +25,9 @@
             <tbody>
                 <tr *ngFor="let blog of blogsList; let i = index">
                     <td class="font-14 fw-400">{{ i + 1 }}</td>
-                    <td class="font-14 fw-400">{{ blog.blogName }}</td>
+                    <td class="font-14 fw-400" [title]="blog.blogName">{{ blog.blogName.length > 20 ? (blog.blogName | slice: 0:20) + '...' : blog.blogName }}</td>
                     <td class="font-14 fw-400">{{ blog.category.categoryName || 'N/A' }}</td>
-                    <td class="font-14 fw-400">{{ blog.subCategory || 'N/A' }}</td>
+                    <td class="font-14 fw-400">{{ blog.subCategory.subcategoryName || 'N/A' }}</td>
                     <td class="font-14 fw-400" [title]="blog.content"[innerHTML]="blog.content.length > 20 ? (blog.content | slice: 0:20) + '...' : blog.content"></td>
                     <td class="font-14 fw-400">{{ blog.createdAt | date }}</td>
                     <td class="d-flex flex-row align-items-center">

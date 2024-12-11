@@ -30,7 +30,7 @@ export class BlogDetailsComponent {
 
   getBlogsList() {
     this.isLoading = true;
-    this.blogsService.blogsList('', this.blogId, '', true).subscribe({
+    this.blogsService.blogsList('', this.blogId, '', null).subscribe({
       next: (res: any) => {
         this.blogsList = res.data
         console.log(res);

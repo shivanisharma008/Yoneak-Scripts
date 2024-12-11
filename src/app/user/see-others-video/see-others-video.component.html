@@ -28,6 +28,20 @@
       </video>
     </div>
 
+    <div *ngIf="selectedVideoType === 'instagram'" class="instagram-video-container">
+      <iframe *ngIf="safeVideoUrl" width="100%" height="auto" [src]="safeVideoUrl" frameborder="0"
+        allowfullscreen></iframe>
+      <p *ngIf="!safeVideoUrl">Unable to play the video. <a [href]="selectedVideo" target="_blank">View on Instagram</a>
+      </p>
+    </div>
+
+    <!-- Facebook Player -->
+    <div *ngIf="selectedVideoType === 'facebook'">
+      <iframe width="100%" height="400" [src]="safeVideoUrl" frameborder="0"
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        <p *ngIf="!safeVideoUrl">Unable to load the Facebook video. <a [href]="selectedVideo" target="_blank">View on Facebook</a></p>
+    </div>
+
     <button class="btn btn-secondary mt-3" (click)="closePlayer()">Close</button>
   </div>
 </div>
