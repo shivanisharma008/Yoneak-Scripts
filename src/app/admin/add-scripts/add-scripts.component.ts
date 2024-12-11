@@ -192,7 +192,7 @@ export class AddScriptsComponent {
             verticalPosition: 'bottom',
             horizontalPosition: 'center'
           });
-          this._router.navigate(['/blogs']);
+          this._router.navigate(['admin/my-scripts']);
         } else {
           this._snackbar.open(res.message, 'Close', {
             duration: 3000,

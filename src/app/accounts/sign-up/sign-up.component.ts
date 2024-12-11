@@ -6,6 +6,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { isPlatformBrowser } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-sign-up',
@@ -22,14 +23,17 @@ export class SignUpComponent {
     private ActivateRoute: ActivatedRoute,
     private _snackBar: MatSnackBar,
     private elementRef: ElementRef, @Inject(PLATFORM_ID) private platformId: object,
-    private router: Router
+    private router: Router,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<SignUpComponent>
+
   ) {
 
   }
 
   ngOnInit(): void {
     const email = history.state.email
-      this.signUpForm.controls.email.patchValue(email)
+    this.signUpForm.controls.email.patchValue(email)
 
 
     // this.ActivateRoute.queryParams.subscribe(params => {
@@ -135,17 +139,41 @@ export class SignUpComponent {
         next: (res) => {
           console.log(res)
           if (res.status === 200) {
+            const role = res.data.role;
+            const userDetails = res.data;
+            localStorage.setItem('userDetails', JSON.stringify(userDetails));
             this._snackBar.open(res.message, 'Close', {
               duration: 3000,
               verticalPosition: 'bottom',
               horizontalPosition: 'center'
             });
-            this.signUpForm.reset()
-            this.router.navigate(['/accounts/sign-in']);
-            this.signUpForm.patchValue({ role: '3' });
+            if (this.data === '' || this.data === '/' || this.data === null || this.data === undefined) {
+              switch (role) {
+                case 1:
+                  this.router.navigate(['super-admin-module']);
+                  break;
+                case 2:
+                  this.router.navigate(['admin']);
+                  break;
+                case 3:
+                  this.router.navigate(['user/blogs']);
+                  break;
+                default:
+                  console.error('Unknown role:', role);
+              }
+              this.dialogRef.close();
+            } else {
+              this._snackBar.open(res.message, 'Close', {
+                duration: 3000,
+                verticalPosition: 'bottom',
+                horizontalPosition: 'center'
+              });
+              this.router.navigateByUrl(this.data);
+              this.dialogRef.close();
+            }
           } else {
             this._snackBar.open(res.message, 'Close', {
-              duration: 5000,
+              duration: 3000,
               verticalPosition: 'bottom',
               horizontalPosition: 'center'
             });

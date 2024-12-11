@@ -17,6 +17,7 @@ import { CreateVideoLinkModel } from '../api-modules/create-video-link.model';
 import { createdVideo, GetCreatedVideoModel } from '../api-modules/get-created-video.model';
 import { ApproveVideoLink } from '../api-modules/approve-video-link.model';
 import { UpdateBlogsRequestModel } from '../api-modules/update-blogs-request.model';
+import { PopularBlogsList, PopularBlogsListModel } from '../api-modules/populat-blogs.model';
 
 @Injectable({
     providedIn: 'root'
@@ -74,6 +75,10 @@ export class BlogsService {
         console.log('Query Params:', params);
 
         return this.httpClient.get<BlogsList[]>(`${apiRoutes?.blogs?.blogsPagination}`, { params });
+    }
+
+    popularBlogs(): Observable<PopularBlogsList[]> {
+        return this.httpClient.get<PopularBlogsList[]>(`${apiRoutes?.blogs.popularBlogs}`)
     }
 
     updateBlogs(updateBlogsRequestModel: UpdateBlogsRequestModel): Observable<any> {

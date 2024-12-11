@@ -25,8 +25,9 @@ export const apiRoutes = {
         updateBlog: `${baseURL}blogs`,
         deleteBlogs: `${baseURL}blogs`,
         approveBlogs: `${baseURL}blogs/approve`,
-
         blogsPagination: `${baseURL}blogs/pagination`,
+
+        popularBlogs: `${baseURL}blogs/visited`,
 
         categoryList: `${baseURL}blogscategory`,
         categoryListPagination: `${baseURL}blogscategory/pagination`,

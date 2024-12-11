@@ -25,7 +25,7 @@ export class MyScriptsComponent {
 
   getBlogsList() {
     this.isLoading = true;
-    this.blogsService.blogsList('', '', this.userId, true).subscribe({
+    this.blogsService.blogsList('', '', this.userId, null).subscribe({
       next: (res: any) => {
         this.blogsList = res.data
         console.log(res);

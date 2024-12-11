@@ -29,6 +29,7 @@ export class BlogsComponent {
 
   currentIndex = 0;
   categoryList: any;
+  popularBlogList: any;
   isLoading!: boolean;
   // blogsToShow: number = 6;
   // displayedBlogs: any[] = []; // Subset of blogs to display
@@ -46,6 +47,7 @@ export class BlogsComponent {
   ngOnInit(): void {
     this.getBlogsList('', '', '', true)
     this.getCategoryList()
+    this.getPopularBlogs()
   }
 
   onImageError(event: Event): void {
@@ -161,6 +163,17 @@ export class BlogsComponent {
         console.log(res.data);
         this.categoryList = res.data
         console.log('Category' + res.data);
+      }
+    })
+  }
+
+  getPopularBlogs() {
+    alert(1)
+    this.blogsService.popularBlogs().subscribe({
+      next: (res: any) => {
+        console.log(res.data);
+        this.popularBlogList = res.data
+        console.log(this.popularBlogList);
       }
     })
   }

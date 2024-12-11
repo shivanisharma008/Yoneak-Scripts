@@ -85,6 +85,10 @@
     border-color: #0d6efd;
     outline: none;
   }
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+    height: none !important;
+}
   
 
 

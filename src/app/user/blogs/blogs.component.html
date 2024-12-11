@@ -75,7 +75,7 @@
                         </div>
                     </div>
 
-                    <div class="subcribe d-flex flex-column gap-4">
+                    <!-- <div class="subcribe d-flex flex-column gap-4">
                         <div class="subcribe_heading">
                             <p class="font-20 fw-800">Subscribe</p>
                         </div>
@@ -93,7 +93,7 @@
                                     <i class="fa-brands fa-linkedin-in font-12 text-black"></i> Linkedin</a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="popular_article d-flex flex-column gap-4">
                         <div class="popular_heading">
@@ -102,13 +102,14 @@
 
                         <div class="popular_main_cards d-flex flex-column align-items-start gap-4">
                             <div class="popular_card d-flex flex-row justify-content-between"
-                                *ngFor="let popular of popularCard">
+                                *ngFor="let popular of popularBlogList">
                                 <div class="popular_card_left w-30">
-                                    <img [src]="popular.img" alt="popular_card_img" width="100%">
+                                    <!-- <img [src]="popular.img" alt="popular_card_img" width="100%"> -->
+                                    <img [src]="popular.image ? popular.image : 'assests/images/blog_card_img2.jpg'" alt="popular_card_img" width="100%">
                                 </div>
                                 <div class="popular_card_right d-flex flex-column gap-1 w-65">
-                                    <p class="text-black font-16 fw-500">{{popular.title}}</p>
-                                    <p class="text-grey font-14 fw-500">{{popular.date}}</p>
+                                    <p class="text-black font-16 fw-500">{{popular.blogName}}</p>
+                                    <p class="text-grey font-14 fw-500">{{popular.createdAt | date}}</p>
                                 </div>
                             </div>
                         </div>

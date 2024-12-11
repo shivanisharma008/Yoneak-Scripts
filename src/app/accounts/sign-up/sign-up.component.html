@@ -1,16 +1,15 @@
-<div class="login_main d-flex align-items-center justify-content-center mt-5">
-    <div class="login_body d-flex w-60 mt-4">
-        <div class="login_left bg-blue w-60">
+<div class="login_main d-flex align-items-center justify-content-center ">
+    <div class="login_body d-flex w-100 ">
+        <!-- <div class="login_left bg-blue w-60">
             <img src="https://i.pinimg.com/enabled_lo_mid/736x/4b/73/aa/4b73aa2d071775966b8328f1f81536f7.jpg"
                 alt="card-left-img" width="100%">
             <p class="formName text-white font-40 fw-800 text-a-c w-100">Registration</p>
-        </div>
-        <div class="login_right d-flex flex-column align-items-center justify-content-center gap-4 bg-black w-40">
+        </div> -->
+        <div class="login_right d-flex flex-column align-items-center justify-content-center gap-5 bg-black w-100">
             <div class="login_right_header d-flex flex-column align-items-center justify-content-center gap-4 w-70">
-                <div class="logo">
+                <!-- <div class="logo">
                     <div class="logo d-flex justify-content-center">
-                        <img src="assests/images/new_logo.png" alt="logo" width="90%">
-                        <!-- <h1 class="text-white font-36 fw-600">Yoneak Scripts</h1> -->
+                        <img src="assests/images/new_logo.png" alt="logo" width="60%">
                     </div>
                 </div>
                 <div class="social_icons d-flex flex-row align-items-center justify-content-center gap-2">
@@ -20,7 +19,8 @@
                             class='bx bxl-linkedin-square text-white font-32 cursor'></i></a>
                     <a href="https://www.instagram.com/" target="_blank"><i
                             class='bx bxl-instagram-alt text-white font-32 cursor'></i></a>
-                </div>
+                </div> -->
+                <h1 class="text-white font-42 fw-700 text-a-c">Personal Details</h1>
             </div>
             <form [formGroup]="signUpForm" class="d-flex flex-column gap-5 w-70">
                 <div class="form_group d-flex flex-column gap-3">
@@ -91,13 +91,13 @@
                     </div>
                     <div class="form_field d-flex flex-column gap-2">
                         <div class="form_field_input d-flex flex-row gap-3">
-                            <div>
+                            <div class="d-flex gap-1">
                                 <input type="radio" id="male" value="3" formControlName="role">
-                                <label for="male" class="text-white">User</label>
+                                <label for="male" class="text-white">Creator</label>
                             </div>
-                            <div>
+                            <div class="d-flex gap-1">
                                 <input type="radio" id="female" value="2" formControlName="role">
-                                <label for="female" class="text-white">Writer</label>
+                                <label for="female" class="text-white">Brand</label>
                             </div>
                         </div>
                         <span
@@ -127,10 +127,10 @@
                     <div class="submit d-flex align-items-center justify-content-center">
                         <button class="text-blue font-16 fw-700 br-n br-20 w-100 py-2" (click)="submitRegistrationForm()">ENTER</button>
                     </div>
-                    <div class="already_have_acc d-flex align-items-center justify-content-center">
+                    <!-- <div class="already_have_acc d-flex align-items-center justify-content-center">
                         <p class="text-white font-14 fw-500">Already have account <a routerLink="/accounts/sign-in">Sign
                                 In</a></p>
-                    </div>
+                    </div> -->
                 </div>
             </form>
         </div>

@@ -1,9 +1,10 @@
 .login_main {
-    height: 90vh;
+    // height: 90vh;
 }
 
 .login_body {
     height: 580px;
+    border: 6px solid white;
     // border-bottom-right-radius: 15px;
 }
 
@@ -81,7 +82,9 @@
     transform: translateY(0);
 }
 
-
+::ng-deep.mat-mdc-dialog-container .mdc-dialog__surface {
+    height: auto !important;
+}
 @media screen and (max-width:599px) {
     .login_main{
         height: auto;
@@ -98,22 +101,22 @@
         display: none !important;
     }
     .login_right{
-        width: 100% !important;
+        // width: 100% !important;
         padding: 60px 0;
-        height: 100vh;
+        // height: 100vh;
     }
 }
 
 @media screen and (min-width:600px) and (max-width:1023px) {
-    .login_body {
-        width: 90% !important;
-        height: 500px;
-    }
+    // .login_body {
+    //     width: 90% !important;
+    //     height: 500px;
+    // }
 }
 
 @media screen and (min-width:1024px) and (max-width:1440px) {
-    .login_body {
-        width: 80% !important;
-        height: 500px;
-    }
+    // .login_body {
+    //     width: 80% !important;
+    //     height: 500px;
+    // }
 }
