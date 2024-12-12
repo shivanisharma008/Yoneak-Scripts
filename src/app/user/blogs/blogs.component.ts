@@ -32,6 +32,10 @@ export class BlogsComponent {
   categoryList: any;
   popularBlogList: any;
   isLoading!: boolean;
+  selectedCategory: string = '';
+  maxDisplay = 4;
+  showDropdown = false;
+
   // blogsToShow: number = 6;
   // displayedBlogs: any[] = []; // Subset of blogs to display
 
@@ -50,6 +54,28 @@ export class BlogsComponent {
     this.getCategoryList()
     this.getPopularBlogs()
   }
+
+  get displayedCategories() {
+    return this.categoryList.slice(0, this.maxDisplay);
+  }
+
+  get hiddenCategories() {
+    return this.categoryList.slice(this.maxDisplay);
+  }
+
+  toggleDropdown(): void {
+    this.showDropdown = !this.showDropdown;
+  }
+
+  selectCategory(categoryId: string): void {
+    this.selectedCategory = categoryId;
+    this.showDropdown = false; // Close dropdown when a category is selected
+    console.log('Selected Category:', categoryId);
+    this.getBlogsList(categoryId, '', '', true);
+    // Fetch blogs or perform other actions
+  }
+
+
 
   onImageError(event: Event): void {
     const target = event.target as HTMLImageElement;

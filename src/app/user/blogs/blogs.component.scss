@@ -4,58 +4,47 @@
     background-repeat: no-repeat;
     height: 40vh;
 }
-.category-dropdown {
-    position: relative;
-    display: inline-block;
-}
 
-.dropdown-btn {
-    background-color: transparent;
-    border: 1px solid black;
-    padding: 10px 33px;
-    cursor: pointer;
-    color: #000;
-    border-radius: 6px; /* Rounded corners */
+.category-more-dropdown {
+    position: relative;
+}
+.category_card{
+    background-color: #dcdcdc;
+    border-radius: 30px;
 }
 
 .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%; /* Aligns directly below the button */
-    left: 0;
+    display: none !important;
     background-color: #fff;
-    min-width: 200px;
-    // box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border: none;
+    border: 1px solid #ccc;
     border-radius: 8px;
-    z-index: 10;
-    padding: 10px 0;
-    margin-top: 0; /* Ensure no gap between button and dropdown menu */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 100%;
+    /* Position below the "More" button */
+    left: 0;
+    z-index: 1000;
+    padding: 1rem;
+    min-width: 250px;
 }
 
-.dropdown-menu li {
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    color: #333;
+.category-more-dropdown:hover .dropdown-menu {
+    display: flex !important;
+    /* Show the dropdown on hover */
+}
+
+.dropdown-menu .category-chip {
+    width: 100%;
     text-align: left;
+    background-color: #f1f1f1;
+    padding: 0.5rem 1rem;
 }
 
-.dropdown-menu li:hover {
-    background-color: #f8f9fa;
-    color: #007bff;
+.dropdown-menu .category-chip:hover {
+    background-color: #dcdcdc;
 }
 
-/* Ensure the dropdown remains visible when hovering */
-.category-dropdown:hover .dropdown-menu,
-.category-dropdown:focus-within .dropdown-menu {
-    display: block;
-}
 
-/* Adjust pointer events to prevent gaps causing the hover to disappear */
-.category-dropdown:hover {
-    pointer-events: auto;
-}
 
 
 
@@ -153,24 +142,29 @@
 //     grid-template-columns: repeat(3, 1fr);
 //     gap: 10px;
 // }
-.popular_main_cards{
+.popular_main_cards {
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
-.popular_card{
+
+.popular_card {
     border-bottom: 1px solid rgb(230, 230, 230);
 }
-.popular_card_left{
+
+.popular_card_left {
     width: 80px;
     height: 80px;
 }
-.popular_card_left img{
+
+.popular_card_left img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.popular_card_right p:hover{
+
+.popular_card_right p:hover {
     text-decoration: underline;
 }
+
 .truncate {
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -180,6 +174,7 @@
     // text-wrap: wrap;
     // white-space: nowrap;
 }
+
 .card_image {
     position: relative;
     overflow: hidden;
@@ -271,7 +266,14 @@
         overflow: hidden;
 
     }
-    .popular_card_right{
+    .category-section{
+        align-items: center !important;
+    }
+    .category_card{
+        width: 100% !important;
+    }
+
+    .popular_card_right {
         padding-left: 20px;
     }
 }
@@ -309,16 +311,27 @@
     .blogs_content_left {
         // grid-template-columns: repeat(2, 1fr);
     }
+    .category-section{
+        align-items: center !important;
+    }
+    .category_card{
+        width: 48% !important;
+    }
 }
 
 @media screen and (min-width:1024px) and (max-width:1280px) {
     .blogs_content_left {
         grid-template-columns: repeat(2, 1fr);
     }
-    .subcribe_list_item a{
+
+    .subcribe_list_item a {
         font-size: 11px !important;
     }
-    .popular_card_right{
+    .category_card{
+        width: 20% !important;
+    }
+
+    .popular_card_right {
         padding-left: 20px;
     }
 }
