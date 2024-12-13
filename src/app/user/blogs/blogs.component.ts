@@ -33,7 +33,7 @@ export class BlogsComponent {
   popularBlogList: any;
   isLoading!: boolean;
   selectedCategory: string = '';
-  maxDisplay = 4;
+  maxDisplay = 5;
   showDropdown = false;
 
   // blogsToShow: number = 6;
