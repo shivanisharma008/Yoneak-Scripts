@@ -191,7 +191,7 @@ export class BlogsService {
         return this.httpClient.post<any>(`${apiRoutes.blogs.createVideoLink}`, createVideoLinkModel)
     }
 
-    getCreateVideoLink(creatorId: string | null, creatorVideoId: string | null, isApproved: boolean | null): Observable<GetCreatedVideoModel[]> {
+    getCreateVideoLink(creatorId: string | null, creatorVideoId: string | null, blogId: string | null,  isApproved: boolean | null): Observable<GetCreatedVideoModel[]> {
         const params: { [key: string]: string } = {};
 
         if (creatorId) {
@@ -199,6 +199,9 @@ export class BlogsService {
         }
         if (creatorVideoId) {
             params['creatorVideoId'] = creatorVideoId;
+        }
+        if (blogId) {
+            params['blogId'] = blogId;
         }
         if (isApproved !== null && isApproved !== undefined) {
             params['isApproved'] = isApproved.toString();

@@ -248,7 +248,7 @@ export class SignInComponent {
     this.userApiService.verifyEmailPostApi(verifyEmailRequestModel).subscribe({
       next: (res) => {
         console.log(res);
-        if (res.status === 200) {
+        if (res.status === 200 && res.data === null) {
           this.dialog.open(SignUpComponent, {
             width: '600px',
             height: '600px',
@@ -295,7 +295,39 @@ export class SignInComponent {
           //     verticalPosition: 'bottom',
           //     horizontalPosition: 'center'
           //   });
-        } else {
+        } else if (res.status === 200 && res.data !== null) {
+          const role = res.data.role;
+          const userDetails = res.data;
+          localStorage.setItem('userDetails', JSON.stringify(userDetails));
+          this._snackBar.open(res.message, 'Close', {
+            duration: 3000,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'center'
+          });
+          if (this.returnUrl === '' || this.returnUrl === '/' || this.returnUrl === null || this.returnUrl === undefined) {
+            switch (role) {
+              case 1:
+                this.router.navigate(['super-admin-module']);
+                break;
+              case 2:
+                this.router.navigate(['admin']);
+                break;
+              case 3:
+                this.router.navigate(['user/blogs']);
+                break;
+              default:
+                console.error('Unknown role:', role);
+            }
+          } else {
+            this._snackBar.open(res.message, 'Close', {
+              duration: 3000,
+              verticalPosition: 'bottom',
+              horizontalPosition: 'center'
+            });
+            this.router.navigateByUrl(this.returnUrl);
+          }
+        }
+        else {
           this._snackBar.open(res.message, 'Close', {
             duration: 3000,
             verticalPosition: 'bottom',

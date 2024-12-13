@@ -48,7 +48,7 @@ export class UserUploadLinksComponent {
 
 
   getVideoLink() {
-    this.blogService.getCreateVideoLink('', '', null).subscribe({
+    this.blogService.getCreateVideoLink('', '','', null).subscribe({
       next: (res: any) => {
         console.log(res.data);
         this.videoLinks = res.data

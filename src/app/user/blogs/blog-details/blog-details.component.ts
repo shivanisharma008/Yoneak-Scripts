@@ -75,7 +75,11 @@ export class BlogDetailsComponent {
       this.redirectToLogin();
       return;
     }
-    this.router.navigate(['/user/others-video']);
+    this.router.navigate(['/user/others-video'], {
+      queryParams: {
+        blogId: this.blogId
+      }
+    });
   }
 
 }

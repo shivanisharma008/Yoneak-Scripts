@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BlogsService } from '../../api/api-services/blogs.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-see-others-video',
@@ -12,12 +13,14 @@ export class SeeOthersVideoComponent {
   selectedVideo: string | null = null; // Store the URL of the selected video
   selectedVideoType: string | null = null;
   safeVideoUrl: SafeResourceUrl | null = null;
+  blogId: any;
 
-  constructor(private blogService: BlogsService, private sanitizer: DomSanitizer) {
+  constructor(private blogService: BlogsService, private sanitizer: DomSanitizer, private activatedRoute: ActivatedRoute,) {
 
   }
 
   ngOnInit() {
+    this.blogId = this.activatedRoute.snapshot.queryParams['blogId']
     this.getVideoLink()
   }
 
@@ -66,7 +69,7 @@ export class SeeOthersVideoComponent {
 
 
   getVideoLink() {
-    this.blogService.getCreateVideoLink('', '', true).subscribe({
+    this.blogService.getCreateVideoLink('', '', this.blogId, true).subscribe({
       next: (res: any) => {
         console.log(res.data);
         this.videoLinks = res.data

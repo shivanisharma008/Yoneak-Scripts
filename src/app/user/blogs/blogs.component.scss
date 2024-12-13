@@ -8,9 +8,20 @@
 .category-more-dropdown {
     position: relative;
 }
-.category_card{
-    background-color: #dcdcdc;
-    border-radius: 30px;
+
+.category_card {
+    // background-color: #dcdcdc;
+    border: 0.5px solid;
+    border-radius: 5px;
+}
+
+.category_card:hover {
+    border-color: transparent;
+    background: linear-gradient(to right, #E4A038, #DB3927);
+
+    p {
+        color: white;
+    }
 }
 
 .dropdown-menu {
@@ -36,19 +47,24 @@
 .dropdown-menu .category-chip {
     width: 100%;
     text-align: left;
-    background-color: #f1f1f1;
+    // background-color: #f1f1f1;
     padding: 0.5rem 1rem;
+    border: 0.5px solid;
+    border-radius: 5px;
 }
 
 .dropdown-menu .category-chip:hover {
     background-color: #dcdcdc;
 }
 
+.dropdown-menu .category-chip:hover {
+    border-color: transparent;
+    background: linear-gradient(to right, #E4A038, #DB3927);
 
-
-
-
-
+    p {
+        color: white;
+    }
+}
 
 .blog_main_cards {
     gap: 20px;
@@ -266,10 +282,12 @@
         overflow: hidden;
 
     }
-    .category-section{
+
+    .category-section {
         align-items: center !important;
     }
-    .category_card{
+
+    .category_card {
         width: 100% !important;
     }
 
@@ -311,10 +329,12 @@
     .blogs_content_left {
         // grid-template-columns: repeat(2, 1fr);
     }
-    .category-section{
+
+    .category-section {
         align-items: center !important;
     }
-    .category_card{
+
+    .category_card {
         width: 48% !important;
     }
 }
@@ -327,7 +347,8 @@
     .subcribe_list_item a {
         font-size: 11px !important;
     }
-    .category_card{
+
+    .category_card {
         width: 20% !important;
     }
 
@@ -342,6 +363,10 @@
     }
 
     .category-dropdown {
+        width: 71% !important;
+    }
+
+    .category-section {
         width: 71% !important;
     }
 }
