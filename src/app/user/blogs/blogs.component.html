@@ -10,7 +10,7 @@
               {{ category.categoryName }}
             </div>
           </div> -->
-        <div class="category-section d-flex flex-column align-items-start w-100">
+        <div class="category-section d-flex flex-column align-items-start w-90">
             <div class="category-chips d-flex flex-wrap gap-3 w-100 mt-2">
                 <div *ngFor="let category of displayedCategories"
                     class="category-chip category_card text-black text-a-c font-16 fw-400 br-6 cursor w-15 px-3 py-2 "
@@ -20,7 +20,7 @@
 
                 <div class="category-more-dropdown position-relative">
                     <div *ngIf="categoryList.length > maxDisplay"
-                        class="category-chip text-black text-a-c font-16 fw-400 br-6 cursor px-3 py-2">
+                        class="category-chip text-black  text-a-c font-16 fw-400 br-6 cursor px-3 py-2">
                         More...
                     </div>
                     <div class="dropdown-menu position-absolute d-flex flex-column gap-2">

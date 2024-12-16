@@ -2,16 +2,60 @@
     // height: 50vh;
 }
 
-.blog_details_desc_img {
-    width: 100%;
-    height: 500px;
-}
+// .blog_details_desc_img {
+//     width: 100%;
+//     height: 500px;
+// }
 
-.blog_details_desc_img img {
+// .blog_details_desc_img img {
+//     width: 100%;
+//     height: 100%;
+//     object-fit: cover;
+// }
+
+.blog_details_desc {
+    display: flex;
+    flex-direction: row; /* Content and image side-by-side */
+    gap: 1rem;
+    height: 520px; /* Set fixed height */
+  }
+  
+  .blog_details_content {
+    display: flex;
+    flex-direction: column; /* Stack content and buttons */
+    justify-content: space-between; /* Keep buttons fixed below */
+    height: 100%; /* Occupy full height */
+  }
+  
+  .scrollable_content {
+    flex: 1; /* Allow the content section to take up available space */
+    overflow-y: auto; /* Enable scrolling */
+    // border: 1px solid #ddd; /* Optional: Add a border */
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .buts {
+    display: flex;
+    justify-content: flex-start;
+    position: relative; /* Ensures buttons stay below */
+  }
+  
+  .blog_details_desc_img {
+    width: 50%;
+    height: 100%; /* Match height */
+  }
+  
+  .blog_details_desc_img img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-}
+    object-fit: cover; /* Maintain aspect ratio */
+  }
+
+  ::-webkit-scrollbar{
+    display: none;
+  }
+  
 
 .date {
     border-bottom: 1px solid #ddd;
@@ -31,6 +75,55 @@
     // background: linear-gradient(to right, red, yellow, orange);
     background-color: transparent;
     color: black;
+}
+
+@media screen and (max-width:599px) {
+    .blog_details_body{
+        width: 90% !important;
+    }
+    .date{
+        width: 90% !important;
+    }
+    .blog_details_desc{
+        height: auto;
+        flex-direction: column-reverse !important;
+        gap: 30px;
+    }
+    .blog_details_content{
+        width: 100% !important;
+    }
+    .blog_details_desc_img{
+        width: 100% !important;
+    }
+    .buts button{
+        width: 90%;
+    }
+}
+
+@media screen and (min-width:600px) and (max-width:1023px) {
+    .blog_details_body{
+        width: 90% !important;
+    }
+    .blog_details_desc{
+        height: auto;
+        flex-direction: column-reverse !important;
+        gap: 30px;
+    }
+    .blog_details_content{
+        width: 100% !important;
+    }
+    .blog_details_desc_img{
+        width: 100% !important;
+    }
+}
+
+@media screen and (min-width:1024px) and (max-width:1280px) {
+    .blog_details_body{
+        width: 90% !important;
+    }
+    .buts button{
+        font-size: 12px !important;
+    }
 }
 
 @media screen and (min-width:1561px) {
