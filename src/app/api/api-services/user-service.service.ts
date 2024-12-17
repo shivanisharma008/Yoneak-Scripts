@@ -12,6 +12,7 @@ import { ProfileDetailsModel } from '../api-modules/profile-details.model';
 import { ProfileDetailsRequestModel } from '../api-modules/profile-details-request.model';
 import { adminListResponseModel } from '../api-modules/admin-list.model';
 import { LoginRequestModel } from '../api-modules/login-request.model';
+import { UpdateUserProfileRequestModel } from '../api-modules/update-profile.model';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +62,10 @@ export class UserServiceService {
     console.log('Query Params:', params);
 
     return this.httpClient.get<UserListModal[]>(`${apiRoutes?.user?.userListPagination}`, { params });
+  }
+
+  updateUserProfile(updateUserProfileRequestModel: UpdateUserProfileRequestModel): Observable<any> {
+    return this.httpClient.put<any>(`${apiRoutes.user.editUser}`, updateUserProfileRequestModel)
   }
 
 

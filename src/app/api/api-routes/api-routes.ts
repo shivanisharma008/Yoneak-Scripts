@@ -14,6 +14,7 @@ export const apiRoutes = {
         userList:`${baseURL}user`,
         userListPagination:`${baseURL}user/pagination`,
         deleteUser: `${baseURL}user`,
+        editUser: `${baseURL}user/update-profile`,
         profileDetails: `${baseURL}user/profile`,
         adminsList: `${baseURL}user/admins`,
         adminsListPagination: `${baseURL}user/admins/pagination`,

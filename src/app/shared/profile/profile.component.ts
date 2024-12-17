@@ -53,6 +53,8 @@ export class ProfileComponent {
     });
 
     dialogRef.afterClosed().subscribe((updatedData) => {
+      console.log(updatedData);
+      this.getProfileDetails();
       if (updatedData) {
         this.userDetails = updatedData; // Update userDetails after editing
       }

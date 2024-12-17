@@ -58,8 +58,7 @@
                                     <div class="blogs_card_desc d-flex flex-column gap-2">
                                         <div class="blogs_card_desc_info d-flex gap-4">
                                             <div class="admin">
-                                                <p class="text-blue font-14 fw-500">By {{ blog.role === 2 ? 'BRAND' :
-                                                    'Super Admin'}}</p>
+                                                <p class="text-blue font-14 fw-500">By {{ blog.createdBy.username }}</p>
                                             </div>
                                             <div class="date">
                                                 <p class="font-14 fw-500">{{blog.createdAt | date}}</p>

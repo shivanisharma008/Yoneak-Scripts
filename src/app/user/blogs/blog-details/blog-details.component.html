@@ -43,7 +43,7 @@
                 <p>{{details.createdAt | date}} | {{details.category.categoryName}}</p>
             </div>
             <div class="admin d-flex align-items-center justify-content-center w-40">
-                <p>{{details.role === 2 ? 'BRAND' : details.role === 1 ? 'Super Admin' : 'CREATOR '}}</p>
+                <p style="text-wrap: nowrap;">By {{details.createdBy.username}}</p>
             </div>
         </div>
         <div class="blog_details_desc flex-wrap w-100">
@@ -65,7 +65,7 @@
 
             <!-- Image Section -->
             <div class="blog_details_desc_img w-48">
-                <img [src]="details.image ? details.image : 'assets/images/blog_card_img2.jpg'" alt="image"
+                <img [src]="details.image ? details.image : 'assests/images/blog_card_img2.jpg'" alt="image"
                     style="width: 100%; height: auto; object-fit: cover;">
             </div>
         </div>
