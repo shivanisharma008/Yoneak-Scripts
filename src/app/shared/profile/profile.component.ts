@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { UserServiceService } from '../../api/api-services/user-service.service';
 import { ProfileDetailsRequestModel } from '../../api/api-modules/profile-details-request.model';
+import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class ProfileComponent {
 
   constructor(
     public dialogRef: MatDialogRef<ProfileComponent>,
-    private userService: UserServiceService
+    private userService: UserServiceService,
+    private dialog: MatDialog
     // @Inject(MAT_DIALOG_DATA) public data: any, 
   ) {
   }
@@ -41,5 +43,19 @@ export class ProfileComponent {
         this.userDetails = res.data
       }
     })
+  }
+
+  openEditDialog(): void {
+    const dialogRef = this.dialog.open(EditProfileComponent, {
+      width: '500px',
+      height:'400px',
+      data: this.userDetails // Pass userDetails to the dialog
+    });
+
+    dialogRef.afterClosed().subscribe((updatedData) => {
+      if (updatedData) {
+        this.userDetails = updatedData; // Update userDetails after editing
+      }
+    });
   }
 }

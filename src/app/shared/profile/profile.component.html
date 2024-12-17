@@ -16,8 +16,13 @@
     <!-- Profile Content -->
     <div class="profile-content bg-white shadow rounded p-4 w-90 mt-3">
       <!-- Basic Info -->
-      <div class="info-section mb-4">
-        <h3 class="section-title text-blue font-18 fw-bold mb-3">Basic Information</h3>
+      <div class="info-section d-flex flex-column gap-4 mb-4">
+        <div class="info-section-head d-flex align-items-center justify-content-between">
+          <h3 class="section-title text-blue font-18 fw-bold ">Basic Information</h3>
+          <i class="fa-solid fa-pen-to-square font-20 cursor" matTooltip="Edit Profile"
+          aria-label="Edit Profile" (click)="openEditDialog()"></i>
+          <!-- <button class="bg-black text-light font-14 fw-500 px-3 py-1" ></button> -->
+        </div>
         <div class="info-group d-flex flex-column gap-3">
           <div class="info-item d-flex justify-content-between align-items-center">
             <span class="label text-grey font-16">Full Name:</span>

@@ -1,0 +1,30 @@
+<div class="edit_profile_main d-flex flex-column align-items-center justify-content-center py-4">
+    <div class="edit_profile_body d-flex flex-column align-items-center justify-content-center gap-4 w-70">
+        <h2 class="font-24 fw-600 ">Edit Profile</h2>
+        <div class="main_content d-flex flex-column align-items-center justify-content-center w-100">
+            <form [formGroup]="editProfileForm" class="d-flex flex-column align-items-center justify-content-center gap-2 w-100">
+                <div class="form_group d-flex flex-column gap-2 w-100">
+                    <label class="font-16 fw-500">Full Name</label>
+                    <input type="text" class="form_field br-3 p-2" name="username"  formControlName="name"  required />
+                </div>
+
+                <div class="form_group d-flex flex-column gap-2 w-100">
+                    <label class="font-16 fw-500">Email</label>
+                    <input type="email" class="form_field br-3 p-2"  formControlName="email"  />
+                </div>
+
+                <div class="form_group d-flex flex-column gap-2 w-100">
+                    <label class="font-16 fw-500">Phone Number</label>
+                    <input type="text" class="form_field br-3 p-2" name="phoneNo" formControlName="phone"  />
+                </div>
+            </form>
+        </div>
+
+        <div class="butns d-flex align-items-center gap-3">
+            <button class="text-danger br-6 br-n py-1 px-3"  (click)="onCancel()">Cancel</button>
+            <button class="text-primary br-6 br-n py-1 px-4" >Save</button>
+        </div>
+    </div>
+
+
+</div>
