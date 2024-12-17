@@ -18,10 +18,10 @@
                     <p>{{ category.categoryName }}</p>
                 </div>
 
-                <div class="category-more-dropdown position-relative">
+                <div class="category-more-dropdown position-relative w-15">
                     <div *ngIf="categoryList.length > maxDisplay"
-                        class="category-chip text-black  text-a-c font-16 fw-400 br-6 cursor px-3 py-2">
-                        More...
+                        class="category-chip text-black  text-a-c font-16 fw-400 br-6 cursor px-3 py-2 w-100">
+                        View More...
                     </div>
                     <div class="dropdown-menu position-absolute d-flex flex-column gap-2">
                         <div *ngFor="let category of hiddenCategories"

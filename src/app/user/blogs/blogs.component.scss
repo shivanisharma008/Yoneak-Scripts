@@ -324,6 +324,10 @@
     .popular_card_right {
         padding-left: 20px;
     }
+
+    .category-more-dropdown {
+        width: 100% !important;
+    }
 }
 
 @media screen and (min-width:600px) and (max-width:1023px) {
@@ -368,6 +372,10 @@
     }
 
     .category_card {
+        width: 48% !important;
+    }
+
+    .category-more-dropdown {
         width: 48% !important;
     }
 }
