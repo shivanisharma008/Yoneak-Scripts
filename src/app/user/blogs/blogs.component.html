@@ -120,7 +120,7 @@
                                 </div>
                                 <div class="popular_card_right d-flex flex-column gap-1 w-70"
                                     (click)="blogsDetails(popular._id); updatePopularBlogsView(popular._id)">
-                                    <p class="text-black font-16 fw-500">{{popular.blogName | slice:0:35 }}...</p>
+                                    <p class="truncate text-black font-16 fw-500">{{popular.blogName }}</p>
                                     <span class="text-grey font-14 fw-500">{{popular.createdAt | date}}</span>
                                 </div>
                             </div>
