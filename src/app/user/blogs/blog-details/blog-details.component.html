@@ -1,74 +1,32 @@
-<!-- <div class="blog_details_main d-flex flex-column align-items-center justify-content-center mt-5">
-    <div *ngFor="let details of blogsList" class="blog_details_body d-flex flex-column align-items-center justify-content-center gap-5 w-70 pb-5 mt-5">
-        <div class="blog_details_title d-flex align-items-end justify-content-center w-100">
-            <h1 class="text-black font-45 fw-800 text-a-c w-80">{{details.blogName}}
-            </h1>
-        </div>
-        <div class="blog_details_date d-flex flex-column align-items-center justify-content-center w-100">
-            <div class="date d-flex align-items-center justify-content-center w-40">
-                <p>{{details.createdAt | date}} | {{details.category.categoryName}}</p>
-            </div>
-            <div class="admin d-flex align-items-center justify-content-center w-40">
-                <p>{{details.role === 2 ? 'BRAND' : details.role === 1 ? 'Super Admin' : 'CREATOR '}}</p>
-            </div>
-        </div>
-        <div class="blog_details_desc d-flex flex-column gap-4 w-100">
-            <div class="blog_details_desc_img">
-                <img [src]="details.image ? details.image : 'assests/images/blog_card_img2.jpg'" alt="image" width="100%">
-            </div>
-            <div class="blog_details_para d-flex flex-column gap-3">
-                <p class="text-grey font-16 fw-500" [innerHTML]="details.content"></p>
-            </div>
-        </div>
-
-        <div class="buts d-flex align-items-center gap-3">
-            <button class=" other_butn font-16 fw-600 br-3 p-2 px-4" (click)="openVideo()">SEE OTHER CREATORS VIDEOS</button>
-            <button class="bg-black text-white font-16 fw-600 br-3 p-2 px-4" (click)="openProfileDialog()">SUBMIT YOUR CREATION LINK</button>
-        </div>
-    </div>
-</div>
- -->
-
-
-
 <div class="blog_details_main d-flex flex-column align-items-center justify-content-center mt-5">
     <div *ngFor="let details of blogsList"
-        class="blog_details_body d-flex flex-column align-items-center justify-content-center gap-5 w-70 pb-5 my-5">
-        <div class="blog_details_title d-flex align-items-end justify-content-center w-100">
-            <h1 class="text-black font-45 fw-800 text-a-c w-80">{{details.blogName}}
-            </h1>
-        </div>
-        <div class="blog_details_date d-flex flex-column align-items-center justify-content-center w-100">
-            <div class="date d-flex align-items-center justify-content-center w-40">
-                <p>{{details.createdAt | date}} | {{details.category.categoryName}}</p>
-            </div>
-            <div class="admin d-flex align-items-center justify-content-center w-40">
-                <p style="text-wrap: nowrap;">By {{details.createdBy.username}}</p>
+        class="blog_details_body d-flex flex-column align-items-center justify-content-center gap-5 w-70 pb-2 ">
+        <div class="blog-header">
+            <h1 class="blog-title text-black font-32 fw-500 text-a-c mt-5">{{details.blogName}}</h1>
+            <div class="blog-meta text-a-c">
+                <p class="date-category">{{details.createdAt | date}} | {{details.category.categoryName}}</p>
+                <p class="author">By {{details.createdBy.username}}</p>
             </div>
         </div>
-        <div class="blog_details_desc flex-wrap w-100">
-            <!-- Content Section -->
-            <div class="blog_details_content d-flex flex-column gap-3 w-60">
-                <div class="scrollable_content overflow-auto p-3">
+        <div class="blog_details_desc d-flex flex-wrap w-100">
+            <div class="content-container mb-5">
+                <div class="scrollable-content">
                     <p class="text-grey font-16 fw-500" [innerHTML]="details.content"></p>
                 </div>
-                <!-- Buttons Fixed Below Content -->
-                <div class="buts d-flex align-items-center justify-content-center flex-wrap gap-3 mt-3">
-                    <button class="other_butn font-14 fw-600 br-3 p-2 px-3" (click)="openVideo()">
+                <div class="action-buttons">
+                    <button class="secondary-button font-14 fw-500" (click)="openVideo()">
                         SEE OTHER CREATORS VIDEOS
                     </button>
-                    <button class="bg-black text-white font-14 fw-600 br-3 p-2 px-3" (click)="openProfileDialog()">
+                    <button class="primary-button font-14 fw-500" (click)="openProfileDialog()">
                         SUBMIT YOUR CREATION LINK
                     </button>
                 </div>
             </div>
 
-            <!-- Image Section -->
-            <div class="blog_details_desc_img w-35">
+            <div class="blog_details_desc_img sticky-image-container w-35">
                 <img [src]="details.image ? details.image : 'assests/images/blog_card_img2.jpg'" alt="image"
-                    style="width: 100%; height: auto; object-fit: cover;">
+                    style="width: 100%; height: 100%; object-fit: cover;">
             </div>
         </div>
-
     </div>
 </div>

@@ -194,7 +194,7 @@
 }
 
 .popular_card_left {
-    width: 80px;
+    // width: 80px;
     height: 80px;
 }
 
@@ -249,6 +249,46 @@
     height: 0px;
 }
 
+/* Dropdown Categories Container */
+.dropdown-categories {
+    position: absolute; /* Place dropdown above content */
+    top: 50px; /* Align dropdown below the menu icon */
+    right: 10px; /* Adjust alignment */
+    width: 250px; /* Adjust the width */
+    max-height: 0; /* Initially collapsed */
+    overflow: hidden; /* Hide overflowing content */
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1000; /* Ensure it's on top */
+    transition: max-height 0.5s ease-out; /* Smooth slide-down effect */
+  }
+  
+  /* Dropdown Open State */
+  .dropdown-categories.open {
+    max-height: 300px; /* Expand the dropdown smoothly */
+  }
+  
+  /* Category Item Styles */
+  .category-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .category-item:last-child {
+    border-bottom: none;
+  }
+  
+  .category-item:hover {
+    background-color: #f0f0f0;
+    border-radius: 4px;
+  }
+  
+  .mobile-category-menu {
+    display: none;
+  }
+  
+
 
 // .blog-carousel{
 //     position: relative;
@@ -283,11 +323,17 @@
 //     color: #000;
 // }
 
+
 @media screen and (max-width:599px) {
+    .blogs_body{
+        margin-top: 2px !important;
+    }
     .blogs_main_content {
         gap: 30px;
         align-items: center !important;
+        padding-top: 20px !important;
     }
+    
     .category-chips{
         flex-wrap: wrap;
     }
@@ -320,15 +366,15 @@
     .category_card {
         width: 100% !important;
     }
-
-    .popular_card_right {
-        padding-left: 20px;
-    }
+    .category-section {
+        display: none !important;
+      }
 }
 
 @media screen and (min-width:600px) and (max-width:1023px) {
     .blogs_main_content {
         gap: 30px;
+        padding-top: 20px !important;
     }
     .category-chips{
         flex-wrap: wrap;
@@ -403,3 +449,5 @@
         width: 71% !important;
     }
 }
+
+
