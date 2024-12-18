@@ -23,11 +23,19 @@ export class MyScriptsComponent {
     this.getBlogsList()
   }
 
+  stripHtmlTags(html: string): string {
+    return html ? html.replace(/<[^>]*>/g, '') : '';
+  }
+
   getBlogsList() {
     this.isLoading = true;
     this.blogsService.blogsList('', '', this.userId, null).subscribe({
       next: (res: any) => {
-        this.blogsList = res.data
+        // this.blogsList = res.data
+        this.blogsList = res.data.map((blog: any) => ({
+          ...blog,
+          plainContent: this.stripHtmlTags(blog.content) // Add plain content
+        }));
         console.log(res);
         console.log(this.blogsList);
       },

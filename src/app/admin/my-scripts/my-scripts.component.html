@@ -31,7 +31,7 @@
             class="blog-thumbnail br-6 w-100">
         </div>
         <div class="blog-content d-flex flex-column gap-3">
-          <p class="text-grey font-16 fw-500" [innerHTML]="blog.content"></p>
+          <p class="text-grey font-16 fw-500" [title]="blog.plainContent"  [innerHTML]="(blog.content | slice:0:500) + '...'"></p>
         </div>
       </div>
     </div>

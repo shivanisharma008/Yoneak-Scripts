@@ -35,6 +35,7 @@ export class BlogsComponent {
   selectedCategory: string = '';
   maxDisplay = 5;
   showDropdown = false;
+  selectedCategoryName: string = '';
 
   // blogsToShow: number = 6;
   // displayedBlogs: any[] = []; // Subset of blogs to display
@@ -73,8 +74,9 @@ export class BlogsComponent {
     this.showDropdown = !this.showDropdown;
   }
 
-  selectCategory(categoryId: string): void {
+  selectCategory(categoryId: string, categoryName: string): void {
     this.selectedCategory = categoryId;
+    this.selectedCategoryName = categoryName;
     this.showDropdown = false; // Close dropdown when a category is selected
     console.log('Selected Category:', categoryId);
     this.getBlogsList(categoryId, '', '', true);

@@ -1,27 +1,27 @@
 <div class="blogs_main d-flex flex-column align-items-center justify-content-center mt-5">
     <div class="blogs_body d-flex flex-column align-items-center justify-content-center w-100 mt-5">
-   <!-- Mobile/Tab Category Menu -->
-<div class="mobile-category-menu d-flex d-md-flex d-lg-none justify-content-end w-100 position-relative">
-    <div class="menu_icon d-flex justify-content-end w-100 px-3 py-2">
-      <i class="fa-solid fa-bars font-20 cursor" (click)="toggleCategoryMenu()"></i>
-    </div>
-  
-    <!-- Dropdown with Slide Effect -->
-    <div class="dropdown-categories bg-white shadow position-absolute"
-         [class.open]="showCategories">
-      <div *ngFor="let category of categoryList" class="category-item py-2 border-bottom cursor"
-           (click)="selectCategory(category._id)">
-        <p class="m-0 text-black font-16 fw-500">{{ category.categoryName }}</p>
-      </div>
-    </div>
-  </div>
-  
+        <!-- Mobile/Tab Category Menu -->
+        <div class="mobile-category-menu d-flex d-md-flex d-lg-none justify-content-end w-100 position-relative">
+            <div class="menu_icon d-flex justify-content-end w-100 px-3 py-2">
+                <i class="fa-solid fa-bars font-20 cursor" (click)="toggleCategoryMenu()"></i>
+            </div>
+
+            <!-- Dropdown with Slide Effect -->
+            <div class="dropdown-categories bg-white shadow position-absolute" [class.open]="showCategories">
+                <div *ngFor="let category of categoryList" class="category-item py-2 border-bottom cursor"
+                    (click)="selectCategory(category._id, category.categoryName)">
+                    <p class="m-0 text-black font-16 fw-500">{{ category.categoryName }}</p>
+                </div>
+            </div>
+        </div>
+
 
         <div class="category-section d-none d-md-none d-lg-flex flex-column align-items-start w-90">
             <div class="category-chips d-flex  gap-3 w-100 mt-2">
                 <div *ngFor="let category of displayedCategories"
                     class="category-chip category_card text-black text-a-c font-16 fw-400 br-6 cursor w-15 px-3 py-2 "
-                    [class.selected]="selectedCategory === category._id" (click)="selectCategory(category._id)">
+                    [class.selected]="selectedCategory === category._id"
+                    (click)="selectCategory(category._id, category.categoryName)">
                     <p>{{ category.categoryName }}</p>
                 </div>
 
@@ -33,7 +33,8 @@
                     <div class="dropdown-menu position-absolute d-flex flex-column gap-2">
                         <div *ngFor="let category of hiddenCategories"
                             class="category-chip text-black text-a-c font-16 fw-400 br-6 cursor px-3 py-2"
-                            [class.selected]="selectedCategory === category._id" (click)="selectCategory(category._id)">
+                            [class.selected]="selectedCategory === category._id"
+                            (click)="selectCategory(category._id, category.categoryName)">
                             <p class="text-a-c">{{ category.categoryName }}</p>
                         </div>
                     </div>
@@ -51,7 +52,6 @@
                                 (click)="blogsDetails(blog._id); updatePopularBlogsView(blog._id)">
                                 <img [src]="blog.image ? blog.image : 'assests/images/blog_card_img2.jpg'"
                                     alt="blob_card_img" width="100%">
-                                <!-- <img src="assests/images/blog_card_img2.jpg" alt="blob_card_img" width="100%"> -->
                             </div>
                             <div class="blog_card_bottom d-flex flex-column gap-3 pb-4 w-100">
                                 <div
@@ -84,14 +84,17 @@
 
                         </div>
                     </div>
-
-                    <ng-template #noDataFound>
-                        <div
-                            class="w-70 no-data-message text-center d-flex flex-row align-items-center justify-content-center ">
-                            <p class="font-30 text-grey fw-400">No Data Found</p>
-                        </div>
-                    </ng-template>
-
+                </div>
+                <div *ngIf="!blogsList || blogsList.length === 0"
+                    class="w-100 no-data-message text-center d-flex flex-column align-items-center justify-content-center py-5">
+                    <div class="icon mb-4">
+                        <img src="/assests/images/page-not-found.png" alt="" width="20%">
+                    </div>
+                    <p class="font-30 text-muted fw-600 mb-3">No Content Available in <span style="color: #007BFF;"> {{
+                            selectedCategoryName
+                            }}</span> Category</p>
+                    <p class="font-16 text-muted fw-300">We couldn’t find any data to display. Please check back later.
+                    </p>
                 </div>
 
             </div>
@@ -100,7 +103,6 @@
                 style="position: sticky;top: 100px;z-index: 100;height: 80vh;float: right; overflow-y: scroll ; width: 28%;">
                 <div
                     class="blogs_content_right_body  d-flex flex-column align-items-center justify-content-center gap-5">
-
 
                     <div
                         class="popular_article d-flex flex-column align-items-center justify-content-center gap-4 w-100">
@@ -113,7 +115,6 @@
                                 *ngFor="let popular of popularBlogList">
                                 <div class="popular_card_left w-25"
                                     (click)="blogsDetails(popular._id); updatePopularBlogsView(popular._id)">
-                                    <!-- <img [src]="popular.img" alt="popular_card_img" width="100%"> -->
                                     <img [src]="popular.image ? popular.image : 'assests/images/blog_card_img2.jpg'"
                                         alt="popular_card_img" width="100%" class="br-6">
                                 </div>
@@ -132,66 +133,3 @@
         </div>
     </div>
 </div>
-
-
-<!-- <div class="categoty d-flex flex-column gap-4">
-                        <div class="category_heading">
-                            <p class="font-20 fw-800">Category</p>
-                        </div>
-                        <div class="category_list ">
-                            <div class="category_list_item d-flex  justify-content-center"
-                                *ngFor="let category of categoryList">
-                                <div (click)="getBlogsList(category._id,'', '', true)" class="w-100">
-                                    <img src="assests/images/blog_cat1.jpg" alt="category_bg_img" width="100%"
-                                        class="categoty_bg">
-                                    <p
-                                        class="d-flex align-items-center justify-content-center category_name text-white font-14 fw-500 text-a-c w-100">
-                                        {{category.categoryName}}
-                                    </p>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-
-<!-- <div class="subcribe d-flex flex-column gap-4">
-                        <div class="subcribe_heading">
-                            <p class="font-20 fw-800">Subscribe</p>
-                        </div>
-                        <div class="subcribe_list">
-                            <div class="subcribe_list_item d-flex align-items-center gap-2 bg-light-grey p-2">
-                                <a class="text-grey font-14 fw-500 text-d-n">
-                                    <i class="fa-brands fa-facebook-f font-12 text-black"></i> Facebook</a>
-                            </div>
-                            <div class="subcribe_list_item bg-light-grey d-flex align-items-center gap-2  p-2">
-                                <a class="text-grey font-14 fw-500 text-d-n">
-                                    <i class="fa-brands fa-instagram font-12 text-black"></i> Instagram</a>
-                            </div>
-                            <div class="subcribe_list_item bg-light-grey d-flex align-items-center gap-2  p-2">
-                                <a class="text-grey font-14 fw-500 text-d-n">
-                                    <i class="fa-brands fa-linkedin-in font-12 text-black"></i> Linkedin</a>
-                            </div>
-                        </div>
-                    </div> -->
-
-<!-- <div class="blog-carousel w-90">
-            <div class="carousel-content">
-                <div *ngIf="currentBlog" class="blog-card d-flex">
-                    <div class="caurosel_img w-80">
-                        <img src="assests/images/blog_card_img2.jpg" alt="img" >
-                    </div>
-                    <div class="blog-info d-flex flex-column gap-5 p-5" >
-                        <h2 class="blog-title font-32 fw-700">{{ currentBlog.title }}</h2>
-                        <p class="blog-meta">
-                            By - {{ currentBlog.author }} &nbsp; | &nbsp; {{ currentBlog.category }}
-                        </p>
-                        <p class="blog-description font-16 fw-500">{{ currentBlog.description }}</p>
-                        <a class="read-more text-black font-18 fw-800 text-d-n" >Read More →</a>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-navigation d-flex gap-2">
-                <button (click)="prevBlog()" class="nav-btn">←</button>
-                <button (click)="nextBlog()" class="nav-btn">→</button>
-            </div>
-        </div> -->
