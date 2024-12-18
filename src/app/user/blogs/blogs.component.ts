@@ -55,6 +55,12 @@ export class BlogsComponent {
     this.getPopularBlogs()
   }
 
+  showCategories: boolean = false;
+
+  toggleCategoryMenu(): void {
+    this.showCategories = !this.showCategories;
+  }
+
   get displayedCategories() {
     return this.categoryList.slice(0, this.maxDisplay);
   }

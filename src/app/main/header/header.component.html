@@ -2,7 +2,7 @@
   <div class="header_body d-flex flex-row align-items-center justify-content-between gap-3 w-95">
 
     <div class="logo d-flex" *ngIf="userRole === 3 || userRole == null || userRole === undefined">
-      <a [routerLink]="'/user/blogs'">
+      <a [routerLink]="'/'">
         <img src="assests/images/new_logo.png" alt="logo" width="35%">
       </a>
     </div>
@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <div class="menu_icon d-sm-flex d-md-flex d-lg-none" (click)="toggleSidenav()">
+    <div class="menu_icon d-sm-flex d-md-flex d-lg-none" (click)="toggleSidenav()"   *ngIf="userRole === 1 || userRole === 2" >
       <i class="fa-solid fa-bars font-22"></i>
     </div>
   </div>
