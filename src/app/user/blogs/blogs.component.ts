@@ -80,6 +80,7 @@ export class BlogsComponent {
     this.showDropdown = false; // Close dropdown when a category is selected
     console.log('Selected Category:', categoryId);
     this.getBlogsList(categoryId, '', '', true);
+    this.showCategories = false
     // Fetch blogs or perform other actions
   }
 

@@ -77,7 +77,7 @@ button:hover {
 .sticky-image-container {
     width: 35%;
     position: sticky;
-    top: 4rem;
+    top: 5rem;
     height: 300px;
 }
 
@@ -97,6 +97,7 @@ button:hover {
 
     .blog_details_desc {
         flex-direction: column-reverse;
+        gap: 1rem !important;
     }
 
     .sticky-image-container {
@@ -111,6 +112,10 @@ button:hover {
 
     .blog-header {
         gap: 1rem;
+    }
+
+    .scrollable-content {
+        padding: 0rem !important;
     }
 }
 
