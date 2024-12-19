@@ -19,7 +19,7 @@ import { RouterModule } from '@angular/router';
     SuperAdminModuleRoutingModule,
     MatSidenavModule,
     MatIconModule,
-       MainModule
-]
+    MainModule
+  ]
 })
 export class SuperAdminModuleModule { }

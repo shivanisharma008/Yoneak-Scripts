@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BlogsService } from '../../../api/api-services/blogs.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UploadVideoComponent } from '../../upload-video/upload-video.component';
@@ -16,7 +16,9 @@ export class BlogDetailsComponent {
   constructor(
     private activatedRoute: ActivatedRoute,
     private blogsService: BlogsService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
+
   ) { }
 
   ngOnInit() {
@@ -28,7 +30,7 @@ export class BlogDetailsComponent {
 
 
   getBlogsList() {
-    this.blogsService.blogsList('', this.blogId, '').subscribe({
+    this.blogsService.blogsList('', this.blogId, '', true).subscribe({
       next: (res: any) => {
         this.blogsList = res.data
         console.log(res);
@@ -37,11 +39,46 @@ export class BlogDetailsComponent {
     })
   }
 
+  isUserLoggedIn(): boolean {
+    const userDetails = localStorage.getItem('userDetails');
+    return userDetails !== null;
+  }
+
+  redirectToLogin() {
+    const returnUrl = this.router.url;
+    this.router.navigate(['/accounts/sign-in'], { queryParams: { returnUrl } });
+  }
+
+  redirectIfNotLoggedIn(targetRoute: string) {
+    if (!this.isUserLoggedIn()) {
+      this.redirectToLogin();
+      return;
+    }
+    this.router.navigate([targetRoute]);
+  }
+
   openProfileDialog() {
+    if (!this.isUserLoggedIn()) {
+      this.redirectToLogin();
+      return;
+    }
     this.dialog.open(UploadVideoComponent, {
-      width: '600px', // Adjust width
-      height: 'auto', // Auto height
-      panelClass: 'custom-dialog-container', // Optional: for custom styling
+      width: '600px',
+      height: 'auto',
+      panelClass: 'custom-dialog-container',
+      data: { blogId: this.blogId },
+    });
+  }
+
+  openVideo() {
+    if (!this.isUserLoggedIn()) {
+      this.redirectToLogin();
+      return;
+    }
+    this.router.navigate(['/user/others-video'], {
+      queryParams: {
+        blogId: this.blogId
+      }
     });
   }
 

@@ -13,11 +13,11 @@ const routes: Routes = [
     loadChildren:()=>
       import('./admin-deatils/admin-deatils.module').then((m)=> m.AdminDeatilsModule)
   },
-  {
-    path:'scripts-details',
-    loadChildren:()=>
-      import('./scripts-details/scripts-details.module').then((m)=> m.ScriptsDetailsModule)
-  },
+  // {
+  //   path:'scripts-details',
+  //   loadChildren:()=>
+  //     import('./scripts-details/scripts-details.module').then((m)=> m.ScriptsDetailsModule)
+  // },
   {
     path:'category',
     loadChildren:()=>
@@ -37,6 +37,16 @@ const routes: Routes = [
     path:'add-sub-category',
     loadChildren:()=>
       import('./add-sub-cateogry/add-sub-cateogry.module').then((m)=> m.AddSubCateogryModule)
+  },
+  {
+    path:'user-uploaded-links',
+    loadChildren:()=>
+      import('./user-upload-links/user-upload-links.module').then((m)=> m.UserUploadLinksModule)
+  },
+  {
+    path:'blogs',
+    loadChildren:()=>
+      import('./blogs-list/blogs-list.module').then((m)=> m.BlogsListModule)
   },
 ];
 

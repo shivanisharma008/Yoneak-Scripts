@@ -6,6 +6,11 @@ const routes: Routes = [
     path:'',redirectTo:'',pathMatch:'full'
   },
   {
+    path:'',
+    loadChildren:()=>
+      import('./blogs/blogs.module').then((m)=> m.BlogsModule)
+  },
+  {
     path:'blogs',
     loadChildren:()=>
       import('./blogs/blogs.module').then((m)=> m.BlogsModule)

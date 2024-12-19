@@ -60,8 +60,24 @@
     display: block;
 }
 
-@media screen and (min-width:1561px) {
-    .blogs_main_content{
-        width: 70% !important;
+@media screen and (max-width:599px) {
+    .header{
+        width: 100%;
     }
 }
+
+@media screen and (min-width:600px) and (max-width:1025px) {
+    .header{
+        width: 100%;
+    }
+}
+
+@media screen and (min-width:1561px) {
+    // .header-body-70 {
+    //     width: 70% !important;
+    //   }
+    //   .header-body-95 {
+    //     width: 98% !important;
+    //   }
+}
+

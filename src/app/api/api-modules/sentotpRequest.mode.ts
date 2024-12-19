@@ -1,3 +1,3 @@
 export interface SendOtpRequestModel {
-        email: string
-  }
+      email: string
+}

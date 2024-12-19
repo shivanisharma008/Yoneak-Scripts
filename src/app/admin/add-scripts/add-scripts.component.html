@@ -1,11 +1,11 @@
 <div class="bg-white">
     <div>
         <mat-card class="p-3 d-flex flex-column gap-3 mt-5">
-            <h3 class="font-24 fw-600 text-blue mt-3">Add Blog</h3>
+            <h3 class="font-24 fw-600 text-blue mt-3">Add Scripts</h3>
             <form [formGroup]="addBlogsCategoryForm" class="d-flex flex-column gap-3 w-100">
                 <div class="d-flex flex-column gap-2 w-50">
-                    <label class="text-black links fw-500">Blog Name</label>
-                    <input type="text" class="p-2" formControlName="blogName">
+                    <label class="text-black links fw-500">Blog Title</label>
+                    <input type="text" class="p-2" placeholder="Enter Blog Title" formControlName="blogName">
                 </div>
                 <div class="d-flex flex-column gap-2 w-50">
                     <label class="text-black links fw-500">Select Category</label>
@@ -37,7 +37,8 @@
                 </div>
                 <div class="d-flex flex-column gap-2 w-50">
                     <label class="text-black links fw-500">Blog Image</label>
-                    <input type="file" id="logoInput" style="display: none" accept="image/*" formControlName="mediaUrl">
+                    <input type="file" id="logoInput" style="display: none" accept="image/*"
+                        (change)="onFileSelected($event)">
                     <div class="card_dash p-3 br-5 d-flex flex-column gap-2 align-items-center justify-content-center cursor"
                         (click)="triggerFileInput()">
                         <div class="d-flex flex-column gap-2">
@@ -46,20 +47,21 @@
                                 {{ selectedFile ? selectedFile.name : 'Drop your image here' }}
                             </p>
                         </div>
-                        <!-- <div class="drop_image d-flex flex-row">
-                            <img *ngIf="selectedFile" [src]="imagePreviewUrl" alt="Selected Image"
+                        <div class="drop_image d-flex flex-row">
+                            <img *ngIf="imagePreviewUrl" [src]="imagePreviewUrl" alt="Selected Image"
                                 id="uploadedLogoImage" [style.width]="'100px'">
-                        </div> -->
+                        </div>
                     </div>
                 </div>
 
                 <div class="d-flex flex-column gap-2 w-100">
                     <label class="text-black links fw-500">Blog Description</label>
-                    <angular-editor formControlName="blogDescription" class="custom-editor text-black"></angular-editor>
+                    <angular-editor formControlName="blogDescription" [config]="editorConfig" class="custom-editor text-black"></angular-editor>
                 </div>
                 <div class="d-flex flex-row justify-content-center gap-2 w-100 mt-3">
                     <button type="button" class="btn btn-danger links">Cancel</button>
-                    <button type="button" class="btn btn-success links" (click)="submit()">Submit</button>
+                    <button *ngIf="!blogId"  type="button" class="btn btn-success links" (click)="submit()">Submit</button>
+                    <button *ngIf="blogId" type="button" class="btn btn-success links" (click)="updateBlogs()">Update</button>
                 </div>
             </form>
         </mat-card>

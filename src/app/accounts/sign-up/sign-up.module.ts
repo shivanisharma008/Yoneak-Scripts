@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SignUpComponent } from './sign-up.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -12,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
+    MatButtonModule,
     RouterModule.forChild([{path:'',component:SignUpComponent}]),
     ReactiveFormsModule,
     FormsModule

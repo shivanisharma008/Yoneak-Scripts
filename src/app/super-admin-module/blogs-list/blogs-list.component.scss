@@ -1,0 +1,106 @@
+.title {
+  padding: 16px;
+  padding-bottom: 0;
+}
+
+.table-container {
+  padding: 16px;
+  // background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+  // height: 75vh;
+
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  // background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.custom-table thead {
+  background-color: black;
+  color: white;
+  text-align: left;
+}
+
+.custom-table thead th {
+  padding: 12px 16px;
+  font-weight: 600;
+  // font-size: 14px;
+  text-wrap: nowrap;
+}
+
+.custom-table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+  text-wrap: nowrap;
+}
+
+
+.custom-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.custom-table td {
+  padding: 12px 16px;
+  // font-size: 14px;
+  color: #333;
+}
+
+.action-btn {
+  color: #3f51b5;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.action-btn:hover {
+  color: #1a237e;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination-controls button {
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.pagination-controls button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.total-count {
+  /* Add any additional styling for total count here */
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.pagination {
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.page-item {
+  margin: 0 5px;
+}
+
+.page-link {
+  font-size: 14px;
+}

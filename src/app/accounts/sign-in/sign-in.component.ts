@@ -5,7 +5,11 @@ import { isPlatformBrowser } from '@angular/common';
 import { SendOtpRequestModel } from '../../api/api-modules/sentotpRequest.mode';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { VerifyEmailRequestModel } from '../../api/api-modules/verifyEmailResponse.modal';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { LoginRequestModel } from '../../api/api-modules/login-request.model';
+import { MatDialog } from '@angular/material/dialog';
+import { SignUpComponent } from '../sign-up/sign-up.component';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,19 +19,27 @@ import { Router } from '@angular/router';
 export class SignInComponent {
   isPasswordVisible: boolean = false;
   showOtpFields = false;
+  returnUrl: string = '';
+
 
   constructor(
     private userApiService: UserServiceService,
     private elementRef: ElementRef, @Inject(PLATFORM_ID) private platformId: object,
     private _snackBar: MatSnackBar,
     private cdr: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
     this.signInForm.valueChanges.subscribe(() => {
       this.concatenateOtp();
     });
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    console.log(this.returnUrl);
+
+
   }
 
 
@@ -111,32 +123,124 @@ export class SignInComponent {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
 
+  // login() {
+  //   const loginRequestModel: LoginRequestModel = {
+  //     email: this.signInForm.controls.email.value ?? '',
+  //   }
+  //   this.userApiService.login(loginRequestModel).subscribe({
+  //     next: (res) => {
+  //       if (res.status === 200) {
+  //         if (res.data === null) {
+  //           this.showOtpFields = true;
+  //         } else {
+  //           const role = res.data.role;
+  //           const userDetails = res.data;
+  //           localStorage.setItem('userDetails', JSON.stringify(userDetails));
+  //           this._snackBar.open(res.message, 'Close', {
+  //             duration: 3000,
+  //             verticalPosition: 'bottom',
+  //             horizontalPosition: 'center'
+  //           });
+  //           if (this.returnUrl === '' || this.returnUrl === '/' || this.returnUrl === null || this.returnUrl === undefined) {
+  //             switch (role) {
+  //               case 1:
+  //                 this.router.navigate(['super-admin-module']);
+  //                 break;
+  //               case 2:
+  //                 this.router.navigate(['admin']);
+  //                 break;
+  //               case 3:
+  //                 this.router.navigate(['user/blogs']);
+  //                 break;
+  //               default:
+  //                 console.error('Unknown role:', role);
+  //             }
+  //           } else {
+  //             this._snackBar.open(res.message, 'Close', {
+  //               duration: 3000,
+  //               verticalPosition: 'bottom',
+  //               horizontalPosition: 'center'
+  //             });
+  //             this.router.navigateByUrl(this.returnUrl);
+  //           }
+  //         }
+  //       } else {
+  //         this.router.navigate(['/accounts/sign-up'], { state: { email: this.signInForm.controls.email.value ?? '' } });
+  //         this._snackBar.open(res.message, 'Close', {
+  //           duration: 3000,
+  //           verticalPosition: 'bottom',
+  //           horizontalPosition: 'center'
+  //         });
+  //       }
+  //     }, error: (err: HttpErrorResponse) => {
+  //       this._snackBar.open(err.statusText, 'Close', {
+  //         duration: 3000,
+  //         verticalPosition: 'bottom',
+  //         horizontalPosition: 'center'
+  //       });
+  //     }
+  //   })
+  // }
 
-  submitLoginForm() {
-    const sendOtpRequestModel: SendOtpRequestModel = {
+
+
+  login() {
+    const loginRequestModel: LoginRequestModel = {
       email: this.signInForm.controls.email.value ?? '',
     }
-    this.userApiService.sendOtpPostApi(sendOtpRequestModel).subscribe({
+    this.userApiService.login(loginRequestModel).subscribe({
       next: (res) => {
         if (res.status === 200) {
-
-          setTimeout(() => {
-            this.showOtpFields = true; // Update the variable inside setTimeout
-          });
-          // this.cdr.detectChanges();
+          const role = res.data.role;
+          const userDetails = res.data;
+          localStorage.setItem('userDetails', JSON.stringify(userDetails));
           this._snackBar.open(res.message, 'Close', {
             duration: 3000,
             verticalPosition: 'bottom',
             horizontalPosition: 'center'
           });
-
+          if (this.returnUrl === '' || this.returnUrl === '/' || this.returnUrl === null || this.returnUrl === undefined) {
+            switch (role) {
+              case 1:
+                this.router.navigate(['super-admin-module']);
+                break;
+              case 2:
+                this.router.navigate(['admin']);
+                break;
+              case 3:
+                this.router.navigate(['user/blogs']);
+                break;
+              default:
+                console.error('Unknown role:', role);
+            }
+          } else {
+            this._snackBar.open(res.message, 'Close', {
+              duration: 3000,
+              verticalPosition: 'bottom',
+              horizontalPosition: 'center'
+            });
+            this.router.navigateByUrl(this.returnUrl);
+          }
+        } else if (res.status === 201) {
+          this.showOtpFields = true;
+        } else {
+          this._snackBar.open(res.message, 'Close', {
+            duration: 3000,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'center'
+          });
         }
+      }, error: (err: HttpErrorResponse) => {
+        this._snackBar.open(err.statusText, 'Close', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'center'
+        });
       }
     })
   }
 
   sendOtp() {
-    // alert(1)
     const verifyEmailRequestModel: VerifyEmailRequestModel = {
       email: this.signInForm.controls.email.value ?? '',
       otp: this.signInForm.controls.fullOtp.value ?? '',
@@ -144,26 +248,98 @@ export class SignInComponent {
     this.userApiService.verifyEmailPostApi(verifyEmailRequestModel).subscribe({
       next: (res) => {
         console.log(res);
+        if (res.status === 200 && res.data === null) {
+          this.dialog.open(SignUpComponent, {
+            width: '600px',
+            height: '600px',
+            panelClass: 'custom-dialog-container',
+            // data: this.returnUrl,
+            data: { returnUrl: this.returnUrl, email: this.signInForm.controls.email.value },
+          });
+          //   const role = res.data.role;
+          //   const userDetails = res.data;
+          //   localStorage.setItem('userDetails', JSON.stringify(userDetails));
 
-        const role = res.data.role;
-        const userDetails = res.data;
-        localStorage.setItem('userDetails', JSON.stringify(userDetails));
-        if (res.status === 200) {
-          switch (role) {
-            case 1:
-              this.router.navigate(['super-admin-module']);
-              break;
-            case 2:
-              this.router.navigate(['admin']);
-              break;
-            case 3:
-              this.router.navigate(['user/blogs']);
-              break;
-            default:
-              console.error('Unknown role:', role);
+
+
+          //   this._snackBar.open(res.message, 'Close', {
+          //     duration: 3000,
+          //     verticalPosition: 'bottom',
+          //     horizontalPosition: 'center'
+          //   });
+          //   if (this.returnUrl === '' || this.returnUrl === '/' || this.returnUrl === null || this.returnUrl === undefined) {
+          //     switch (role) {
+          //       case 1:
+          //         this.router.navigate(['super-admin-module']);
+          //         break;
+          //       case 2:
+          //         this.router.navigate(['admin']);
+          //         break;
+          //       case 3:
+          //         this.router.navigate(['user/blogs']);
+          //         break;
+          //       default:
+          //         console.error('Unknown role:', role);
+          //     }
+          //   } else {
+          //     this._snackBar.open(res.message, 'Close', {
+          //       duration: 3000,
+          //       verticalPosition: 'bottom',
+          //       horizontalPosition: 'center'
+          //     });
+          //     this.router.navigateByUrl(this.returnUrl);
+          //   }
+          // } else {
+          //   this._snackBar.open(res.message, 'Close', {
+          //     duration: 3000,
+          //     verticalPosition: 'bottom',
+          //     horizontalPosition: 'center'
+          //   });
+        } else if (res.status === 200 && res.data !== null) {
+          const role = res.data.role;
+          const userDetails = res.data;
+          localStorage.setItem('userDetails', JSON.stringify(userDetails));
+          this._snackBar.open(res.message, 'Close', {
+            duration: 3000,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'center'
+          });
+          if (this.returnUrl === '' || this.returnUrl === '/' || this.returnUrl === null || this.returnUrl === undefined) {
+            switch (role) {
+              case 1:
+                this.router.navigate(['super-admin-module']);
+                break;
+              case 2:
+                this.router.navigate(['admin']);
+                break;
+              case 3:
+                this.router.navigate(['user/blogs']);
+                break;
+              default:
+                console.error('Unknown role:', role);
+            }
+          } else {
+            this._snackBar.open(res.message, 'Close', {
+              duration: 3000,
+              verticalPosition: 'bottom',
+              horizontalPosition: 'center'
+            });
+            this.router.navigateByUrl(this.returnUrl);
           }
         }
-
+        else {
+          this._snackBar.open(res.message, 'Close', {
+            duration: 3000,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'center'
+          });
+        }
+      }, error: (err: HttpErrorResponse) => {
+        this._snackBar.open(err.statusText, 'Close', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'center'
+        });
       }
     })
   }

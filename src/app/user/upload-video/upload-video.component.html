@@ -1,40 +1,12 @@
 <div class="link-upload-container d-flex flex-column align-items-center p-4">
-    <!-- Paste Link Header -->
-    <h2 class="text-center mb-3">Paste  Link</h2>
-  
-    <!-- Input for Video Link -->
-    <div class="input-group mb-3 w-90">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Paste your link here"
-        [(ngModel)]="videoLink"
-      />
-      <button
-        class="btn btn-primary"
-        [disabled]="!videoLink"
-        (click)="addVideoLink()"
-      >
-        Add Link
-      </button>
-    </div>
-  
-    <!-- Video Link Cards -->
-    <div class="video-cards-container w-90 mt-4">
-      <div
-        *ngFor="let link of videoLinks"
-        class="card  shadow-sm rounded p-3"
-      >
-        <div class="d-flex justify-content-between align-items-center w-100">
-          <span class="text-truncate">{{ link }}</span>
-          <button
-            class="btn btn-danger btn-sm"
-            (click)="removeLink(link)"
-          >
-            Remove
-          </button>
-        </div>
-      </div>
-    </div>
+  <!-- Paste Link Header -->
+  <h2 class="text-center mb-3">Paste Link</h2>
+
+  <!-- Input for Video Link -->
+  <div class="input-group mb-3 w-90">
+    <input type="text" class="form-control" placeholder="Paste your link here" [(ngModel)]="videoLink"/>
+    <button class="btn btn-primary" [disabled]="!videoLink" (click)="addVideoLink()">
+      Add Link
+    </button>
   </div>
-  
+</div>

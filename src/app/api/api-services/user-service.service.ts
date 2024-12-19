@@ -10,6 +10,9 @@ import { VerifyEmailRequestModel } from '../api-modules/verifyEmailResponse.moda
 import { UserListModal } from '../api-modules/user-list.model';
 import { ProfileDetailsModel } from '../api-modules/profile-details.model';
 import { ProfileDetailsRequestModel } from '../api-modules/profile-details-request.model';
+import { adminListResponseModel } from '../api-modules/admin-list.model';
+import { LoginRequestModel } from '../api-modules/login-request.model';
+import { UpdateUserProfileRequestModel } from '../api-modules/update-profile.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +20,11 @@ import { ProfileDetailsRequestModel } from '../api-modules/profile-details-reque
 export class UserServiceService {
 
   constructor(private httpClient: HttpClient) { }
+
+
+  login(loginRequestModel: LoginRequestModel): Observable<any> {
+    return this.httpClient.post<any>(`${apiRoutes.user.login}`, loginRequestModel)
+  }
 
   registrationPostApi(signUpResponseModel: SignUpRequestModel): Observable<any> {
     return this.httpClient.post<any>(`${apiRoutes.user.SignUp}`, signUpResponseModel)
@@ -38,11 +46,62 @@ export class UserServiceService {
     return this.httpClient.get<UserListModal[]>(`${apiRoutes?.user.userList}`)
   }
 
+  userListPagination(pageIndex: number | null, pageSize: number | null, searchString: string | null): Observable<UserListModal[]> {
+    const params: { [key: string]: string } = {};
+
+    if (pageIndex !== null) {
+      params['pageIndex'] = pageIndex.toString();
+    }
+    if (pageSize !== null) {
+      params['pageSize'] = pageSize.toString();
+    }
+    if (searchString) {
+      params['searchString'] = searchString;
+    }
+
+    console.log('Query Params:', params);
+
+    return this.httpClient.get<UserListModal[]>(`${apiRoutes?.user?.userListPagination}`, { params });
+  }
+
+  updateUserProfile(updateUserProfileRequestModel: UpdateUserProfileRequestModel): Observable<any> {
+    return this.httpClient.put<any>(`${apiRoutes.user.editUser}`, updateUserProfileRequestModel)
+  }
+
+
+  deleteUser(userId: string | null): Observable<any> {
+    const params: { [key: string]: string } = userId ? { userId } : {};
+
+    return this.httpClient.delete<any>(`${apiRoutes?.user.deleteUser}`, { params });
+  }
+
+  adminList(): Observable<adminListResponseModel[]> {
+    return this.httpClient.get<adminListResponseModel[]>(`${apiRoutes?.user.adminsList}`)
+  }
+
+  adminListPagination(pageIndex: number | null, pageSize: number | null, searchString: string | null): Observable<adminListResponseModel[]> {
+    const params: { [key: string]: string } = {};
+
+    if (pageIndex !== null) {
+      params['pageIndex'] = pageIndex.toString();
+    }
+    if (pageSize !== null) {
+      params['pageSize'] = pageSize.toString();
+    }
+    if (searchString) {
+      params['searchString'] = searchString;
+    }
+
+    console.log('Query Params:', params);
+
+    return this.httpClient.get<adminListResponseModel[]>(`${apiRoutes?.user?.adminsListPagination}`, { params });
+  }
+
   // profile(): Observable<>
 
   profileDetails(profileDetailsRequestModel: ProfileDetailsRequestModel): Observable<any> {
     const params = { userId: profileDetailsRequestModel.userId };
-    
+
     return this.httpClient.get<any>(`${apiRoutes?.user.profileDetails}`, { params });
   }
 

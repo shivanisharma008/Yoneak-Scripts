@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path:'',redirectTo:'add-scripts',pathMatch:'full'},
+  {path:'',redirectTo:'my-scripts',pathMatch:'full'},
  {
   path:'my-scripts',
   loadChildren:()=>
@@ -13,6 +13,11 @@ const routes: Routes = [
   loadChildren:()=>
     import('./add-scripts/add-scripts.module').then((m)=> m.AddScriptsModule)
  },
+ {
+  path:'user-uploaded-links',
+  loadChildren:()=>
+    import('./user-upload-links/user-upload-links.module').then((m)=> m.UserUploadLinksModule)
+},
 ];
 
 @NgModule({

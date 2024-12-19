@@ -58,3 +58,30 @@
 .action-btn:hover {
   color: #1a237e;
 }
+
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.total-count {
+  /* Add any additional styling for total count here */
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.pagination {
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.page-item {
+  margin: 0 5px;
+}
+
+.page-link {
+  font-size: 14px;
+}

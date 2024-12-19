@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UploadVideoComponent } from '../upload-video/upload-video.component';
 import { MatDialog } from '@angular/material/dialog';
+import { UpdateVisitedViewModel } from '../../api/api-modules/update-visited-view.model';
 
 @Component({
   selector: 'app-blogs',
@@ -29,6 +30,16 @@ export class BlogsComponent {
 
   currentIndex = 0;
   categoryList: any;
+  popularBlogList: any;
+  isLoading!: boolean;
+  selectedCategory: string = '';
+  maxDisplay = 5;
+  showDropdown = false;
+  selectedCategoryName: string = '';
+
+  // blogsToShow: number = 6;
+  // displayedBlogs: any[] = []; // Subset of blogs to display
+
 
   constructor(
     private elementRef: ElementRef,
@@ -40,9 +51,57 @@ export class BlogsComponent {
   ) { }
 
   ngOnInit(): void {
-    this.getBlogsList('', '', '')
+    this.getBlogsList('', '', '', true)
     this.getCategoryList()
+    this.getPopularBlogs()
   }
+
+  showCategories: boolean = false;
+
+  toggleCategoryMenu(): void {
+    this.showCategories = !this.showCategories;
+  }
+
+  get displayedCategories() {
+    return this.categoryList.slice(0, this.maxDisplay);
+  }
+
+  get hiddenCategories() {
+    return this.categoryList.slice(this.maxDisplay);
+  }
+
+  toggleDropdown(): void {
+    this.showDropdown = !this.showDropdown;
+  }
+
+  selectCategory(categoryId: string, categoryName: string): void {
+    this.selectedCategory = categoryId;
+    this.selectedCategoryName = categoryName;
+    this.showDropdown = false; // Close dropdown when a category is selected
+    console.log('Selected Category:', categoryId);
+    this.getBlogsList(categoryId, '', '', true);
+    this.showCategories = false
+    // Fetch blogs or perform other actions
+  }
+
+
+
+  onImageError(event: Event): void {
+    const target = event.target as HTMLImageElement;
+    target.src = './../../../../public/assests/images/blog_card_img2.jpg';
+  }
+
+
+  // displayBlogs(): void {
+  //   this.displayedBlogs = this.blogsList.slice(0, this.blogsToShow); // Start with 6 blogs
+  // }
+
+  // // Load more blogs
+  // loadMore(): void {
+  //   const currentLength = this.displayedBlogs.length;
+  //   const nextBlogs = this.blogsList.slice(currentLength, currentLength + this.blogsToShow);
+  //   this.displayedBlogs = [...this.displayedBlogs, ...nextBlogs];
+  // }
 
   popularCard = [
     {
@@ -72,7 +131,7 @@ export class BlogsComponent {
     },
   ]
 
-  
+
 
 
   ngAfterViewInit(): void {
@@ -110,12 +169,26 @@ export class BlogsComponent {
     target.src = '/assests/images/blog_cat1.jpg';
   }
 
-  getBlogsList(categoryId: any, blogId: any, createdBy: any) {
-    this.blogsService.blogsList(categoryId, blogId, createdBy).subscribe({
+  isValidImage(imagePath: string): boolean {
+    const validExtensions = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+    const extension = imagePath.split('.').pop()?.toLowerCase();
+    return validExtensions.includes(extension || '');
+  }
+
+
+  getBlogsList(categoryId: any, blogId: any, createdBy: any, isApproved: boolean) {
+    this.isLoading = true;
+    this.blogsService.blogsList(categoryId, blogId, createdBy, isApproved).subscribe({
       next: (res: any) => {
         this.blogsList = res.data
         console.log(res);
         console.log(this.blogsList);
+      },
+      error: (err: any) => {
+        console.error('Error fetching admin list:', err); // Handle error
+      },
+      complete: () => {
+        this.isLoading = false; // Stop loading indicator when request completes
       }
     })
   }
@@ -126,6 +199,28 @@ export class BlogsComponent {
         console.log(res.data);
         this.categoryList = res.data
         console.log('Category' + res.data);
+      }
+    })
+  }
+
+  getPopularBlogs() {
+    this.blogsService.popularBlogs().subscribe({
+      next: (res: any) => {
+        console.log(res.data);
+        this.popularBlogList = res.data
+        console.log(this.popularBlogList);
+      }
+    })
+  }
+
+  updatePopularBlogsView(blogId: any) {
+    const updateVisitedViewModel: UpdateVisitedViewModel = {
+      blogId: blogId
+    }
+    this.blogsService.popularBlogsView(updateVisitedViewModel).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        
       }
     })
   }
