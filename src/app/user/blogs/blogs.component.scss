@@ -10,7 +10,6 @@
 }
 
 .category_card {
-    // background-color: #dcdcdc;
     border: 0.5px solid;
     border-radius: 5px;
 }
@@ -32,8 +31,6 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     position: absolute;
     top: 100%;
-    // transform: translatex(-70%);
-    /* Position below the "More" button */
     left: 0;
     z-index: 1000;
     padding: 1rem;
@@ -42,13 +39,11 @@
 
 .category-more-dropdown:hover .dropdown-menu {
     display: flex !important;
-    /* Show the dropdown on hover */
 }
 
 .dropdown-menu .category-chip {
     width: 100%;
     text-align: left;
-    // background-color: #f1f1f1;
     padding: 0.5rem 1rem;
     border: 0.5px solid;
     border-radius: 5px;
@@ -80,23 +75,18 @@
     color: white;
 }
 
-/* More Button Styling */
 .category-more-dropdown>.category-chip {
     border: none;
     background: linear-gradient(to right, #FFD700, #FFA500);
-    /* Nice gradient background */
     color: white !important;
-    /* White text color */
     font-weight: 600;
     transition: all 0.3s ease;
 }
 
 .category-more-dropdown>.category-chip:hover {
     background: linear-gradient(to right, #DB3927, #E4A038);
-    /* Different hover gradient */
     color: white !important;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    /* Add subtle shadow */
 }
 
 
@@ -134,64 +124,6 @@
     object-fit: cover;
 }
 
-// .category_heading p,
-// .subcribe_heading p,
-// .popular_heading p {
-//     position: relative;
-// }
-
-// .category_heading p:after,
-// .subcribe_heading p:after,
-// .popular_heading p:after {
-//     position: absolute;
-//     content: '';
-//     left: 0;
-//     bottom: 0;
-//     width: 40px;
-//     height: 2px;
-//     background-color: black;
-
-// }
-
-// .category_list {
-//     display: grid;
-//     grid-template-columns: repeat(3, 1fr);
-//     gap: 20px;
-// }
-
-// .category_list_item {
-//     position: relative;
-// }
-
-// .categoty_bg {
-//     width: 100%;
-//     height: 100%;
-// }
-
-// .category_list_item::after {
-//     position: absolute;
-//     content: '';
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-//     background-color: rgba(0, 0, 0, 0.437);
-//     /* Adjust the rgba value to control the darkness of the overlay */
-//     z-index: 1;
-//     /* Ensure the overlay appears above the image */
-// }
-
-// .category_name {
-//     position: absolute;
-//     bottom: 15px;
-//     z-index: 2;
-// }
-
-// .subcribe_list {
-//     display: grid;
-//     grid-template-columns: repeat(3, 1fr);
-//     gap: 10px;
-// }
 .popular_main_cards {
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
@@ -221,24 +153,19 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    // text-wrap: wrap;
-    // white-space: nowrap;
 }
 
 .card_image {
     position: relative;
     overflow: hidden;
-    /* Ensures that the zoomed image doesn't overflow the container */
 }
 
 .card_image img {
     transition: transform 0.3s ease-in-out;
-    /* Smooth transition effect */
 }
 
 .blog_card:hover .card_image img {
     transform: scale(1.1);
-    /* Scales the image to 110% on hover */
 }
 
 
@@ -256,36 +183,24 @@
     height: 0px;
 }
 
-/* Dropdown Categories Container */
 .dropdown-categories {
     position: absolute;
-    /* Place dropdown above content */
     top: 50px;
-    /* Align dropdown below the menu icon */
     right: 10px;
-    /* Adjust alignment */
     width: 250px;
-    /* Adjust the width */
     max-height: 0;
-    /* Initially collapsed */
     overflow: hidden;
-    /* Hide overflowing content */
     background-color: #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     z-index: 1000;
-    /* Ensure it's on top */
     transition: max-height 0.5s ease-out;
-    /* Smooth slide-down effect */
 }
 
-/* Dropdown Open State */
 .dropdown-categories.open {
     max-height: 300px;
-    /* Expand the dropdown smoothly */
 }
 
-/* Category Item Styles */
 .category-item {
     padding: 10px 15px;
     border-bottom: 1px solid #ddd;
@@ -327,7 +242,6 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    // white-space: nowrap;
 }
 
 
@@ -356,9 +270,7 @@
 
     .blog_card {
         flex: 100%;
-        /* Ensures 3 cards in a row with spacing */
         max-width: 100%;
-        /* Prevents cards from exceeding the calculated width */
     }
 
     .blogs_content_right {
@@ -408,9 +320,7 @@
 
     .blog_card {
         flex: 1 1 calc(48% - 20px);
-        /* Ensures 3 cards in a row with spacing */
         max-width: calc(48% - 20px);
-        /* Prevents cards from exceeding the calculated width */
     }
 
     .blogs_content_right {
@@ -421,7 +331,6 @@
     }
 
     .blogs_content_left {
-        // grid-template-columns: repeat(2, 1fr);
     }
 
     .category-section {
