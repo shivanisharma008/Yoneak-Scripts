@@ -23,7 +23,10 @@ export class HeaderComponent {
     const userDetails = JSON.parse(localStorage.getItem('userDetails') ?? '{}');
     this.userRole = userDetails?.role ?? null; // Set user role, e.g., 1 or 2
   }
-
+  navigateToHome() {
+    window.location.href = '/';
+  }
+  
   toggleDropdown() {
     this.isDropdownVisible = !this.isDropdownVisible;
   }

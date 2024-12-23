@@ -2,8 +2,8 @@
   <div class="header_body d-flex flex-row align-items-center justify-content-between gap-3 w-95">
 
     <div class="logo d-flex" *ngIf="userRole === 3 || userRole == null || userRole === undefined">
-      <a [routerLink]="'/'">
-        <img src="assests/images/new_logo.png" alt="logo" width="35%">
+      <a  (click)="navigateToHome()">
+        <img src="assests/images/new_logo.png" class="cursor" alt="logo" width="35%">
       </a>
     </div>
     <i class="fa-solid fa-arrow-left font-24 d-none d-sm-none d-md-none d-lg-flex cursor" (click)="goBack()"

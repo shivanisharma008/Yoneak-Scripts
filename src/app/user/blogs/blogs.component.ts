@@ -37,9 +37,6 @@ export class BlogsComponent {
   showDropdown = false;
   selectedCategoryName: string = '';
 
-  // blogsToShow: number = 6;
-  // displayedBlogs: any[] = []; // Subset of blogs to display
-
 
   constructor(
     private elementRef: ElementRef,
@@ -90,47 +87,6 @@ export class BlogsComponent {
     const target = event.target as HTMLImageElement;
     target.src = './../../../../public/assests/images/blog_card_img2.jpg';
   }
-
-
-  // displayBlogs(): void {
-  //   this.displayedBlogs = this.blogsList.slice(0, this.blogsToShow); // Start with 6 blogs
-  // }
-
-  // // Load more blogs
-  // loadMore(): void {
-  //   const currentLength = this.displayedBlogs.length;
-  //   const nextBlogs = this.blogsList.slice(currentLength, currentLength + this.blogsToShow);
-  //   this.displayedBlogs = [...this.displayedBlogs, ...nextBlogs];
-  // }
-
-  popularCard = [
-    {
-      img: 'assests/images/popular_img1.jpg',
-      title: 'Best Wordpress Theme of 2018',
-      date: '12-Nov-2024'
-    },
-    {
-      img: 'assests/images/popular_img1.jpg',
-      title: 'Best Wordpress Theme of 2018',
-      date: '12-Nov-2024'
-    },
-    {
-      img: 'assests/images/popular_img1.jpg',
-      title: 'Best Wordpress Theme of 2018',
-      date: '12-Nov-2024'
-    },
-    {
-      img: 'assests/images/popular_img1.jpg',
-      title: 'Best Wordpress Theme of 2018',
-      date: '12-Nov-2024'
-    },
-    {
-      img: 'assests/images/popular_img1.jpg',
-      title: 'Best Wordpress Theme of 2018',
-      date: '12-Nov-2024'
-    },
-  ]
-
 
 
 
