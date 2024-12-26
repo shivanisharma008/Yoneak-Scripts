@@ -27,8 +27,13 @@ export class BlogsService {
 
     constructor(private httpClient: HttpClient) { }
 
-    blogsList(categoryId: string | null, blogId: string | null, createdBy: string | null, isApproved: boolean | null): Observable<BlogsList[]> {
-        const params: { [key: string]: string } = {};
+    blogsList(
+        categoryId: string | null,
+        blogId: string | null,
+        createdBy: string | null,
+        isApproved: boolean | null
+    ): Observable<BlogsList[]> {
+        const params: { [key: string]: string | boolean } = {};
 
         if (categoryId) {
             params['categoryId'] = categoryId;
@@ -39,9 +44,8 @@ export class BlogsService {
         if (createdBy) {
             params['createdBy'] = createdBy;
         }
-        if (isApproved !== null) {
-            params['isApproved'] = isApproved.toString();;
-        }
+        // Ensure isApproved is boolean and explicitly handle it
+        params['isApproved'] = Boolean(isApproved);
 
         console.log('Query Params:', params);
 
@@ -191,7 +195,7 @@ export class BlogsService {
         return this.httpClient.post<any>(`${apiRoutes.blogs.createVideoLink}`, createVideoLinkModel)
     }
 
-    getCreateVideoLink(creatorId: string | null, creatorVideoId: string | null, blogId: string | null,  isApproved: boolean | null): Observable<GetCreatedVideoModel[]> {
+    getCreateVideoLink(creatorId: string | null, creatorVideoId: string | null, blogId: string | null, isApproved: boolean | null): Observable<GetCreatedVideoModel[]> {
         const params: { [key: string]: string } = {};
 
         if (creatorId) {
@@ -210,7 +214,7 @@ export class BlogsService {
         return this.httpClient.get<GetCreatedVideoModel[]>(`${apiRoutes?.blogs.getCreateVideoLink}`, { params })
     }
 
-    getCreateVideoLinkPagination(creatorId: string | null, creatorVideoId: string | null, blogId: string | null,  isApproved: boolean | null, pageIndex: number | null, pageSize: number | null): Observable<GetCreatedVideoModel[]> {
+    getCreateVideoLinkPagination(creatorId: string | null, creatorVideoId: string | null, blogId: string | null, isApproved: boolean | null, pageIndex: number | null, pageSize: number | null): Observable<GetCreatedVideoModel[]> {
         const params: { [key: string]: string } = {};
 
         if (creatorId) {

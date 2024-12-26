@@ -48,7 +48,9 @@ export class BlogsComponent {
   ) { }
 
   ngOnInit(): void {
-    this.getBlogsList('', '', '', true)
+    setTimeout(() => {
+      this.getBlogsList('', '', '', true)
+    }, 500);
     this.getCategoryList()
     this.getPopularBlogs()
   }
@@ -176,7 +178,7 @@ export class BlogsComponent {
     this.blogsService.popularBlogsView(updateVisitedViewModel).subscribe({
       next: (res: any) => {
         console.log(res);
-        
+
       }
     })
   }
