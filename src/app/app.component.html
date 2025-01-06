@@ -2,19 +2,19 @@
     <!-- Sidenav -->
     <mat-sidenav #drawer [mode]="sidenavMode" [opened]="sidenavOpened" fixedInViewport
         style="width: 250px; z-index: 1000;">
-        <app-sidenav (sidenavClose)="drawer.close()"></app-sidenav>
+        <app-sidenav (sidenavClose)="drawer.close()" class="bg-white"></app-sidenav>
     </mat-sidenav>
     <mat-sidenav-content class="sidenav-content-ui">
         <app-header (sidenavToggle)="drawer.toggle()" class="w-100"></app-header>
-        <div class="outlet-100 pt-3">
+        <div class="outlet-100 pt-3 bg-black">
             <router-outlet></router-outlet>
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>
 
-<div *ngIf="!isSidenav && !isLogin">
+<div *ngIf="!isSidenav && !isLogin" class="bg-black">
     <app-header></app-header>
     <router-outlet></router-outlet>
 </div>
 
-<router-outlet *ngIf="!isSidenav && isLogin"></router-outlet>
+<router-outlet *ngIf="!isSidenav && isLogin" class="bg-black"></router-outlet>

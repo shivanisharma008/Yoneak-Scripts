@@ -1,4 +1,4 @@
-<div class="blogs_main d-flex flex-column align-items-center justify-content-center mt-5">
+<div class="blogs_main d-flex flex-column align-items-center justify-content-center mt-5 bg-black">
     <div class="blogs_body d-flex flex-column align-items-center justify-content-center w-100 mt-5">
         <!-- Mobile/Tab Category Menu -->
         <div class="mobile-category-menu d-flex d-md-flex d-lg-none justify-content-end w-100 position-relative">
@@ -10,7 +10,7 @@
             <div class="dropdown-categories bg-white shadow position-absolute" [class.open]="showCategories">
                 <div *ngFor="let category of categoryList" class="category-item py-2 border-bottom cursor"
                     (click)="selectCategory(category._id, category.categoryName)">
-                    <p class="m-0 text-black font-16 fw-500">{{ category.categoryName }}</p>
+                    <p class="m-0 text-white font-16 fw-500">{{ category.categoryName }}</p>
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
         <div class="category-section d-none d-md-none d-lg-flex flex-column align-items-start w-90">
             <div class="category-chips d-flex  gap-3 w-100 mt-2">
                 <div *ngFor="let category of displayedCategories"
-                    class="category-chip category_card text-black text-a-c font-16 fw-400 br-6 cursor w-15 px-3 py-2 "
+                    class="category-chip category_card text-white text-a-c font-16 fw-400 br-6 cursor w-15 px-3 py-2 "
                     [class.selected]="selectedCategory === category._id"
                     (click)="selectCategory(category._id, category.categoryName)">
                     <p>{{ category.categoryName }}</p>
@@ -27,12 +27,12 @@
 
                 <div class="category-more-dropdown position-relative w-15">
                     <div *ngIf="categoryList.length > maxDisplay"
-                        class="category-chip text-black  text-a-c font-16 fw-400 br-6 cursor px-3 py-2 w-100">
+                        class="category-chip text-white  text-a-c font-16 fw-400 br-6 cursor px-3 py-2 w-100">
                         View More...
                     </div>
                     <div class="dropdown-menu position-absolute d-flex flex-column gap-2">
                         <div *ngFor="let category of hiddenCategories"
-                            class="category-chip text-black text-a-c font-16 fw-400 br-6 cursor px-3 py-2"
+                            class="category-chip text-white text-a-c font-16 fw-400 br-6 cursor px-3 py-2"
                             [class.selected]="selectedCategory === category._id"
                             (click)="selectCategory(category._id, category.categoryName)">
                             <p class="text-a-c">{{ category.categoryName }}</p>
@@ -46,17 +46,17 @@
             <div class="blogs_left" style="float: left;width: 70%;">
                 <div *ngIf="blogsList && blogsList.length > 0;" class=" blogs_left ">
                     <div class="blog_main_cards row  w-100">
-                        <div class="blog_card col-xs-12 col-12 col-md-6 col-lg-4 mb-4 d-flex flex-column align-items-center gap-3  p-0"
+                        <div class="blog_card bg-black col-xs-12 col-12 col-md-6 col-lg-4 mb-4 d-flex flex-column align-items-center  p-0"
                             *ngFor="let blog of blogsList">
                             <div class="card_image cursor"
                                 (click)="blogsDetails(blog._id); updatePopularBlogsView(blog._id)">
                                 <img [src]="blog.image ? blog.image : 'assests/images/blog_card_img2.jpg'"
                                     alt="blob_card_img" width="100%">
                             </div>
-                            <div class="blog_card_bottom d-flex flex-column gap-3 pb-4 w-100">
+                            <div class="blog_card_bottom d-flex flex-column gap-3 pb-4 w-100 bg-black">
                                 <div
                                     class="blogs_card_text d-flex flex-column justify-content-between  gap-3 w-100 px-3">
-                                    <p class=" text-black font-20 fw-700 cursor"
+                                    <p class=" text-white font-18 fw-500 cursor mt-3"
                                         (click)="blogsDetails(blog._id); updatePopularBlogsView(blog._id)"> {{
                                         blog.blogName | slice:0:25 }}...</p>
                                     <div class="blogs_card_desc d-flex flex-column gap-2">
@@ -75,7 +75,7 @@
                                     </div>
                                 </div>
                                 <div class="read_butn d-flex align-items-start justify-content-start w-100 px-3">
-                                    <a class="text-black font-16 fw-500 cursor"
+                                    <a class="text-white font-16 fw-500 cursor"
                                         (click)="blogsDetails(blog._id); updatePopularBlogsView(blog._id)">Read
                                         More
                                         <i class="fa-solid fa-arrow-right"></i></a>
@@ -107,7 +107,7 @@
                     <div
                         class="popular_article d-flex flex-column align-items-center justify-content-center gap-4 w-100">
                         <div class="popular_heading w-100 ms-4">
-                            <p class="font-20 fw-800 ps-1">Popular Scripts</p>
+                            <p class="text-white font-20 fw-800 ps-1">Popular Scripts</p>
                         </div>
 
                         <div class="popular_main_cards d-flex flex-column align-items-center br-6 w-90 px-3">
@@ -120,7 +120,7 @@
                                 </div>
                                 <div class="popular_card_right d-flex flex-column gap-1 w-70"
                                     (click)="blogsDetails(popular._id); updatePopularBlogsView(popular._id)">
-                                    <p class="truncate text-black font-16 fw-500">{{popular.blogName }}</p>
+                                    <p class="truncate text-white font-16 fw-500">{{popular.blogName }}</p>
                                     <span class="text-grey font-14 fw-500">{{popular.createdAt | date}}</span>
                                 </div>
                             </div>

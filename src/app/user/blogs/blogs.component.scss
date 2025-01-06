@@ -103,14 +103,14 @@
 .blog_card {
     background: #fff;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(233, 233, 233, 0.1);
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .blog_card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 12px rgba(253, 253, 253, 0.2);
 }
 
 .card_image {
@@ -125,7 +125,7 @@
 }
 
 .popular_main_cards {
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    box-shadow: rgba(248, 236, 236, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 .popular_card {

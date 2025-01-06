@@ -1,14 +1,14 @@
-<div class="bg-white">
+<div class="bg-black">
     <div>
-        <mat-card class="p-3 d-flex flex-column gap-3 mt-5">
-            <h3 class="font-24 fw-600 text-blue mt-3">Add Scripts</h3>
+        <mat-card class="bg-black p-3 d-flex flex-column gap-3 mt-5">
+            <h3 class="font-24 fw-600 gradient-text mt-3">Add Scripts</h3>
             <form [formGroup]="addBlogsCategoryForm" class="d-flex flex-column gap-3 w-100">
                 <div class="d-flex flex-column gap-2 w-50">
-                    <label class="text-black links fw-500">Blog Title</label>
+                    <label class="text-white links fw-500">Blog Title</label>
                     <input type="text" class="p-2" placeholder="Enter Blog Title" formControlName="blogName">
                 </div>
                 <div class="d-flex flex-column gap-2 w-50">
-                    <label class="text-black links fw-500">Select Category</label>
+                    <label class="text-white links fw-500">Select Category</label>
                     <select class="p-2" formControlName="category">
                         <option value="" disabled>Select a Category</option>
                         <option *ngFor="let category of categoryList" [value]="category._id">
@@ -22,7 +22,7 @@
                     </span>
                 </div>
                 <div class="d-flex flex-column gap-2 w-50">
-                    <label class="text-black links fw-500">Select Sub Category</label>
+                    <label class="text-white links fw-500">Select Sub Category</label>
                     <select class="p-2" formControlName="subCategory">
                         <option value="" disabled>Select a Sub Category</option>
                         <option *ngFor="let category of subCategoryList" [value]="category._id">
@@ -36,14 +36,14 @@
                     </span>
                 </div>
                 <div class="d-flex flex-column gap-2 w-50">
-                    <label class="text-black links fw-500">Blog Image</label>
+                    <label class="text-white links fw-500">Blog Image</label>
                     <input type="file" id="logoInput" style="display: none" accept="image/*"
                         (change)="onFileSelected($event)">
                     <div class="card_dash p-3 br-5 d-flex flex-column gap-2 align-items-center justify-content-center cursor"
                         (click)="triggerFileInput()">
                         <div class="d-flex flex-column gap-2">
-                            <i class="fa-solid fa-upload paragraph text-accent text-a-c" id="uploadIcon"></i>
-                            <p class="mar0 text-grey links fw-500 text-a-c" id="selectedLogoName">
+                            <i class="fa-solid fa-upload paragraph text-accent text-white text-a-c" id="uploadIcon"></i>
+                            <p class="mar0 text-grey text-white fw-500 text-a-c" id="selectedLogoName">
                                 {{ selectedFile ? selectedFile.name : 'Drop your image here' }}
                             </p>
                         </div>
@@ -55,8 +55,8 @@
                 </div>
 
                 <div class="d-flex flex-column gap-2 w-100">
-                    <label class="text-black links fw-500">Blog Description</label>
-                    <angular-editor formControlName="blogDescription" [config]="editorConfig" class="custom-editor text-black"></angular-editor>
+                    <label class="text-white links fw-500">Blog Description</label>
+                    <angular-editor formControlName="blogDescription" [config]="editorConfig" class="custom-editor text-white"></angular-editor>
                 </div>
                 <div class="d-flex flex-row justify-content-center gap-2 w-100 mt-3">
                     <button type="button" class="btn btn-danger links">Cancel</button>

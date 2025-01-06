@@ -1,8 +1,8 @@
-<div class="blog_details_main d-flex flex-column align-items-center justify-content-center mt-5">
+<div class="blog_details_main d-flex flex-column align-items-center justify-content-center mt-5 bg-black">
     <div *ngFor="let details of blogsList"
         class="blog_details_body d-flex flex-column align-items-center justify-content-center gap-5 w-70 pb-2 ">
         <div class="blog-header">
-            <h1 class="blog-title text-black font-32 fw-500 text-a-c mt-5">{{details.blogName}}</h1>
+            <h1 class="blog-title text-white font-32 fw-500 text-a-c mt-5">{{details.blogName}}</h1>
             <div class="blog-meta text-a-c">
                 <p class="date-category">{{details.createdAt | date}} | {{details.category.categoryName}}</p>
                 <p class="author">By {{details.createdBy.username}}</p>
@@ -10,8 +10,8 @@
         </div>
         <div class="blog_details_desc d-flex flex-wrap w-100">
             <div class="content-container mb-5">
-                <div class="scrollable-content">
-                    <p class="text-grey font-16 fw-500" [innerHTML]="details.content"></p>
+                <div class="scrollable-content" style="color: white !important;">
+                    <p class="text-white font-16 fw-500" [innerHTML]="details.content"></p>
                 </div>
                 <div class="action-buttons">
                     <button class="secondary-button font-14 fw-500" (click)="openVideo()">
