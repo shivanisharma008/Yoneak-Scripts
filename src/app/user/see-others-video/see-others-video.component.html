@@ -1,12 +1,12 @@
-<div class="video-cards-page d-flex flex-column align-items-center p-4 ">
+<div class="video-cards-page d-flex flex-column align-items-center p-4 bg-black">
   <!-- Header -->
-  <h2 class="text-center mb-4">Video Gallery</h2>
+  <h2 class="text-white text-center mb-4">Video Gallery</h2>
 
   <!-- Video Cards -->
   <div class="video-cards-container d-flex flex-wrap justify-content-center gap-4">
     <div *ngFor="let link of videoLinks" class="video-card shadow-sm rounded p-2" (click)="playVideo(link)">
       <img [src]="getThumbnail(link)" alt="Video Thumbnail" class="rounded mb-2" style="width: 100%; height: auto;" />
-      <p class="text-truncate text-center mb-0">{{ link.embeddedYtLink[0] }}</p>
+      <p class="text-truncate text-white text-center mb-0">{{ link.embeddedYtLink[0] }}</p>
     </div>
   </div>
 

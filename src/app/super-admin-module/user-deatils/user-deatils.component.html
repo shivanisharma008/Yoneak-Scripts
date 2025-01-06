@@ -6,7 +6,7 @@
 </div> -->
 <div class="main d-flex flex-column align-items-center justify-content-center gap-3">
     <div class="main_header d-flex flex-row justify-content-between align-items-center mt-5 w-95">
-        <p class="title text-black font-24 fw-600 mar0">CREATORS DETAILS</p>
+        <p class="title gradient-text font-24 fw-600 mar0">CREATORS DETAILS</p>
         <!-- Search Box in Top Right -->
         <div class="search-container">
             <input type="text" class="form-control" placeholder="Search..." [formControl]="search" />
@@ -27,11 +27,11 @@
             </thead>
             <tbody>
                 <tr *ngFor="let user of userList; let i = index">
-                    <td>{{ i + 1 }}</td>
-                    <td class="font-14 fw-400">{{user.username}}</td>
-                    <td class="font-14 fw-400">{{user.email}}</td>
-                    <td class="font-14 fw-400">{{user.phoneNo}}</td>
-                    <td class="font-14 fw-400">{{user.createdAt | date}}</td>
+                    <td class="text-white">{{ i + 1 }}</td>
+                    <td class="text-white font-14 fw-400">{{user.username}}</td>
+                    <td class="text-white font-14 fw-400">{{user.email}}</td>
+                    <td class="text-white font-14 fw-400">{{user.phoneNo}}</td>
+                    <td class="text-white font-14 fw-400">{{user.createdAt | date}}</td>
                     <td class="d-flex gap-3">
                         <i class='bx bx-trash-alt font-22 text-danger cursor' (click)="deleteUser(user._id)"></i>
                     </td>
